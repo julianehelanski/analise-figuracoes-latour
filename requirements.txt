@@ -1,0 +1,36 @@
+# Análise de figurações: dependências Python
+# Backup do pyproject.toml para ambientes que não usam PEP 621
+
+# Extração e processamento de texto
+pdfminer.six>=20231228
+spacy>=3.7.0
+
+# Configuração via .env (caminho dos PDFs do Drive)
+python-dotenv>=1.0.0
+
+# Modelos spaCy: baixar separadamente após instalar com pip
+# python -m spacy download en_core_web_sm
+# python -m spacy download fr_core_news_sm
+# python -m spacy download pt_core_news_sm
+
+# Análise de dados
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Visualização
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Redes e comunidades
+networkx>=3.2
+python-louvain>=0.16
+
+# Utilitários
+tqdm>=4.66.0
+rich>=13.7.0
+
+# Desenvolvimento (opcional)
+# black>=24.0.0
+# ruff>=0.3.0
+# pytest>=8.0.0
+# ipython>=8.20.0
