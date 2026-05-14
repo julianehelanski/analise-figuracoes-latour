@@ -1,0 +1,15 @@
+grupo,n_ocorrencias,n_excluidas,frequencia_por_10k_palavras,variantes_top
+translation,70,2,5.47,"translation(48), translations(13), translated(5), translates(2)"
+construction,62,0,4.84,"construction(32), constructed(18), social construction(9), constructing(3)"
+factish,53,0,4.14,"factishes(33), factish(20)"
+articulation,53,0,4.14,"articulation(30), articulated(14), articulate(6), articulations(3)"
+proposition,41,0,3.20,"propositions(33), proposition(8)"
+network,35,0,2.73,"networks(24), network(11)"
+actor_network,31,0,2.42,"actants(21), actant(10)"
+circulating_reference,18,0,1.41,"circulating reference(16), circulating references(2)"
+black_box,17,0,1.33,"blackboxing(7), black box(5), black
+box(2), black boxes(1)"
+inscription,14,0,1.09,"inscription(7), inscriptions(7)"
+enrollment,12,0,0.94,"enrollment(6), enrolled(4), enroll(2)"
+centre_of_calculation,4,0,0.31,"centers of calculation(3), center of calculation(1)"
+immutable_mobile,3,0,0.23,immutable mobiles(3)
