@@ -25,7 +25,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 OUTPUTS_DIR = REPO_ROOT / "outputs"
-CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt"
+CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
 
 
 def obras_em_escopo() -> list[dict[str, str]]:

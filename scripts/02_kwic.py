@@ -32,7 +32,7 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 CATALOGO_YAML = REPO_ROOT / "campos_lexicais" / "catalogo_termos.yaml"
-CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt"
+CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
 OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 JANELA_EXCLUSAO_PALAVRAS = 5  # janela de checagem de exclusões adjacentes
