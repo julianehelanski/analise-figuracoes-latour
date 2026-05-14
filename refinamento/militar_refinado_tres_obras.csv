@@ -1,0 +1,23 @@
+% Tabela: densidade refinada do campo figurativo militar nas tres obras de Latour,
+% com desambiguacao de war/wars entre uso descritivo-historico e uso figurativo.
+% Geracao: passo 1 do refinamento da Etapa 3 da analise computacional.
+% Catalogo de campos: campos_lexicais/catalogo_termos.yaml.
+% Janela KWIC: 10 palavras de cada lado; classificacao de war/wars
+% feita por leitura de janela ampliada e regra de colocacao.
+
+\begin{table}[ht]
+\centering
+\caption[Densidade do campo militar nas tres obras de Latour, com desambiguacao de \emph{war/wars}]{Densidade do campo figurativo \texttt{militar} nas tres obras de Latour, em contagem bruta e em contagem refinada pela desambiguacao das ocorrencias de \emph{war/wars} entre uso descritivo-historico e uso figurativo. A contagem refinada subtrai do campo militar as ocorrencias em que \emph{war/wars} aparece em colocacao que nomeia um objeto historico ou editorial: \emph{science wars}, \emph{World War}, \emph{Cold War}, \emph{Franco-Prussian war}, \emph{phony war}, instituicoes nomeadas (\emph{Ministry of War}), referencias bibliograficas (Tolstoi, \emph{War and Peace}) e capitulos com narrativa historica da Segunda Guerra Mundial (Joliot, Szilard). Frequencia por 10\,000 palavras.}
+\label{tab:militar-refinado}
+\begin{tabular}{lrrrrr}
+\toprule
+Obra & Palavras & \multicolumn{2}{c}{Contagem bruta} & \multicolumn{2}{c}{Contagem refinada} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+ & & $n$ & freq./10k & $n$ & freq./10k \\
+\midrule
+\emph{Laboratory Life} (1986) & 105\,749 & 39 & 3{,}69 & 37 & 3{,}50 \\
+\emph{Science in Action} (1987) & 139\,861 & 374 & 26{,}74 & 364 & 26{,}03 \\
+\emph{Pandora's Hope} (1999) & 128\,001 & 212 & 16{,}56 & 156 & 12{,}19 \\
+\bottomrule
+\end{tabular}
+\end{table}
