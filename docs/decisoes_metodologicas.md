@@ -531,3 +531,45 @@ Detalhamento completo no `outputs/etapa2bis_artigos/relatorio_etapa2bis.md`.
 - 9 linhas em branco na `validacao_amostral_semantica.csv` da 2-bis, aguardando preenchimento manual.
 - Atualização da subseção do capítulo 2 da tese que referencia o *Recalling*: substituir colunas das tabelas pela versão `_bis`, reescrever a nota de rodapé sobre cobertura parcial (era ~80%, real era 25,3%, agora 100%), acrescentar nota argumentativa sobre a passagem `alliance` metalinguística.
 - Pendências independentes da Etapa 2.6 (validação retroativa A/B/C nos três livros, leitura manual dos seis candidatos metalinguísticos retroativos) permanecem abertas.
+
+---
+
+## Etapa 3 — Análise lexicométrica de *An Inquiry into Modes of Existence* (Latour, 2013)
+
+Data da execução: 15 de maio de 2026, posterior ao push da Etapa 2-bis.
+
+### 1. Motivação e escopo
+
+Estendo a análise para AIME (Latour 2013, Harvard University Press, tradução de Catherine Porter), o livro em que Latour declara estar completando a TAR. A motivação é etnográfica: a Etapa 2-bis documentou no *Recalling ANT* o gesto autocrítico que reduziu a refinada figural militar a zero; AIME é o livro que sai do "caixão" do *Recalling* e mobiliza um vocabulário figural novo. Estender até 2013 é gesto de justiça intelectual com Latour e gesto de integridade reflexiva da tese.
+
+O escopo da Etapa 3 é parcial em relação à Etapa 2: aplico contagem bruta (análoga à 2.1), desambiguação automática do campo militar (análoga à 2.2) e cocorrência (análoga à 2.4). A validação amostral semântica A/B/C (análoga à 2.6) fica como pendência declarada. Detalhamento no `outputs/etapa3_aime/relatorio_etapa3.md`.
+
+### 2. Decisões metodológicas
+
+**Origem do arquivo**: a pesquisadora forneceu `.txt` extraído de PDF nativo via canais institucionais. Depositado em `corpus/txt_fornecido/latour_2013_aime_en.txt`. Normalizado em simetria com a Etapa 2-bis: 21.104 CRLF → LF, 0 soft hyphens, 519 caracteres de controle ASCII substituídos por espaço, 852 EOL hyphens reconstituídos, 402 replacement chars U+FFFD substituídos por espaço. Resultado final em `corpus/txt_norm/latour_2013_aime_en.txt`, com 194.454 palavras de corpo (`split`). Hashes em `outputs/etapa3_aime/txt_hashes.txt`.
+
+**Dois catálogos em paralelo**:
+
+- Catálogo antigo (19 campos das Etapas 1 e 2) aplicado para permitir leitura comparativa direta com as cinco obras anteriores.
+- Catálogo novo (`campos_lexicais/catalogo_termos_aime.yaml`, 12 campos específicos de AIME) aplicado apenas em AIME. Decisão metodológica: os campos novos foram identificados a partir da leitura qualitativa do livro e da literatura sobre a guinada latouriana pós-2007; sua aplicação retroativa nas obras de 1986-1999 teria rendimento esperado muito baixo, em ordem de grandeza inferior ao ruído. Os doze campos novos são: `modos_existencia`, `preposicao`, `felicidade`, `diplomacia`, `gaia`, `valores`, `trajetoria_passe`, `instituicao`, `categorias_dominio`, `modernos`, `alteracao`, `experiencia`.
+
+**Exclusões no catálogo novo**: retirei `value`/`values` isolados do campo `valores` (alta polissemia), `pass`/`passing`/`passes` isolados de `trajetoria_passe`, `mode`/`modes` isolados de `modos_existencia`, `modern` adjetivo isolado de `modernos`, `Earth` de `gaia`. As polissemias remanescentes (`experience`, `crossing`, `domain`) ficam como ruído documentado nas limitações da Etapa 3.
+
+**Ajuste da janela proporcional de cocorrência**: AIME tem 194.454 palavras; 2% disso (3.880 palavras) é janela alta demais para significância analítica em cocorrência KWIC. Ajusto para 0,02% = 39 palavras, mantendo ordem de grandeza comparável à janela proporcional da Etapa 2 (157 palavras em *Clarifications*, 97 em *Recalling* bis). A janela 200 permanece como controle.
+
+**Sem validação semântica A/B/C**: decisão registrada acima. Implica que a contagem bruta dos 31 campos em AIME carrega ruído de polissemia que a validação permitiria estimar. A tabela militar refinada (123 figurais de 129 brutas após desambiguação automática) tem leitura mais robusta porque a desambiguação automática cobre os principais não-figurais.
+
+**Slug e escopo**: criei o slug `latour_2013_aime_en` no `metadata.csv`. Os scripts da Etapa 3 (`scripts/22_etapa3_aime_pipeline.py`) operam com caminho direto, sem usar `--escopo etapa3`; pelo volume isolado da extensão, não adicionei coluna `escopo_etapa3` ao schema. Decisão revisável se a Etapa 3 ganhar outras obras no futuro.
+
+### 3. Achados centrais
+
+A contagem refinada figural do `militar` em AIME (6,33/10k, 123 ocorrências) coloca o livro em patamar **intermediário** entre os artigos metateóricos (0,00) e os livros monográficos solo (12,19 em Pandora; 26,03 em Sci. Action). A inspeção amostral confirma uso predominantemente figural, **em registro deslocado** para o horizonte cosmopolítico-diplomático: as ocorrências articulam-se com `modernos` (144 cocorrências em j=200), `instituicao` (78), `topologia` (78), `diplomacia` (55) e `gaia` (45). A "diplomacia" como categoria operatória do livro convive em vizinhança com o vocabulário militar; não o elimina, o ressignifica.
+
+A malha topológica que os artigos metateóricos de 1996/1999 inauguraram permanece em AIME: `topologia` 26,43/10k, `network` 13,11/10k, `textil` 10,34/10k, em densidades comparáveis às dos livros monográficos solo. As variantes top do `topologia` reorganizam-se em torno de `path` (90) e `trajectory` (61), articulando com o campo novo `trajetoria_passe` (433 ocorrências, par dominante `topologia`–`trajetoria_passe` com 584 cocorrências em j=200).
+
+AIME redistribui o trabalho figurativo em três camadas (vocabulário antigo persistente, vocabulário novo específico, articulação entre as duas via cocorrência), conforme detalhado em § 7 do `relatorio_etapa3.md`.
+
+### 4. Pendências
+
+- Validação amostral semântica A/B/C dos 31 campos em AIME (Etapa 3.6 hipotética). Sem ela, as densidades brutas dos campos polissêmicos (`experiencia`, `categorias_dominio`, `crossing`, `domain`) carregam ruído não estimado.
+- Validação retroativa das categorias `metalinguistico`, `descritivo_bibliografico` e `conceitual_debate` para os livros (pendência aberta desde a Etapa 2.6, inclui os seis candidatos retroativos de `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv`).

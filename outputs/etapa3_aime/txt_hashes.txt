@@ -1,0 +1,31 @@
+# Hashes e estatísticas do `.txt` de AIME (Etapa 3, Passo 0)
+
+Data de geração: 2026-05-15.
+
+## Arquivo depositado pela pesquisadora
+
+- Path: `corpus/txt_fornecido/latour_2013_aime_en.txt`
+- SHA-256: `2c7ae1e9420580ce3ff992681e24dd2af4a995c1d104ae37acf4776a8ab8e0ce`
+- Bytes: 1.345.400
+- Linhas: 21.105
+- Palavras (convenção `split`, mesma do `qualidade_extracao.csv`): **195.706**
+- Palavras (convenção `\b\w+\b`, para comparação): 196.863
+
+## Expectativa do briefing
+
+O briefing § "O que vou fornecer" antecipou ~194.000 palavras. O número real é 195.706, diferença de +1.706 (+0,9%), dentro da margem de erro razoável para estimativa preliminar.
+
+## Sanity check do conteúdo
+
+| Marca | Ocorrências |
+|---|---:|
+| `"modes of existence"` | 51 |
+| `Catherine Porter` (tradutora) | 2 |
+| `Harvard University Press` | 1 |
+| `[NET]` / `[net]` (notação dos modos) | 45 |
+| `chapter \d+` | 82 |
+| `category mistake` | 65 |
+
+Primeiras 200 caracteres não-whitespace: `An Inquiry into Modes of Existence ... An Anthropology of the Moderns`.
+
+O arquivo é o livro AIME integral, com título, indicação de tradutor e editora, e contém as marcas estruturais esperadas (capítulos, notação `[NET]`, vocabulário central do livro). Está pronto para Passo 1 (normalização).
