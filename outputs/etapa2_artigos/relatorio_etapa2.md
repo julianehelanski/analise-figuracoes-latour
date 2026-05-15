@@ -52,12 +52,52 @@ Variantes top do `textil` em *Clarifications*: `net`(10), `nets`(3), `tied`(3), 
 - `outputs/etapa2_artigos/tabela_comparativa_5_obras.tex` (LaTeX, pronto para inclusão).
 - `outputs/<obra>/csv/frequencias.csv` (atualizados nas 5 obras com `textil` e `topologia`).
 
-## Próximos passos (Gate 2.1 pendente)
+## Etapa 2.2: desambiguação automática do campo militar nos artigos
 
-A pesquisadora confirma que as densidades acima fazem sentido em ordem de grandeza, antes de prosseguir para:
+Data da execução: 15 de maio de 2026, sequencial à Etapa 2.1 e ao Gate 2.1 confirmado pela pesquisadora.
 
-- Etapa 2.2: KWIC com desambiguação automática do campo militar nos artigos, incluindo os gatilhos novos `metalinguistico` e `descritivo-bibliografico`.
-- Etapa 2.3: desambiguação manual.
-- Etapa 2.4: cocorrência com janela 200 (controle) e janela proporcional (27 / 159 palavras).
-- Etapa 2.5: outputs comparativos consolidados (3 tabelas).
-- Etapa 2.6: validação amostral semântica A/B/C.
+Apliquei `scripts/15_etapa2_desambiguar_militar.py` sobre as quatro ocorrências do campo militar nos dois artigos, com cinco categorias possíveis e gatilhos automáticos na seguinte ordem de prioridade:
+
+1. `descritivo_historico`: colocação com objeto histórico (`Science Wars`, `World War`, `Cold War`, `Franco-Prussian War`, `War and Peace`, etc.). Reutiliza a regra da Etapa 1.
+2. `descritivo_bibliografico`: ≥2 entre ano em parênteses, editora conhecida e nomes próprios sequenciais na janela.
+3. `metalinguistico`: aspas em torno (≥2) e ≥1 termo da TAR, ou indicador citacional e ≥2 termos da TAR.
+4. `conceitual_debate`: ≥2 palavras terminadas em `-ist`, `-ists`, `-ism`, `-isms` na janela (escolas teóricas).
+5. `figurativo`: default, sem gatilho. Uso figural do vocabulário militar como tropo da prática científica.
+
+Resultado, com gatilho automático aceito como sugestão inicial em todas as quatro ocorrências:
+
+| Obra | Pág. | Termo | Categoria | Gatilho |
+|---|---:|---|---|---|
+| *Recalling* 1999 | 1 | `wars` | descritivo_historico | casa `Science Wars` |
+| *Clarifications* 1996 | 1 | `allies` | metalinguistico | aspas=4, termos TAR=2 (`network`, `network`) |
+| *Clarifications* 1996 | 1 | `enemies` | conceitual_debate | ismos = `Reflexivists`, `pre-relativist` |
+| *Clarifications* 1996 | 1 | `alliance` | descritivo_bibliografico | ano entre parênteses + editora (`Gallimard/Bantam`) + autores sequenciais (`Prigogine et Stengers`) |
+
+A contagem refinada figural (uso militar-industrial como tropo da prática científica) cai a zero nos dois artigos:
+
+| Obra | Palavras | Bruta n | Bruta /10k | Refinada n | Refinada /10k |
+|---|---:|---:|---:|---:|---:|
+| *Laboratory Life* 1986 | 105.749 | 39 | 3,69 | 37 | 3,50 |
+| *Science in Action* 1987 | 139.861 | 374 | 26,74 | 364 | 26,03 |
+| *Pandora's Hope* 1999 | 128.001 | 212 | 16,56 | 156 | 12,19 |
+| *Clarifications* 1996 | 7.848 | 3 | 3,82 | **0** | **0,00** |
+| *Recalling ANT* 1999 | 1.241 | 1 | 8,06 | **0** | **0,00** |
+
+A contagem refinada figural é zero nos dois artigos: o vocabulário militar-industrial está presente apenas em uso descritivo-histórico, descritivo-bibliográfico, metalinguístico ou de polêmica conceitual entre escolas teóricas. A hipótese da divisão de trabalho metafórico por gênero textual ganha sustentação empírica completa: o léxico militar-industrial recua de 16-26/10k nos livros monográficos para 0/10k nos artigos metateóricos, quando a leitura figural é restringida ao tropo da prática científica.
+
+A contagem refinada dos livros vem do `refinamento/militar_refinado_tres_obras.csv` da Etapa 1, sem reanálise. A contagem refinada dos artigos vem da desambiguação automática desta etapa, com a categoria final sugerida igual à categoria automática, pendente de revisão manual da pesquisadora (Etapa 2.3).
+
+### Outputs da Etapa 2.2
+
+- `outputs/etapa2_artigos/militar_classificacao_automatica.csv`: 4 ocorrências dos artigos, com `categoria_auto`, `gatilho_detectado`, `categoria_final` (igual à automática) e `justificativa`. A pesquisadora ajusta `categoria_final` se discordar.
+- `outputs/etapa2_artigos/tabela_militar_refinada_5_obras.tex`: tabela LaTeX consolidada, pronta para `\input{}` no master da tese.
+
+## Próximos passos (Gate 2.2 pendente)
+
+A pesquisadora revisa a planilha `militar_classificacao_automatica.csv` e marca discordâncias se houver. Não há ocorrência sem gatilho na camada automática (4/4 cobertas), portanto a Etapa 2.3 (desambiguação manual) reduz-se a confirmação ou ajuste das quatro classificações sugeridas.
+
+Em seguida:
+
+- Etapa 2.4: cocorrência com janela 200 (controle, comparável aos livros) e janela proporcional (27 palavras para *Recalling*, 159 para *Clarifications*).
+- Etapa 2.5: outputs comparativos consolidados (3 tabelas: comparativa geral, campo militar refinado, têxtil-topológico).
+- Etapa 2.6: validação amostral semântica A/B/C análoga à da Etapa 1.

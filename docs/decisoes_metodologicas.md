@@ -350,12 +350,17 @@ A consolidação dos termos têxteis e topológicos em grupos do `catalogo_termo
 
 ### 6. Categorias novas de desambiguação do campo militar
 
-A desambiguação automática + manual aplicada na Etapa 1 (gatilhos lexicais para *Science Wars*, *World War*, *Cold War*, *Franco-Prussian War*, *Ministry of War*, *phony war*, *War and Peace*, etc.) ganha duas categorias novas específicas para os artigos metateóricos:
+A desambiguação automática + manual aplicada na Etapa 1 (gatilhos lexicais para *Science Wars*, *World War*, *Cold War*, *Franco-Prussian War*, *Ministry of War*, *phony war*, *War and Peace*, etc.) ganha três categorias novas específicas para os artigos metateóricos:
 
-- `metalinguistico`: ocorrências em que Latour cita o próprio vocabulário da TAR (como em `vocabulary association, translation, alliance, obligatory passage point`). Gatilho automático candidato: ocorrência dentro de aspas, ou em vizinhança imediata (cinco palavras) com termos do vocabulário próprio da TAR (`association`, `translation`, `passage point`, `actor-network`, `enrollment`).
-- `descritivo-bibliografico`: ocorrências em referências bibliográficas e em títulos de obras citadas (`La nouvelle alliance` de Prigogine e Stengers). Gatilho automático candidato: ocorrência em itálico, ou em vizinhança imediata com nomes de autores ou anos entre parênteses, ou em formatação de bibliografia ao final do artigo.
+- `metalinguistico`: ocorrências em que Latour cita o próprio vocabulário da TAR (como em `vocabulary association, translation, alliance, obligatory passage point`). Gatilho automático implementado: ≥2 aspas curvas/retas na janela junto a ≥1 termo do vocabulário próprio da TAR (`association`, `translation`, `passage point`, `actor-network`, `enrollment`, `actant`, `network` e variantes), ou indicador citacional explícito (`vocabulary`, `term`, `notion`, `so-called`, `the way AT is`) com ≥2 termos da TAR.
+- `descritivo_bibliografico`: ocorrências em referências bibliográficas e em títulos de obras citadas (`La nouvelle alliance` de Prigogine e Stengers). Gatilho automático implementado: ≥2 sinais entre ano em parênteses, editora conhecida (`Routledge`, `Blackwell`, `Harvard`, `Gallimard`, `Bantam` etc.) e nomes próprios sequenciais com `and`/`et`.
+- `conceitual_debate`: ocorrências em que o termo militar descreve polêmica entre escolas teóricas (`pre-relativist enemies`, `Reflexivists`, etc.). Gatilho automático: ≥2 palavras terminadas em `-ist`, `-ists`, `-ism`, `-isms` na janela. Categoria registrada como distinta do uso figural da prática científica, em coerência com a leitura do briefing § 2.
 
-A implementação desses gatilhos fica para a Etapa 2.2, junto com a planilha de classificação no formato de `refinamento/war_pandora_classificacao.csv`.
+A implementação está em `scripts/15_etapa2_desambiguar_militar.py`. A planilha de classificação `outputs/etapa2_artigos/militar_classificacao_automatica.csv` segue o formato de `refinamento/war_pandora_classificacao.csv`.
+
+**Achado da Etapa 2.2**: cobertura automática de 4/4 ocorrências militares dos artigos. Todas caem em categorias não-figurais. A contagem refinada figural do campo militar nos artigos cai para zero, sustentando empiricamente a hipótese de divisão de trabalho metafórico por gênero textual proposta pelo briefing.
+
+**Ressalva sobre a citação prevista no briefing § 2 que não está no corpus**: a passagem metalinguística `vocabulary association, translation, alliance, obligatory passage point` (que motivou a categoria `metalinguistico`) não aparece nas pp. 16-24 do *Recalling* incluídas no corpus. A inferência mais provável é que esteja em uma das páginas excluídas (15 ou 25 do volume). A única ocorrência militar efetiva no corpus do *Recalling* é `wars` em `Science Wars` (`descritivo_historico`). O argumento comparativo permanece sustentado: o `wars` de `Science Wars` também é não-figural, e a refinada figural do *Recalling* permanece zero.
 
 ### 7. Janela de cocorrência
 
