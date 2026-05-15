@@ -1,0 +1,11 @@
+,actor_network,articulation,circulating_reference,construction,inscription,militar,network,textil,topologia,translation
+actor_network,0,0,0,0,2,0,28,1,23,1
+articulation,0,0,1,1,0,1,0,0,8,0
+circulating_reference,0,1,0,1,0,1,0,0,17,0
+construction,0,1,1,0,0,1,2,0,10,0
+inscription,2,0,0,0,0,0,2,0,3,0
+militar,0,1,1,1,0,0,0,0,7,1
+network,28,0,0,2,2,0,0,2,79,9
+textil,1,0,0,0,0,0,2,0,7,0
+topologia,23,8,17,10,3,7,79,7,0,3
+translation,1,0,0,0,0,1,9,0,3,0

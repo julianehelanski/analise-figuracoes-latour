@@ -1,0 +1,11 @@
+grupo,n_ocorrencias,n_excluidas,frequencia_por_10k_palavras,variantes_top
+topologia,48,0,99.48,"outside(8), circulating(7), circulation(7), flat(2)"
+network,28,0,58.03,"network(23), networks(5)"
+actor_network,9,0,18.65,"actor-network(5), actants(2), actant(1), actor network(1)"
+translation,2,0,4.15,"translations(1), translation(1)"
+circulating_reference,2,0,4.15,"circulating references(1), circulating reference(1)"
+construction,2,0,4.15,"construction(1), social construction(1)"
+militar,2,0,4.15,"alliance(1), wars(1)"
+inscription,1,0,2.07,inscriptions(1)
+articulation,1,0,2.07,articulated(1)
+textil,1,0,2.07,ties(1)

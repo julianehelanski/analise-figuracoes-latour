@@ -489,3 +489,45 @@ Seis subetapas concluídas em sequência, com gates de revisão confirmados pela
 - Leitura manual dos seis candidatos `metalinguistico` retroativos nos livros (4 `network` em *Science in Action*, 1 `actor_network` em *Science in Action*, 1 `actor_network` em *Pandora's Hope*). Sem essa leitura, a taxa de figuralidade para *Science in Action* na tabela `tab:textil-topologico-refinado` fica como `pendente`.
 - Validação A/B/C retroativa do protocolo aplicada aos três livros monográficos, para fechar a comparação cruzada de figuralidade entre artigos e livros sob a mesma instrumentação.
 - PDF nativo do *Recalling*, caso acessível, para reanálise integral (cobertura atual: 80%).
+
+---
+
+## Etapa 2-bis — Reanálise do *Recalling ANT* a partir de TXT integral
+
+Data da execução: 15 de maio de 2026, sequencial ao Gate 2.6 confirmado pela pesquisadora.
+
+### 1. Motivação
+
+A Etapa 2 original processou o *Recalling ANT* (Latour, 1999, *Sociological Review*, pp. 15-25) a partir de um zip de OCR página-a-página em que metade das páginas tinha OCR severamente truncado. O corpus normalizado da Etapa 2 cobria 1.241 palavras correspondendo a 5 das 11 páginas do volume (pp. 16, 18, 20, 22, 24). O relatório da Etapa 2 declarava cobertura de ~80% por subestimação do tamanho total do artigo (era estimado em ~1.500 palavras totais).
+
+A pesquisadora forneceu nesta sessão um `.txt` nativo integral do artigo, com 4.825 palavras após normalização. A cobertura real do corpus antigo era 25,3%, não ~80%. A Etapa 2-bis refaz as Etapas 2.1, 2.2, 2.4 e 2.6 sobre o corpus integral, mantendo os outputs da Etapa 2 original intocados para auditoria.
+
+### 2. Decisões metodológicas
+
+**Origem do arquivo**: a pesquisadora obteve o `.txt` integral por canais de acesso institucional e revisou-o manualmente antes do depósito em `corpus/txt_fornecido/latour_1999_recalling_nativo.txt`. A cadeia é registrada como dado etnográfico análogo ao tratamento dado aos demais `.txt` normalizados externamente na Etapa 2.
+
+**Bypass dos pipelines de extração e normalização**: como o `.txt` chega já em formato comparável ao output dos pipelines `01_extract_text.py` + `01b_normalize_text.py`, esses scripts não são executados sobre o material novo. Aplico apenas as operações de saneamento simétricas às registradas no Adendo 1 da Etapa 1 e na seção 4 da Etapa 2 (CRLF, soft hyphens, caracteres de controle, hifenização EOL). Detalhamento em `outputs/etapa2bis_recalling/normalizacao_aplicada.md`.
+
+**Paginação**: o `.txt` fornecido tem números de página espalhados no texto (artefato do scan original) correspondentes às pp. 16-25 do volume *Law & Hassard 1999*. Uso essa paginação editorial publicada para todas as citações na Etapa 2-bis, conforme o briefing § "O que não fazer". A página de cada ocorrência é registrada no campo `pagina` do `kwic.csv` da obra `latour_1999_recalling_bis` via heurística de proporção (`scripts/02_kwic.py` herda do Etapa 1).
+
+**Novo slug e coluna `escopo_etapa2bis`**: para preservar os outputs da Etapa 2 original intocados, criei o slug `latour_1999_recalling_bis` no `metadata.csv` (com `escopo_etapa2bis=sim`) e adicionei a coluna `escopo_etapa2bis` ao schema. Os scripts `02_kwic.py`, `03_frequencies.py`, `04_visualizations.py` e `05_cooccurrence.py` aceitam `--escopo etapa2bis`.
+
+**Janela de cocorrência proporcional**: 2% de 4.825 = 96,5 → 97 palavras. O briefing 2-bis antecipava ~30, baseado na premissa errada de 1.500 palavras totais. A janela 200 (controle) e a janela 97 (proporcional) coexistem em `outputs/latour_1999_recalling_bis/csv/cocorrencia_j{200,prop}.csv`.
+
+**Migração da validação amostral A/B/C**: 31 das 40 ocorrências do bis casam com ocorrências da planilha preenchida da Etapa 2.6 (por chave composta `campo + termo + trecho central`); essas classificações migram automaticamente. 9 ocorrências novas (oriundas das páginas antes excluídas) ficam em branco para preenchimento manual em sessão futura. Detalhamento em `outputs/etapa2bis_artigos/validacao_amostral_migracao.md`.
+
+### 3. Achados principais
+
+A nova ocorrência **`alliance` em `vocabulary—association, translation, alliance, obligatory passage point`** é classificada automaticamente como `metalinguistico` (gatilho: `indicador_meta=1, tar=4`), confirmando a expectativa do briefing 2-bis e fechando a lacuna apontada como ressalva metodológica na Etapa 2.
+
+A contagem refinada figural do `militar` no *Recalling* **permanece zero**, agora sustentada por duas ocorrências (uma `descritivo_historico` para `wars`, uma `metalinguistico` para `alliance`) em vez de uma só. O argumento da Etapa 2 sobre o recuo do vocabulário militar nos artigos é confirmado e reforçado.
+
+A 2-bis revela um terceiro nível na divisão de trabalho metafórico: dentro do *Recalling*, há um regime fluido-circulatório (par `circulating_reference`–`topologia` com 9 cocorrências na j=97, ausente do corpus antigo) que se distingue do regime expositivo-figural do *Clarifications* e do regime descritivo-militar dos livros monográficos.
+
+Detalhamento completo no `outputs/etapa2bis_artigos/relatorio_etapa2bis.md`.
+
+### 4. Pendências
+
+- 9 linhas em branco na `validacao_amostral_semantica.csv` da 2-bis, aguardando preenchimento manual.
+- Atualização da subseção do capítulo 2 da tese que referencia o *Recalling*: substituir colunas das tabelas pela versão `_bis`, reescrever a nota de rodapé sobre cobertura parcial (era ~80%, real era 25,3%, agora 100%), acrescentar nota argumentativa sobre a passagem `alliance` metalinguística.
+- Pendências independentes da Etapa 2.6 (validação retroativa A/B/C nos três livros, leitura manual dos seis candidatos metalinguísticos retroativos) permanecem abertas.

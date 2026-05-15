@@ -196,6 +196,8 @@ def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
         return [r for r in linhas if _mark(r, "escopo_etapa1")]
     if escopo == "etapa2":
         return [r for r in linhas if _mark(r, "escopo_etapa2")]
+    if escopo == "etapa2bis":
+        return [r for r in linhas if _mark(r, "escopo_etapa2bis")]
     if escopo == "todos":
         return [r for r in linhas if _mark(r, "escopo_etapa1") or _mark(r, "escopo_etapa2")]
     sys.exit(f"ERRO: escopo desconhecido '{escopo}'. Use etapa1, etapa2 ou todos.")
@@ -353,7 +355,7 @@ def main() -> None:
     parser.add_argument("--janela", type=int, default=10,
                         help="janela KWIC em palavras antes/depois (default: 10).")
     parser.add_argument("--escopo", default="etapa1",
-                        choices=["etapa1", "etapa2", "todos"],
+                        choices=["etapa1", "etapa2", "etapa2bis", "todos"],
                         help="filtro de obras: etapa1 (default), etapa2 ou todos.")
     parser.add_argument("--adicoes", default="",
                         help="lista de arquivos de adições ao catálogo "
