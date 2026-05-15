@@ -430,9 +430,51 @@ Após o preenchimento, gero `outputs/etapa2_artigos/validacao_amostral_resultado
 
 Pendência: a Etapa 1 prevê a mesma validação A/B/C para os livros (passo 2 do refinamento mencionado no `CLAUDE.md`). Quando essa validação for executada, a Etapa 2 pode rodar comparação cruzada de figuralidade entre livros e artigos no mesmo protocolo. Esta etapa fica fora do escopo da 2.6.
 
-### 12. Estado da Etapa 2 ao final da Etapa 2.5
+### 12. Rendimento da validação amostral A/B/C
 
-Cinco subetapas concluídas em sequência, com gates de revisão confirmados pela pesquisadora entre cada uma:
+Recebi a planilha preenchida pela pesquisadora com as 82 classificações em 15 de maio de 2026. Apliquei correções de pipeline e gerei os outputs analíticos finais nesta sessão.
+
+Distribuição final das classificações: 62 `sim` (75,6%), 9 `parcial` (11,0%), 11 `nao` (13,4%). Taxa de figuralidade ponderada `(sim + 0,5·parcial) / total` igual a 0,815 sobre o conjunto.
+
+Por obra:
+
+| Obra | n | tx. figural |
+|---|---:|---:|
+| *Clarifications* 1996 | 60 | 0,875 |
+| *Recalling ANT* 1999 | 22 | 0,636 |
+
+Por campo:
+
+| Campo | n | tx. figural |
+|---|---:|---:|
+| textil | 15 | 0,967 |
+| topologia | 28 | 0,964 |
+| actor_network | 17 | 0,794 |
+| network | 22 | 0,523 |
+
+O contraste entre obras (0,875 vs. 0,636) e a taxa baixa do campo `network` (0,523) decorrem ambos do registro autocrítico-metalinguístico do *Recalling*. Dos 11 `nao` no corpus validado, 9 são da subcategoria `metalinguistico`, e 8 desses 9 estão no *Recalling*. As passagens em causa são as do gesto autocrítico em que Latour cita seu próprio vocabulário para suspendê-lo (`let us abandon the words actor and network`, `the very expression of actor-network invites this reaction`, `the third nail in the coffin`).
+
+Esse achado adiciona uma divisão de segundo nível à hipótese de divisão de trabalho metafórico por gênero textual: dentro do gênero metateórico, *Clarifications* opera em regime expositivo-figural e *Recalling* em regime autocrítico-metalinguístico. Esse resultado entra na seção do capítulo 2 que mobiliza a tabela `tab:textil-topologico-refinado`.
+
+**Bugs do pipeline da 2.6 corrigidos nesta sessão:**
+
+1. **`id_kwic` reiniciado por camada**: a coluna estava reiniciada por camada A/B/C, produzindo identificadores duplicados (e.g. `actor_network#0000` aparecia três vezes, uma por camada). Reescrevi cada `id_kwic` como `<obra>#<campo>#pos_NNNNNN`, com NNNNNN sendo o offset em caracteres no `.txt` normalizado, casado por chave composta (`grupo + termo_encontrado + contexto_antes + contexto_depois`) com o `kwic.csv` original. Casamento confirmado 82/82.
+
+2. **`pagina` fixa em "1"**: a coluna estava fixa em "1" para todas as linhas. Sem marcadores `<<PG_VOL=N>>` no corpo dos `.txt`, mapeei a posição absoluta de cada ocorrência ao parágrafo correspondente no texto normalizado e atribuí a página citável de tese: pp. 369-381 do *Soziale Welt* 47(4) para *Clarifications* (13 blocos = 13 páginas); pp. 16, 18, 20, 22, 24 do volume *Law & Hassard* para *Recalling* (5 blocos correspondentes às páginas pares do zip de OCR).
+
+A planilha original `validacao_amostral_semantica_PREENCHIDA.csv` fica intocada como artefato auditável. A versão com bugs corrigidos é `validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`, lado a lado.
+
+**Validação exaustiva do `textil` em *Clarifications***: o campo tem 39 ocorrências brutas no `kwic.csv` do artigo. A amostra A/B/C de 15 cobre 15 dessas 39 (38,5% de cobertura por ocorrência). Em diversidade de variantes a cobertura é maior: todas as variantes-chave (`fibrous`, `thread`, `thread-like`, `wiry`, `stringy`, `ropy`, `capillary`, `netting`, `lacing`, `weaving`, `twisting`, `fabric`, `fabrics`, `woven`, `threads`, `nets`) entraram na amostra; a variante `fiber` ficou fora. A taxa 0,967 é tratada como representativa do campo para fins da contagem refinada.
+
+**Rendimento desigual da camada C (variantes raras)**: a camada C é informativa em campos com diversidade lexical interna (`topologia`, `textil`, e `actor_network` em escala menor) e perde discriminação em campos dominados por uma única variante. Caso de `network`, em que `networks` concentra a maior parte das ocorrências e a única variante rara (`networking`) tem uma única ocorrência. A camada C de `network`/Clarifications fica com taxa 0,600, próxima da camada B (0,800), perdendo o papel diagnóstico que tem nos outros campos. Para rodadas futuras, considerar critério de inclusão na camada C apenas quando o campo tem três ou mais variantes com pelo menos duas ocorrências cada.
+
+**Subcategoria nova cunhada pela pesquisadora durante o preenchimento**: `definicao_operacional`, atribuída à passagem `AT makes use of some of the simplest properties of nets` (linha 9 da planilha), em que `nets` opera em registro transitório entre figural e técnico-matemático. Mantenho o rótulo como subcategoria sexta válida, em coerência com o princípio etnográfico do método.
+
+**Aplicação retroativa aos livros**: gerei `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv` com seis candidatos a uso `metalinguistico` nos campos `network` e `actor_network` dos três livros monográficos, identificados por gatilho automático (`the word`, `the notion`, `the term`, `the expression of`, `let us abandon`, `coffin`, `so-called`, `misunderstanding`). Distribuição: 4 candidatos `network` e 1 `actor_network` em *Science in Action*, 1 `actor_network` em *Pandora's Hope*, zero em *Laboratory Life*. A leitura manual dessas seis ocorrências fica como pendência para a Etapa 2-bis. Enquanto não houver classificação manual, a taxa de figuralidade para *Science in Action* na tabela `tab:textil-topologico-refinado` fica marcada como `pendente`.
+
+### 13. Estado da Etapa 2 ao final da Etapa 2.6
+
+Seis subetapas concluídas em sequência, com gates de revisão confirmados pela pesquisadora entre cada uma:
 
 - **2.0** integração dos `.txt` normalizados ao corpus, escopo_etapa2 no `metadata.csv`, infraestrutura de scripts.
 - **2.1** contagem bruta nas 5 obras com `02_kwic.py` e `03_frequencies.py`, tabela comparativa em `outputs/etapa2_artigos/tabela_comparativa_5_obras.{csv,tex}`.
@@ -440,5 +482,10 @@ Cinco subetapas concluídas em sequência, com gates de revisão confirmados pel
 - **2.3** não executada por desnecessidade: a cobertura automática 4/4 dispensou desambiguação manual de adição (a pesquisadora pode ainda ajustar `categoria_final` na planilha se discordar).
 - **2.4** cocorrência com duas janelas (200 controle + proporcional 2%) para os artigos, com `--sufixo` em `05_cooccurrence.py`. Consolidado em `cocorrencia_comparacao.md`.
 - **2.5** três tabelas finais consolidadas (comparativa geral, militar refinado, têxtil-topológico) e relatório `relatorio_etapa2.md` com leitura sintética dos contrastes.
+- **2.6** planilhas A/B/C geradas, preenchidas pela pesquisadora e processadas. Outputs analíticos finais em `outputs/etapa2_artigos/validacao_amostral_resultados.md`, `tabela_textil_topologico_refinada.tex`, `validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv` (bugs do pipeline corrigidos: `id_kwic` único por offset, `pagina` recalculada por mapeamento de parágrafo), `metalinguistico_retroativo_livros.csv` (candidatos para Etapa 2-bis) e `log_execucao.md`.
 
-Pendência: **2.6 validação amostral semântica A/B/C** análoga à da Etapa 1, aplicada aos trechos figurativos dos artigos. A pesquisadora confirma a Etapa 2.5 antes da 2.6.
+**Pendências abertas** (Etapa 2-bis):
+
+- Leitura manual dos seis candidatos `metalinguistico` retroativos nos livros (4 `network` em *Science in Action*, 1 `actor_network` em *Science in Action*, 1 `actor_network` em *Pandora's Hope*). Sem essa leitura, a taxa de figuralidade para *Science in Action* na tabela `tab:textil-topologico-refinado` fica como `pendente`.
+- Validação A/B/C retroativa do protocolo aplicada aos três livros monográficos, para fechar a comparação cruzada de figuralidade entre artigos e livros sob a mesma instrumentação.
+- PDF nativo do *Recalling*, caso acessível, para reanálise integral (cobertura atual: 80%).
