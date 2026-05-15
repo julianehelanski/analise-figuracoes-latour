@@ -38,6 +38,8 @@ def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
         return [r for r in linhas if _mark(r, "escopo_etapa1")]
     if escopo == "etapa2":
         return [r for r in linhas if _mark(r, "escopo_etapa2")]
+    if escopo == "etapa2bis":
+        return [r for r in linhas if _mark(r, "escopo_etapa2bis")]
     if escopo == "todos":
         return [r for r in linhas if _mark(r, "escopo_etapa1") or _mark(r, "escopo_etapa2")]
     raise SystemExit(f"escopo desconhecido '{escopo}'.")
@@ -125,7 +127,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--only", help="filtra obras por substring de id.")
     parser.add_argument("--escopo", default="etapa1",
-                        choices=["etapa1", "etapa2", "todos"],
+                        choices=["etapa1", "etapa2", "etapa2bis", "todos"],
                         help="filtro de obras: etapa1 (default), etapa2 ou todos.")
     args = parser.parse_args()
 
