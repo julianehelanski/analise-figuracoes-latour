@@ -72,10 +72,6 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(9, max(4, 0.35 * len(grupos))))
     barras = ax.barh(grupos, valores, color=cores)
     ax.set_xlabel("Ocorrências válidas (após exclusões)")
-    ax.set_title("Frequência dos grupos figurativos em AIME (Latour 2013)\n"
-                 "Azul: catálogo das Etapas 1 e 2 (19 campos). "
-                 "Laranja: catálogo novo da Etapa 3 (12 campos).",
-                 fontsize=10)
     for i, v in enumerate(valores):
         ax.text(v, i, f" {v}", va="center", fontsize=8)
     # Legenda manual
@@ -117,8 +113,6 @@ def main() -> None:
             label=rotulos_top, edgecolor="white", linewidth=0.3)
     ax.set_xlabel("Posição relativa no texto (0 = início, 1 = fim)")
     ax.set_ylabel("Ocorrências")
-    ax.set_title("Densidade dos 12 campos figurativos mais frequentes ao longo "
-                 "de AIME (Latour 2013)", fontsize=10)
     ax.legend(loc="upper right", fontsize=8, ncol=2)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "densidade_ao_longo_do_texto.png", dpi=300)
@@ -137,9 +131,6 @@ def main() -> None:
             label=rotulos_todos, edgecolor="white", linewidth=0.2)
     ax.set_xlabel("Posição relativa no texto (0 = início, 1 = fim)")
     ax.set_ylabel("Ocorrências")
-    ax.set_title("Densidade dos 26 campos figurativos com ocorrências ao longo "
-                 "de AIME (Latour 2013), todos os campos",
-                 fontsize=10)
     ax.legend(loc="upper right", fontsize=7, ncol=3)
     fig.tight_layout()
     fig.savefig(FIG_DIR / "densidade_ao_longo_do_texto_todos.png", dpi=300)
