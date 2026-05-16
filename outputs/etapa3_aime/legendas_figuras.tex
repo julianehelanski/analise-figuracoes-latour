@@ -1,0 +1,81 @@
+% Legendas LaTeX das tres figuras de AIME (Latour 2013), Etapa 3.
+% Os arquivos PNG estao em outputs/latour_2013_aime_en/figuras/.
+% Apos copiar os PNG para o diretorio de figuras da tese, ajuste o path
+% em \includegraphics.
+
+% =====================================================================
+% Figura 1: frequencia dos 26 campos figurativos com ocorrencias.
+% =====================================================================
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_frequencia_grupos.png}
+\caption[Frequencia dos campos figurativos em \emph{AIME}]{
+Frequencia absoluta dos 26 campos figurativos com ocorrencias em
+\emph{An Inquiry into Modes of Existence} (Latour, 2013). Barras
+coloridas por proveniencia do catalogo: em azul, os campos do catalogo
+estabelecido nas Etapas 1 e 2 da analise (19 campos, dos quais 14 com
+ocorrencias em \emph{AIME}); em laranja, os 12 campos novos do
+catalogo especifico da Etapa 3, identificados a partir da leitura
+qualitativa do livro. Total: 1.343 ocorrencias do catalogo antigo
+mais 2.214 do catalogo novo, somando 3.557 ocorrencias em 194.454
+palavras de corpo. Fonte: \texttt{outputs/latour\_2013\_aime\_en/
+csv/kwic\_catalogo\_antigo.csv} e \texttt{kwic\_catalogo\_aime.csv},
+gerados por \texttt{scripts/22\_etapa3\_aime\_pipeline.py}. Figura
+gerada por \texttt{scripts/23\_etapa3\_aime\_visualizacoes.py}.}
+\label{fig:aime-frequencia-grupos}
+\end{figure}
+
+
+% =====================================================================
+% Figura 2: densidade dos 12 campos mais frequentes ao longo do texto.
+% =====================================================================
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_densidade_top12.png}
+\caption[Densidade dos 12 campos mais frequentes ao longo de
+\emph{AIME}]{Distribuicao das ocorrencias dos 12 campos figurativos
+mais frequentes ao longo de \emph{An Inquiry into Modes of Existence}
+(Latour, 2013). Histograma empilhado em 30 bins, com o eixo horizontal
+representando a posicao relativa de cada ocorrencia no texto (0 no
+inicio, 1 no fim). Os campos sao, em ordem decrescente de densidade
+absoluta: \texttt{topologia} (514), \texttt{trajetoria\_passe} (433),
+\texttt{modernos} (397), \texttt{categorias\_dominio} (281),
+\texttt{experiencia} (276), \texttt{network} (255), \texttt{instituicao}
+(227), \texttt{textil} (201), \texttt{modos\_existencia} (167),
+\texttt{militar} (129), \texttt{alteracao} (112) e \texttt{felicidade}
+(92). A alternancia entre campos do catalogo antigo (\texttt{topologia},
+\texttt{network}, \texttt{textil}, \texttt{militar}) e campos do
+catalogo novo da Etapa 3 (demais oito) reforca a leitura de
+\emph{AIME} como livro de tres camadas figurativas
+(\autoref{sec:aime-tres-camadas}). Paleta tab20 do matplotlib; semente
+fixa para reprodutibilidade. Fonte: \texttt{kwic\_catalogo\_antigo.csv}
+e \texttt{kwic\_catalogo\_aime.csv} (campo \texttt{posicao\_no\_texto}
+de cada ocorrencia). Figura gerada por
+\texttt{scripts/23\_etapa3\_aime\_visualizacoes.py}.}
+\label{fig:aime-densidade-top12}
+\end{figure}
+
+
+% =====================================================================
+% Figura 3: densidade de todos os 26 campos ao longo do texto.
+% =====================================================================
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_densidade_todos.png}
+\caption[Densidade de todos os campos figurativos ao longo de
+\emph{AIME}]{Distribuicao das ocorrencias dos 26 campos figurativos
+com presenca em \emph{An Inquiry into Modes of Existence} (Latour,
+2013), em histograma empilhado de 30 bins. Versao completa da
+\autoref{fig:aime-densidade-top12}, mantida para auditoria. Posicao
+relativa no eixo horizontal (0 no inicio, 1 no fim). Os campos do
+catalogo antigo das Etapas 1 e 2 sem ocorrencias em \emph{AIME}
+(\texttt{centre\_of\_calculation}, \texttt{trial\_of\_strength},
+\texttt{factish}, \texttt{circulating\_reference}, \texttt{spokesperson})
+nao aparecem aqui. Fonte: \texttt{kwic\_catalogo\_antigo.csv} e
+\texttt{kwic\_catalogo\_aime.csv}. Figura gerada por
+\texttt{scripts/23\_etapa3\_aime\_visualizacoes.py}.}
+\label{fig:aime-densidade-todos}
+\end{figure}
