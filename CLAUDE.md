@@ -76,7 +76,7 @@ print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 
 **Etapa em andamento:** Refinamento sobre as Etapas 1 e 3, em sessão iniciada em 14 de maio de 2026. Cinco passos planejados, executados em sequência:
 
-1. Desambiguação de `war`/`wars` no campo militar das três obras de Latour. **Concluído em 14/05/2026**. Resultado documentado em `docs/decisoes_metodologicas.md` (adendo ao final). Artefatos em `outputs/refinamento/`.
+1. Desambiguação de `war`/`wars` no campo militar das três obras de Latour. **Concluído em 14/05/2026**. Resultado documentado em `docs/decisoes_metodologicas.md` (adendo ao final). Artefatos em `outputs/etapa1/refinamento/`.
 2. Validação amostral semântica dos campos figurativos (20 ocorrências por campo por obra, lidas por Juliane). Pendente.
 3. Reformatação dos blocos interpretativos do relatório de trajetória para os critérios de estilo da tese (primeira pessoa, sem travessões, sem fórmulas vedadas, capítulo minúsculo). Pendente.
 4. KWIC ampliado para janela de ±50 palavras sobre o campo militar nas três obras, com curadoria de 10 a 15 passagens citáveis. Pendente.
@@ -93,8 +93,8 @@ print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 **Pendências:**
 
 - Portar a lógica de desambiguação automática de `war`/`wars` para um script versionado em `scripts/`, com nome sugerido `09_desambiguar_war.py`. A camada manual fica em CSV auditável fora do script.
-- Atualizar a tabela LaTeX `outputs/latex/trajetoria_latour_1986_1999.tex` ou adicionar a tabela complementar `outputs/refinamento/tabela_militar_refinada.tex` ao master da tese.
-- Ajustar a seção 4.3.a do relatório `outputs/trajetoria_latour_1986_1999.md`: a frase sobre a manutenção do vocabulário militar em 1999 precisa ser reformulada à luz da queda de 26,4% pela desambiguação.
+- Atualizar a tabela LaTeX `outputs/latex/trajetoria_latour_1986_1999.tex` ou adicionar a tabela complementar `outputs/etapa1/refinamento/tabela_militar_refinada.tex` ao master da tese.
+- Ajustar a seção 4.3.a do relatório `outputs/etapa1/trajetoria_latour_1986_1999.md`: a frase sobre a manutenção do vocabulário militar em 1999 precisa ser reformulada à luz da queda de 26,4% pela desambiguação.
 - Passos 2 a 5 do refinamento atual.
 
 ## Como Claude Code deve operar
@@ -138,12 +138,34 @@ ls "$CORPUS_PDF_PATH"
 # extrair texto de um PDF do Drive sincronizado
 pdftotext -layout "$CORPUS_PDF_PATH/livro.pdf" corpus/txt/livro.txt
 
-# rodar análise KWIC
-python scripts/02_kwic.py \
-    --texto corpus/txt/latour_1987.txt \
-    --campo campos_lexicais/latour_militar_en.txt \
-    --janela 50 \
-    --saida outputs/csv/etapa1/latour_1987_militar.csv
+# rodar análise KWIC (Etapa 1, sobre as três obras em escopo)
+python scripts/02_kwic.py --escopo etapa1
+```
+
+## Estrutura do repositório
+
+```
+corpus/                catálogo (metadata.csv) e textos extraídos (txt/, txt_norm/)
+campos_lexicais/       catálogo YAML de termos figurativos
+docs/
+  decisoes_metodologicas.md      decisões vivas
+  historico.md                   índice cronológico de documentos consumidos
+scripts/
+  01_extract_text.py ... 08_validate_sample.py   pipeline reutilizável
+  _paths.py                                       mapeamento obra → etapa
+  arquivo/                                        scripts one-shot já consumidos
+outputs/
+  etapa1/<obra>/{csv,relatorios,figuras}     por obra
+  etapa1/{passo4,refinamento}                consolidados da Etapa 1
+  etapa1/trajetoria_latour_1986_1999.{md,csv}
+  etapa2/<obra>/{csv,relatorios,figuras}
+  etapa2/consolidado/                        tabelas e relatórios da Etapa 2
+  etapa2bis/<obra>/...
+  etapa2bis/{consolidado,recalling_extras}/
+  etapa3/<obra>/...
+  etapa3/consolidado/
+  consolidado/                               consolidado final cross-etapas
+  latex/                                     versões LaTeX para a tese
 ```
 
 ## Referências cruzadas com a tese

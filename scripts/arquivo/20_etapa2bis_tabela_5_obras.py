@@ -10,9 +10,12 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2BIS_DIR = OUTPUTS_DIR / "etapa2bis_artigos"
 
 ORDEM_OBRAS = [
@@ -33,7 +36,7 @@ ORDEM_GRUPOS = [
 
 
 def carregar_freq(obra_id: str) -> dict[str, int]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "frequencias.csv"
+    p = obra_dir(obra_id) / "csv" / "frequencias.csv"
     cont: dict[str, int] = {}
     if not p.exists():
         return cont

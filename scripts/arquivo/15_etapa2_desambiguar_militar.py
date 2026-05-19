@@ -1,6 +1,6 @@
 """Desambiguacao automatica do campo militar nos artigos teoricos (Etapa 2.2).
 
-Le `outputs/<artigo>/csv/kwic.csv` filtrado por `grupo == 'militar'` e aplica
+Le `outputs/etapa<N>/<artigo>/csv/kwic.csv` filtrado por `grupo == 'militar'` e aplica
 gatilhos automaticos para classificar cada ocorrencia em uma das quatro
 categorias previstas pelo briefing § 3.5:
 
@@ -17,9 +17,9 @@ categorias previstas pelo briefing § 3.5:
   como tropo da pratica cientifica.
 
 Output:
-- `outputs/etapa2_artigos/militar_classificacao_automatica.csv` no mesmo
+- `outputs/etapa2/consolidado/militar_classificacao_automatica.csv` no mesmo
   formato de `refinamento/war_pandora_classificacao.csv`.
-- `outputs/etapa2_artigos/tabela_militar_refinada_5_obras.tex`: tabela
+- `outputs/etapa2/consolidado/tabela_militar_refinada_5_obras.tex`: tabela
   LaTeX consolidada com contagem bruta e refinada para as 5 obras.
 
 A categoria final preenchida automaticamente fica como sugestao. A
@@ -34,9 +34,12 @@ from __future__ import annotations
 import csv
 import re
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 ARTIGOS = ["latour_1996_clarifications_en", "latour_1999_recalling_en"]
 
@@ -151,7 +154,7 @@ def classificar(janela_completa: str, trecho_central: str) -> tuple[str, str]:
 
 
 def desambiguar_artigo(obra_id: str) -> list[dict[str, str]]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     saida: list[dict[str, str]] = []

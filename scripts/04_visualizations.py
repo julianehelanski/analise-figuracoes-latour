@@ -1,10 +1,10 @@
 """Visualizações de frequência e densidade por obra.
 
-Lê `outputs/<obra_id>/csv/{kwic,frequencias}.csv` e produz:
+Lê `outputs/etapa<N>/<obra_id>/csv/{kwic,frequencias}.csv` e produz:
 
-- `outputs/<obra_id>/figuras/frequencia_grupos.png`: barras horizontais com
+- `outputs/etapa<N>/<obra_id>/figuras/frequencia_grupos.png`: barras horizontais com
   frequência por grupo (ocorrências válidas).
-- `outputs/<obra_id>/figuras/densidade_ao_longo_do_texto.png`: histograma da
+- `outputs/etapa<N>/<obra_id>/figuras/densidade_ao_longo_do_texto.png`: histograma da
   posição relativa (0-1) das ocorrências válidas ao longo do texto, empilhado
   por grupo.
 
@@ -24,7 +24,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
+from _paths import OUTPUTS_DIR, obra_dir
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
 
 
@@ -46,7 +46,7 @@ def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
 
 
 def carregar_kwic(obra_id: str) -> list[dict[str, str]]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     with p.open(encoding="utf-8", newline="") as f:
@@ -68,7 +68,7 @@ def gerar_figuras(obra_id: str) -> None:
         print(f"  [pular] sem ocorrências em outputs/{obra_id}/csv/kwic.csv.")
         return
 
-    fig_dir = OUTPUTS_DIR / obra_id / "figuras"
+    fig_dir = obra_dir(obra_id) / "figuras"
     fig_dir.mkdir(parents=True, exist_ok=True)
 
     # Barras horizontais ----------------------------------------------------

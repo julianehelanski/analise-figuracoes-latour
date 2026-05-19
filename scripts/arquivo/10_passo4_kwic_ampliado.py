@@ -8,11 +8,11 @@ Entrada:
 - corpus/txt_norm/<obra>.txt: textos normalizados das três obras de Latour.
 - corpus/paginas/<obra>.csv: classificação por página (corpo/paratexto/...).
 - campos_lexicais/catalogo_termos.yaml: termos figurativos por grupo.
-- outputs/<obra>/csv/kwic.csv: KWIC ±10 palavras existente.
+- outputs/etapa<N>/<obra>/csv/kwic.csv: KWIC ±10 palavras existente.
 
 Saída:
-- outputs/passo4/kwic_ampliado.csv: todos os hits válidos em janela ±50.
-- outputs/passo4/passagens_curadas.md: melhores passagens por (obra × campo)
+- outputs/etapa1/passo4/kwic_ampliado.csv: todos os hits válidos em janela ±50.
+- outputs/etapa1/passo4/passagens_curadas.md: melhores passagens por (obra × campo)
   formatadas como bloco LaTeX pronto para colar no capítulo 2.
 """
 
@@ -25,7 +25,7 @@ from pathlib import Path
 
 REPO = Path(__file__).parent.parent
 WINDOW = 50  # janela em palavras
-OUT_DIR = REPO / "outputs" / "passo4"
+OUT_DIR = REPO / "outputs" / "etapa1" / "passo4"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OBRAS = {
@@ -173,7 +173,7 @@ print(f"Total de hits no KWIC ampliado: {len(hits_amplos)}")
 # --- Aplicar classificação do passo 1 (war/wars em Pandora) ---
 
 classificacao_passo1 = {}
-caminho_passo1 = REPO / "refinamento" / "war_pandora_classificacao.csv"
+caminho_passo1 = REPO / "outputs" / "etapa1" / "refinamento" / "war_pandora_classificacao.csv"
 if caminho_passo1.exists():
     with open(caminho_passo1) as f:
         r = csv.DictReader(f)

@@ -1,7 +1,7 @@
 """Relatório de trajetória consolidada Latour 1986-1999.
 
 Lê as três obras em escopo da Etapa 1 e produz
-`outputs/trajetoria_latour_1986_1999.md`, organizado em torno das três
+`outputs/etapa1/trajetoria_latour_1986_1999.md`, organizado em torno das três
 perguntas da seção 6 de `docs/decisoes_metodologicas.md`:
 
 1. Quais figurações aparecem em todas as três obras? Com que frequência relativa?
@@ -10,7 +10,7 @@ perguntas da seção 6 de `docs/decisoes_metodologicas.md`:
 3. Como o vocabulário coautoral de Laboratory Life (Latour-Woolgar) se
    relaciona com o vocabulário das obras posteriores de Latour solo?
 
-Também grava `outputs/trajetoria_latour_1986_1999.csv` com a matriz
+Também grava `outputs/etapa1/trajetoria_latour_1986_1999.csv` com a matriz
 grupos × obras (ocorrências válidas e frequência por 10 000 palavras).
 
 Uso:
@@ -22,11 +22,11 @@ from __future__ import annotations
 import csv
 from collections import defaultdict
 from pathlib import Path
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 QUALIDADE_CSV = REPO_ROOT / "corpus" / "qualidade_extracao.csv"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 # Ordem cronológica esperada da Etapa 1.
 ORDEM_OBRAS = (
@@ -59,7 +59,7 @@ def palavras_totais(obra_id: str) -> int | None:
 
 
 def carregar_contagens(obra_id: str) -> dict[str, int]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     contagem: dict[str, int] = defaultdict(int)
     if not p.exists():
         return contagem

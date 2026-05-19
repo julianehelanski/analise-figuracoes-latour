@@ -23,11 +23,11 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS_DIR = REPO_ROOT / "outputs"
-ETAPA2BIS_DIR = OUTPUTS_DIR / "etapa2bis_artigos"
-ETAPA2BIS_RECALLING = OUTPUTS_DIR / "etapa2bis_recalling"
+ETAPA2BIS_DIR = OUTPUTS_DIR / "etapa2bis" / "consolidado"
+ETAPA2BIS_RECALLING = OUTPUTS_DIR / "etapa2bis" / "recalling_extras"
 
-PREENCHIDA_2_6 = OUTPUTS_DIR / "etapa2_artigos" / "validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv"
-KWIC_BIS = OUTPUTS_DIR / "latour_1999_recalling_bis" / "csv" / "kwic.csv"
+PREENCHIDA_2_6 = OUTPUTS_DIR / "etapa2" / "consolidado" / "validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv"
+KWIC_BIS = OUTPUTS_DIR / "etapa2bis" / "latour_1999_recalling_bis" / "csv" / "kwic.csv"
 
 CAMPOS = ["textil", "topologia", "network", "actor_network"]
 N_POR_CAMADA = 5
