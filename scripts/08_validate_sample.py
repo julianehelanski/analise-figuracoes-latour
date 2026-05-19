@@ -1,6 +1,6 @@
 """Validação amostral automatizada (Etapa 2).
 
-Para cada uma das 41 páginas amostradas em `outputs/amostra_validacao_etapa1.csv`,
+Para cada uma das 41 páginas amostradas em `outputs/etapa1/amostra_validacao_etapa1.csv`,
 recupera o texto completo da página em `corpus/txt_norm/<obra>.txt`, aplica
 critérios heurísticos de validação e preenche os campos:
 
@@ -59,11 +59,11 @@ import re
 import sys
 from pathlib import Path
 from collections import Counter
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-AMOSTRA_CSV = REPO_ROOT / "outputs" / "amostra_validacao_etapa1.csv"
+AMOSTRA_CSV = REPO_ROOT / "outputs" / "etapa1" / "amostra_validacao_etapa1.csv"
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 _RE_INICIO_CAPITULO = re.compile(
     r"^\s*(chapter|capítulo|capitulo|chapitre|part|parte)\s+(\d+|[ivxlcdm]+)\b"
@@ -419,7 +419,7 @@ def gerar_relatorio_consolidado(linhas: list[dict[str, str]]) -> str:
             md_lines.append(f"- `{obra}`: {n} página(s) com erros listados.")
         md_lines.append("")
         md_lines.append(
-            "Detalhes por página estão em `outputs/<obra>/relatorios/"
+            "Detalhes por página estão em `outputs/etapa<N>/<obra>/relatorios/"
             "validacao_amostral_etapa1.md` (campo `erro_extracao`)."
         )
     md_lines.append("")
@@ -456,11 +456,11 @@ def main() -> None:
     for obra in obras:
         do_obra = [ln for ln in linhas if ln["obra"] == obra]
         cab_obra = [k for k in cabecalho if k != "obra"]
-        caminho_csv = OUTPUTS_DIR / obra / "csv" / "amostra_validacao.csv"
+        caminho_csv = obra_dir(obra) / "csv" / "amostra_validacao.csv"
         escrever_csv(caminho_csv, do_obra, cab_obra)
         print(f"gravado: {caminho_csv.relative_to(REPO_ROOT)}  ({len(do_obra)} linhas)")
         # Relatório
-        caminho_md = OUTPUTS_DIR / obra / "relatorios" / "validacao_amostral_etapa1.md"
+        caminho_md = obra_dir(obra) / "relatorios" / "validacao_amostral_etapa1.md"
         caminho_md.parent.mkdir(parents=True, exist_ok=True)
         caminho_md.write_text(gerar_relatorio_md(obra, do_obra), encoding="utf-8")
         print(f"gravado: {caminho_md.relative_to(REPO_ROOT)}")

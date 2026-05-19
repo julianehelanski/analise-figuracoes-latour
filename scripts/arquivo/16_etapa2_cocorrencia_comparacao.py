@@ -19,9 +19,12 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 
 ARTIGOS = {
@@ -42,7 +45,7 @@ ARTIGOS = {
 
 def carregar_pares(obra_id: str, sufixo: str) -> dict[tuple[str, str], int]:
     """Le a matriz cocorrencia<sufixo>.csv e devolve dict de pares."""
-    p = OUTPUTS_DIR / obra_id / "csv" / f"cocorrencia_{sufixo}.csv"
+    p = obra_dir(obra_id) / "csv" / f"cocorrencia_{sufixo}.csv"
     if not p.exists():
         return {}
     pares: dict[tuple[str, str], int] = {}
@@ -136,11 +139,11 @@ def montar_relatorio() -> None:
         "",
         "## Outputs gerados",
         "",
-        "- `outputs/<obra>/csv/cocorrencia_j200.csv` (controle).",
-        "- `outputs/<obra>/csv/cocorrencia_j025.csv` ou `_j157.csv` (proporcional).",
-        "- `outputs/<obra>/relatorios/cocorrencia_j200.md` e variantes.",
-        "- `outputs/<obra>/figuras/rede_cocorrencia_j200.png` e variantes (PNG + SVG).",
-        "- `outputs/etapa2_artigos/cocorrencia_comparacao.md` (este arquivo).",
+        "- `outputs/etapa<N>/<obra>/csv/cocorrencia_j200.csv` (controle).",
+        "- `outputs/etapa<N>/<obra>/csv/cocorrencia_j025.csv` ou `_j157.csv` (proporcional).",
+        "- `outputs/etapa<N>/<obra>/relatorios/cocorrencia_j200.md` e variantes.",
+        "- `outputs/etapa<N>/<obra>/figuras/rede_cocorrencia_j200.png` e variantes (PNG + SVG).",
+        "- `outputs/etapa2/consolidado/cocorrencia_comparacao.md` (este arquivo).",
     ]
     md.write_text("\n".join(linhas), encoding="utf-8")
     print(f"  gravado: {md.relative_to(REPO_ROOT)}")

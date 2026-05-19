@@ -1,13 +1,13 @@
 """Matriz de cocorrência e rede figural por obra.
 
-Para cada obra em escopo, lê `outputs/<obra_id>/csv/kwic.csv` (ocorrências
+Para cada obra em escopo, lê `outputs/etapa<N>/<obra_id>/csv/kwic.csv` (ocorrências
 válidas) e constrói matriz de cocorrência entre grupos figurativos com
 janela configurável (default: 200 palavras).
 
 Outputs:
-- `outputs/<obra_id>/csv/cocorrencia.csv`: matriz simétrica grupo × grupo.
-- `outputs/<obra_id>/figuras/rede_cocorrencia.png`: grafo (NetworkX).
-- `outputs/<obra_id>/relatorios/cocorrencia.md`: lista de pares com maior
+- `outputs/etapa<N>/<obra_id>/csv/cocorrencia.csv`: matriz simétrica grupo × grupo.
+- `outputs/etapa<N>/<obra_id>/figuras/rede_cocorrencia.png`: grafo (NetworkX).
+- `outputs/etapa<N>/<obra_id>/relatorios/cocorrencia.md`: lista de pares com maior
   força de cocorrência.
 
 Comunidades por Louvain ficam comentadas: se `python-louvain` estiver
@@ -28,7 +28,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
+from _paths import OUTPUTS_DIR, obra_dir
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
 
 
@@ -50,7 +50,7 @@ def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
 
 
 def carregar_ocorrencias(obra_id: str) -> list[tuple[str, int]]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     ocs: list[tuple[str, int]] = []
@@ -101,7 +101,7 @@ def gerar_outputs(obra_id: str, janela: int, sufixo: str = "") -> None:
     pares = cocorrencia_por_janela(ocs, janela)
     sufixo_arquivo = f"_{sufixo}" if sufixo else ""
 
-    csv_dir = OUTPUTS_DIR / obra_id / "csv"
+    csv_dir = obra_dir(obra_id) / "csv"
     csv_dir.mkdir(parents=True, exist_ok=True)
     matriz = csv_dir / f"cocorrencia{sufixo_arquivo}.csv"
     with matriz.open("w", encoding="utf-8", newline="") as f:
@@ -117,7 +117,7 @@ def gerar_outputs(obra_id: str, janela: int, sufixo: str = "") -> None:
                     linha.append(pares.get(chave, 0))
             escritor.writerow(linha)
 
-    md = OUTPUTS_DIR / obra_id / "relatorios" / f"cocorrencia{sufixo_arquivo}.md"
+    md = obra_dir(obra_id) / "relatorios" / f"cocorrencia{sufixo_arquivo}.md"
     md.parent.mkdir(parents=True, exist_ok=True)
     linhas: list[str] = [
         f"# Cocorrência figural: {obra_id}",
@@ -158,7 +158,7 @@ def gerar_outputs(obra_id: str, janela: int, sufixo: str = "") -> None:
         print("  (nenhuma cocorrência detectada; sem figura).")
         return
 
-    fig_dir = OUTPUTS_DIR / obra_id / "figuras"
+    fig_dir = obra_dir(obra_id) / "figuras"
     fig_dir.mkdir(parents=True, exist_ok=True)
     pos = nx.spring_layout(G, seed=42, weight="weight")
     fig, ax = plt.subplots(figsize=(9, 7))

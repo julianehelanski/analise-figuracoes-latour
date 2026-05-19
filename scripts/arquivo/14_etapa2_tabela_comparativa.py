@@ -1,9 +1,9 @@
 """Tabela comparativa das 5 obras de Latour (3 livros + 2 artigos).
 
-Lê `outputs/<obra>/csv/frequencias.csv` para as obras com `escopo_etapa1==sim`
+Lê `outputs/etapa<N>/<obra>/csv/frequencias.csv` para as obras com `escopo_etapa1==sim`
 ou `escopo_etapa2==sim` e `corpus/qualidade_extracao.csv` para `palavras_total`.
 
-Produz, em `outputs/etapa2_artigos/`:
+Produz, em `outputs/etapa2/consolidado/`:
 
 - `tabela_comparativa_5_obras_n.csv`: linhas = obras, colunas = grupos,
   valores = contagem absoluta.
@@ -23,11 +23,14 @@ from __future__ import annotations
 import csv
 from collections import OrderedDict
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 QUALIDADE_CSV = REPO_ROOT / "corpus" / "qualidade_extracao.csv"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 
 # Ordem canônica das obras (livros monográficos → artigos metateóricos)
@@ -70,7 +73,7 @@ def carregar_palavras_total() -> dict[str, int]:
 
 
 def carregar_frequencias_obra(obra_id: str) -> dict[str, int]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "frequencias.csv"
+    p = obra_dir(obra_id) / "csv" / "frequencias.csv"
     contagem: dict[str, int] = {}
     if not p.exists():
         return contagem
@@ -290,10 +293,10 @@ def gerar_relatorio(
         "",
         "## Outputs gerados",
         "",
-        "- `outputs/etapa2_artigos/tabela_comparativa_5_obras_n.csv` (contagem absoluta).",
-        "- `outputs/etapa2_artigos/tabela_comparativa_5_obras_freq.csv` (densidade por 10k).",
-        "- `outputs/etapa2_artigos/tabela_comparativa_5_obras.tex` (LaTeX, pronto para inclusão).",
-        "- `outputs/<obra>/csv/frequencias.csv` (atualizados nas 5 obras com `textil` e `topologia`).",
+        "- `outputs/etapa2/consolidado/tabela_comparativa_5_obras_n.csv` (contagem absoluta).",
+        "- `outputs/etapa2/consolidado/tabela_comparativa_5_obras_freq.csv` (densidade por 10k).",
+        "- `outputs/etapa2/consolidado/tabela_comparativa_5_obras.tex` (LaTeX, pronto para inclusão).",
+        "- `outputs/etapa<N>/<obra>/csv/frequencias.csv` (atualizados nas 5 obras com `textil` e `topologia`).",
         "",
         "## Próximos passos (Gate 2.1 pendente)",
         "",

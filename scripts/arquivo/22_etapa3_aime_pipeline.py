@@ -23,11 +23,15 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CORPUS_TXT = REPO_ROOT / "corpus" / "txt_norm" / "latour_2013_aime_en.txt"
-OUT_OBRA = REPO_ROOT / "outputs" / "latour_2013_aime_en"
-OUT_ETAPA3 = REPO_ROOT / "outputs" / "etapa3_aime"
+OUT_OBRA = REPO_ROOT / "outputs" / "etapa3" / "latour_2013_aime_en"
+OUT_ETAPA3 = REPO_ROOT / "outputs" / "etapa3" / "consolidado"
 CATALOGO_YAML = REPO_ROOT / "campos_lexicais" / "catalogo_termos.yaml"
 CATALOGO_AIME = REPO_ROOT / "campos_lexicais" / "catalogo_termos_aime.yaml"
 ADICOES = [
@@ -229,7 +233,7 @@ def gerar_tabela_6_obras(catalogo_antigo: dict) -> None:
         if oid == "latour_2013_aime_en":
             contagens[oid] = catalogo_antigo["n_grupo"]
             continue
-        p = REPO_ROOT / "outputs" / oid / "csv" / "frequencias.csv"
+        p = obra_dir(oid) /  "csv" / "frequencias.csv"
         c = {}
         if p.exists():
             with p.open(encoding="utf-8", newline="") as f:

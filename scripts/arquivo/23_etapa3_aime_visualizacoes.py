@@ -4,13 +4,13 @@ AIME tem dois kwic.csv (catalogo_antigo, catalogo_aime), entao o
 04_visualizations.py nao se aplica diretamente. Este script combina
 os dois e gera:
 
-- outputs/latour_2013_aime_en/figuras/frequencia_grupos.png e .svg:
+- outputs/etapa3/latour_2013_aime_en/figuras/frequencia_grupos.png e .svg:
   barras horizontais com os 26 campos com ocorrencias > 0, coloridos
   por proveniencia (catalogo antigo vs catalogo novo de AIME).
-- outputs/latour_2013_aime_en/figuras/densidade_ao_longo_do_texto.png
+- outputs/etapa3/latour_2013_aime_en/figuras/densidade_ao_longo_do_texto.png
   e .svg: histograma empilhado da posicao relativa, restrito aos 12
   campos mais densos para legibilidade.
-- outputs/latour_2013_aime_en/figuras/densidade_ao_longo_do_texto_todos.png
+- outputs/etapa3/latour_2013_aime_en/figuras/densidade_ao_longo_do_texto_todos.png
   e .svg: versao completa com todos os 26 campos (mais poluida, para
   auditoria).
 
@@ -26,11 +26,15 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OBRA = "latour_2013_aime_en"
-CSV_DIR = REPO_ROOT / "outputs" / OBRA / "csv"
-FIG_DIR = REPO_ROOT / "outputs" / OBRA / "figuras"
+CSV_DIR = obra_dir(OBRA) /  "csv"
+FIG_DIR = obra_dir(OBRA) /  "figuras"
 TXT = REPO_ROOT / "corpus" / "txt_norm" / f"{OBRA}.txt"
 
 GRUPOS_ANTIGOS = {

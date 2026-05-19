@@ -26,8 +26,8 @@ campos centrais do argumento textil-topologico da Etapa 2. O campo
 militar nao entra (ja foi 100% desambiguado na Etapa 2.2).
 
 Output (por artigo + consolidado):
-- `outputs/<artigo>/csv/validacao_amostral_semantica.csv`
-- `outputs/etapa2_artigos/validacao_amostral_semantica.csv` (consolidado)
+- `outputs/etapa<N>/<artigo>/csv/validacao_amostral_semantica.csv`
+- `outputs/etapa2/consolidado/validacao_amostral_semantica.csv` (consolidado)
 
 A planilha tem colunas pre-preenchidas (obra, campo, camada, termo,
 contexto) e colunas em branco para a pesquisadora:
@@ -45,9 +45,12 @@ import csv
 import random
 from collections import Counter, defaultdict
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 
 ARTIGOS = ["latour_1996_clarifications_en", "latour_1999_recalling_en"]
@@ -66,7 +69,7 @@ CABECALHO = [
 
 def carregar_kwic_campo(obra_id: str, campo: str) -> list[dict[str, str]]:
     """Le KWIC e devolve ocorrencias validas do campo solicitado."""
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     saida: list[dict[str, str]] = []
@@ -172,7 +175,7 @@ def main() -> None:
                     linhas_obra.append(linha)
                     consolidado.append(linha)
         # Salva por obra
-        p_obra = OUTPUTS_DIR / obra_id / "csv" / "validacao_amostral_semantica.csv"
+        p_obra = obra_dir(obra_id) / "csv" / "validacao_amostral_semantica.csv"
         p_obra.parent.mkdir(parents=True, exist_ok=True)
         with p_obra.open("w", encoding="utf-8", newline="") as f:
             w = csv.DictWriter(f, fieldnames=CABECALHO)
@@ -196,8 +199,8 @@ def main() -> None:
         "",
         "Data da geração: 15 de maio de 2026.",
         "",
-        f"As planilhas em `outputs/<artigo>/csv/validacao_amostral_semantica.csv` "
-        f"e o consolidado em `outputs/etapa2_artigos/validacao_amostral_semantica.csv` "
+        f"As planilhas em `outputs/etapa<N>/<artigo>/csv/validacao_amostral_semantica.csv` "
+        f"e o consolidado em `outputs/etapa2/consolidado/validacao_amostral_semantica.csv` "
         f"contêm {len(consolidado)} ocorrências para classificação manual nos quatro "
         "campos centrais do argumento têxtil-topológico: `textil`, `topologia`, "
         "`network`, `actor_network`. O campo `militar` está fora desta amostra (já "
@@ -259,8 +262,8 @@ def main() -> None:
         "",
         "A pesquisadora me devolve a planilha preenchida. Gero:",
         "",
-        "- `outputs/etapa2_artigos/validacao_amostral_resultados.md` com as taxas.",
-        "- `outputs/etapa2_artigos/tabela_textil_topologico_refinada.tex` com a "
+        "- `outputs/etapa2/consolidado/validacao_amostral_resultados.md` com as taxas.",
+        "- `outputs/etapa2/consolidado/tabela_textil_topologico_refinada.tex` com a "
         "densidade refinada (bruta × taxa de figuralidade).",
         "- Atualização do relatório consolidado da Etapa 2.",
     ]

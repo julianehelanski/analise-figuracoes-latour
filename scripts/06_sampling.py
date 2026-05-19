@@ -13,11 +13,11 @@ páginas cada:
 Seed fixa = 42.
 
 Outputs por obra:
-- `outputs/<obra_id>/csv/amostra_validacao.csv`
-- `outputs/<obra_id>/relatorios/validacao_amostral_etapa1.md`
+- `outputs/etapa<N>/<obra_id>/csv/amostra_validacao.csv`
+- `outputs/etapa<N>/<obra_id>/relatorios/validacao_amostral_etapa1.md`
 
 Output consolidado:
-- `outputs/amostra_validacao_etapa1.csv` (45 linhas, com coluna `obra`).
+- `outputs/etapa1/amostra_validacao_etapa1.csv` (45 linhas, com coluna `obra`).
 
 Cada linha do CSV traz o id da obra, número da página, estrato, classe
 predita pelo algoritmo, e três trechos da página (início, meio, fim).
@@ -39,12 +39,12 @@ import csv
 import random
 import re
 from pathlib import Path
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 PAGINAS_DIR = REPO_ROOT / "corpus" / "paginas"
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 ESTRATOS = ("inicio_capitulo", "corpo", "notas_fim", "paratexto", "qualidade_baixa")
 N_POR_ESTRATO = 3
@@ -118,7 +118,7 @@ def amostrar_obra(
 
 
 def gravar_csv_obra(obra_id: str, linhas: list[dict[str, str]]) -> Path:
-    saida = OUTPUTS_DIR / obra_id / "csv" / "amostra_validacao.csv"
+    saida = obra_dir(obra_id) / "csv" / "amostra_validacao.csv"
     saida.parent.mkdir(parents=True, exist_ok=True)
     cabecalho = list(linhas[0].keys()) if linhas else []
     with saida.open("w", encoding="utf-8", newline="") as f:
@@ -129,7 +129,7 @@ def gravar_csv_obra(obra_id: str, linhas: list[dict[str, str]]) -> Path:
 
 
 def gravar_md_obra(obra_id: str, linhas: list[dict[str, str]]) -> Path:
-    saida = OUTPUTS_DIR / obra_id / "relatorios" / "validacao_amostral_etapa1.md"
+    saida = obra_dir(obra_id) / "relatorios" / "validacao_amostral_etapa1.md"
     saida.parent.mkdir(parents=True, exist_ok=True)
     md: list[str] = [
         f"# Amostra estratificada de validação: {obra_id}",

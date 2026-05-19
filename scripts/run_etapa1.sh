@@ -35,6 +35,6 @@ python scripts/07_trajectory.py
 echo
 echo "Etapa 1 concluída. Entregáveis principais:"
 echo "  - corpus/qualidade_extracao.csv             (taxa de qualidade por obra)"
-echo "  - outputs/amostra_validacao_etapa1.csv      (45 páginas para validação)"
-echo "  - outputs/<obra_id>/csv/frequencias.csv     (tabelas de frequência)"
-echo "  - outputs/trajetoria_latour_1986_1999.md    (relatório de trajetória)"
+echo "  - outputs/etapa1/amostra_validacao_etapa1.csv      (45 páginas para validação)"
+echo "  - outputs/etapa<N>/<obra_id>/csv/frequencias.csv     (tabelas de frequência)"
+echo "  - outputs/etapa1/trajetoria_latour_1986_1999.md    (relatório de trajetória)"

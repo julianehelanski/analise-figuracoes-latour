@@ -116,17 +116,17 @@ latour:
 
 Resultado da validação fica registrado em três arquivos:
 
-- `outputs/latour_woolgar_1986_lab_life_en/relatorios/validacao_amostral_etapa1.md`
-- `outputs/latour_1987_science_action_en/relatorios/validacao_amostral_etapa1.md`
-- `outputs/latour_1999_pandora_en/relatorios/validacao_amostral_etapa1.md`
+- `outputs/etapa1/latour_woolgar_1986_lab_life_en/relatorios/validacao_amostral_etapa1.md`
+- `outputs/etapa1/latour_1987_science_action_en/relatorios/validacao_amostral_etapa1.md`
+- `outputs/etapa1/latour_1999_pandora_en/relatorios/validacao_amostral_etapa1.md`
 
 ### 6. Estrutura do relatório final da Etapa 1
 
 **Decisão**: o relatório final da Etapa 1 é organizado em dois níveis: relatório por obra (três arquivos) e relatório de trajetória (um arquivo consolidado).
 
-**Por obra**: cada obra recebe seu próprio diretório de outputs em `outputs/<id_da_obra>/`, com KWIC, tabelas de frequência, visualizações e relatório descritivo.
+**Por obra**: cada obra recebe seu próprio diretório de outputs em `outputs/etapa<N>/<id_da_obra>/`, com KWIC, tabelas de frequência, visualizações e relatório descritivo.
 
-**Trajetória consolidada**: o arquivo `outputs/trajetoria_latour_1986_1999.md` agrega resultados das três obras com foco em três perguntas:
+**Trajetória consolidada**: o arquivo `outputs/etapa1/trajetoria_latour_1986_1999.md` agrega resultados das três obras com foco em três perguntas:
 
 1. Quais figurações aparecem em todas as três obras? Com que frequência relativa?
 2. Quais figurações são introduzidas em uma obra e desaparecem ou persistem nas seguintes?
@@ -243,10 +243,10 @@ Os seis casos `parcial` decorrem de páginas onde a heurística predisse pelo es
 
 ### Outputs
 
-- `outputs/amostra_validacao_etapa1.csv` (consolidado, 41 linhas com campos preenchidos).
-- `outputs/<id_obra>/csv/amostra_validacao.csv` (por obra).
-- `outputs/<id_obra>/relatorios/validacao_amostral_etapa1.md` (relatório por obra).
-- `outputs/validacao_amostral_etapa1.md` (relatório consolidado).
+- `outputs/etapa1/amostra_validacao_etapa1.csv` (consolidado, 41 linhas com campos preenchidos).
+- `outputs/etapa<N>/<id_obra>/csv/amostra_validacao.csv` (por obra).
+- `outputs/etapa<N>/<id_obra>/relatorios/validacao_amostral_etapa1.md` (relatório por obra).
+- `outputs/etapa1/validacao_amostral_etapa1.md` (relatório consolidado).
 
 ---
 
@@ -288,7 +288,7 @@ A integração da lematização fica para a Etapa 3 plena, junto com a entrada d
 
 ### 4. Scripts e outputs atualizados
 
-Os scripts da Etapa 1 (02_kwic, 03_frequencies, 04_visualizations, 05_cooccurrence, 07_trajectory) foram re-executados sobre o catálogo expandido. Outputs por obra (`outputs/<obra>/csv/`, `outputs/<obra>/relatorios/`, `outputs/<obra>/figuras/`) e o consolidado (`outputs/trajetoria_latour_1986_1999.md` e `.csv`) refletem a inclusão do campo militar. A seção 4.3.a do relatório de trajetória traz a leitura interpretativa específica.
+Os scripts da Etapa 1 (02_kwic, 03_frequencies, 04_visualizations, 05_cooccurrence, 07_trajectory) foram re-executados sobre o catálogo expandido. Outputs por obra (`outputs/etapa<N>/<obra>/csv/`, `outputs/etapa<N>/<obra>/relatorios/`, `outputs/etapa<N>/<obra>/figuras/`) e o consolidado (`outputs/etapa1/trajetoria_latour_1986_1999.md` e `.csv`) refletem a inclusão do campo militar. A seção 4.3.a do relatório de trajetória traz a leitura interpretativa específica.
 
 ### 5. Pendências para a Etapa 3 plena
 
@@ -312,7 +312,7 @@ Adiciono ao `metadata.csv` (marcados com `escopo_etapa2 = sim`):
 - `latour_1996_clarifications_en` — Bruno Latour, *On Actor-Network Theory: A Few Clarifications*, *Soziale Welt*, vol. 47, n. 4, pp. 369-381, 1996.
 - `latour_1999_recalling_en` — Bruno Latour, *On Recalling ANT*, in Law e Hassard (orgs.), *Actor Network Theory and After*, Blackwell, Oxford, pp. 15-25, 1999.
 
-O slug do segundo artigo foi unificado a partir do registro anterior `latour_1999_recalling_ant_en` para `latour_1999_recalling_en`, alinhando-se à convenção do briefing e dos caminhos de output (`outputs/<slug>/...`).
+O slug do segundo artigo foi unificado a partir do registro anterior `latour_1999_recalling_ant_en` para `latour_1999_recalling_en`, alinhando-se à convenção do briefing e dos caminhos de output (`outputs/etapa<N>/<slug>/...`).
 
 ### 2. Origem dos `.txt` e cadeia de mediação
 
@@ -356,7 +356,7 @@ A desambiguação automática + manual aplicada na Etapa 1 (gatilhos lexicais pa
 - `descritivo_bibliografico`: ocorrências em referências bibliográficas e em títulos de obras citadas (`La nouvelle alliance` de Prigogine e Stengers). Gatilho automático implementado: ≥2 sinais entre ano em parênteses, editora conhecida (`Routledge`, `Blackwell`, `Harvard`, `Gallimard`, `Bantam` etc.) e nomes próprios sequenciais com `and`/`et`.
 - `conceitual_debate`: ocorrências em que o termo militar descreve polêmica entre escolas teóricas (`pre-relativist enemies`, `Reflexivists`, etc.). Gatilho automático: ≥2 palavras terminadas em `-ist`, `-ists`, `-ism`, `-isms` na janela. Categoria registrada como distinta do uso figural da prática científica, em coerência com a leitura do briefing § 2.
 
-A implementação está em `scripts/15_etapa2_desambiguar_militar.py`. A planilha de classificação `outputs/etapa2_artigos/militar_classificacao_automatica.csv` segue o formato de `refinamento/war_pandora_classificacao.csv`.
+A implementação está em `scripts/15_etapa2_desambiguar_militar.py`. A planilha de classificação `outputs/etapa2/consolidado/militar_classificacao_automatica.csv` segue o formato de `refinamento/war_pandora_classificacao.csv`.
 
 **Achado da Etapa 2.2**: cobertura automática de 4/4 ocorrências militares dos artigos. Todas caem em categorias não-figurais. A contagem refinada figural do campo militar nos artigos cai para zero, sustentando empiricamente a hipótese de divisão de trabalho metafórico por gênero textual proposta pelo briefing.
 
@@ -368,16 +368,16 @@ A janela de cocorrência de 200 palavras, calibrada para os livros, corresponde 
 
 O briefing § 3.4 antecipava 27 e 159 com base na convenção `\b\w+\b`; os valores aplicados (25 e 157) refletem a convenção `split` registrada em `corpus/qualidade_extracao.csv`, que é a convenção da Etapa 1.
 
-Implementação: `scripts/05_cooccurrence.py` ganhou o argumento `--sufixo`, que sufixa os nomes dos arquivos de saída (CSV, MD e figuras) para que as duas configurações coexistam sem sobrescrita. `scripts/16_etapa2_cocorrencia_comparacao.py` consolida as duas matrizes lado a lado em `outputs/etapa2_artigos/cocorrencia_comparacao.md`.
+Implementação: `scripts/05_cooccurrence.py` ganhou o argumento `--sufixo`, que sufixa os nomes dos arquivos de saída (CSV, MD e figuras) para que as duas configurações coexistam sem sobrescrita. `scripts/16_etapa2_cocorrencia_comparacao.py` consolida as duas matrizes lado a lado em `outputs/etapa2/consolidado/cocorrencia_comparacao.md`.
 
 **Achado da Etapa 2.4**: o ranking dos pares principais é consistente entre as duas janelas em ambos os artigos. Em *Clarifications*, `network`–`topologia` lidera com 783 (j=200) e 616 (j=157); o par envolvendo `militar` mais forte é `militar`–`network` com 10/8, cerca de 77 vezes menor. Em *Recalling*, `network`–`topologia` lidera com 20/2. A malha argumentativa central dos artigos é estruturada por `network`–`topologia`, `actor_network` e `textil`; o vocabulário militar ocupa posição periférica.
 
-A decisão final sobre qual versão entra na tese cabe à pesquisadora após o Gate 2.4. A recomendação registrada em `outputs/etapa2_artigos/cocorrencia_comparacao.md` é apresentar a janela proporcional como configuração principal, com a janela 200 em nota como controle.
+A decisão final sobre qual versão entra na tese cabe à pesquisadora após o Gate 2.4. A recomendação registrada em `outputs/etapa2/consolidado/cocorrencia_comparacao.md` é apresentar a janela proporcional como configuração principal, com a janela 200 em nota como controle.
 
 ### 8. Mudanças no código aplicadas para suportar a Etapa 2
 
 - Coluna `escopo_etapa2` adicionada a `corpus/metadata.csv` (e à cópia em `metadata.csv` na raiz). Marcada `sim` para os dois artigos e `nao` para as demais 31 obras.
-- Slug `latour_1999_recalling_ant_en` renomeado para `latour_1999_recalling_en` (referência cruzada com os caminhos `outputs/<slug>/...` do briefing).
+- Slug `latour_1999_recalling_ant_en` renomeado para `latour_1999_recalling_en` (referência cruzada com os caminhos `outputs/etapa<N>/<slug>/...` do briefing).
 - `scripts/02_kwic.py`, `scripts/03_frequencies.py`, `scripts/04_visualizations.py` e `scripts/05_cooccurrence.py` ganharam o argumento `--escopo etapa1|etapa2|todos` (default: `etapa1` para preservar comportamento prévio).
 - `scripts/02_kwic.py` ganhou `ler_texto_sem_cabecalho` que descarta linhas iniciadas por `#` e substitui caracteres de controle ASCII por espaço, preservando offsets para o casamento com a matriz de cocorrência.
 - `scripts/13_audit_articles_etapa2.py` é o novo script de sanity check para os `.txt` da Etapa 2: reporta linhas de cabeçalho, palavras de corpo, candidatos de colagem de OCR, caracteres de controle residuais e presença de passagens-chave por slug.
@@ -398,13 +398,13 @@ A diferença maior no *Recalling* é consequência do OCR colado discutido na se
 
 ### 10. Outputs comparativos consolidados (Etapa 2.5)
 
-Os outputs finais para incorporação ao capítulo 2 da tese estão em `outputs/etapa2_artigos/`, gerados por `scripts/17_etapa2_tabelas_finais.py` ao final da Etapa 2.5. Três cortes tabulares respondem ao briefing § 4.2:
+Os outputs finais para incorporação ao capítulo 2 da tese estão em `outputs/etapa2/consolidado/`, gerados por `scripts/17_etapa2_tabelas_finais.py` ao final da Etapa 2.5. Três cortes tabulares respondem ao briefing § 4.2:
 
 1. **Comparativa geral** das 5 obras × 19 grupos figurativos: `tabela_comparativa_5_obras.tex` (LaTeX), `tabela_comparativa_5_obras_n.csv` (contagem absoluta) e `tabela_comparativa_5_obras_freq.csv` (densidade por 10k). Gerada na Etapa 2.1, mantida sem alteração.
 2. **Campo militar refinado** das 5 obras: duas versões LaTeX. `tabela_militar_refinada_5_obras.tex` (Etapa 2.2, enxuta com bruta vs. refinada figural) para o capítulo 2. `tabela_militar_refinado_5_obras_detalhada.tex` (Etapa 2.5, breakdown por categoria) para o apêndice metodológico. CSV equivalente em `tabela_militar_refinado_5_obras.csv`. As três categorias de desambiguação aplicadas apenas aos artigos (descritivo-bibliográfica, metalinguística, polêmica conceitual) ficam como `--` nos livros, em coerência com o escopo da Etapa 1.
 3. **Têxtil e topologia** das 5 obras: `tabela_textil_topologico_5_obras.{csv,tex}`. A coluna `textil_variantes_top` do CSV registra as quatro variantes mais frequentes por obra, base para a depuração da Etapa 2.6 (polissemia esperada em `tie`, `net`, `string`).
 
-A leitura sintética dos contrastes está em `outputs/etapa2_artigos/relatorio_etapa2.md`. A redação da subseção do capítulo 2 que mobiliza esses resultados é responsabilidade da pesquisadora.
+A leitura sintética dos contrastes está em `outputs/etapa2/consolidado/relatorio_etapa2.md`. A redação da subseção do capítulo 2 que mobiliza esses resultados é responsabilidade da pesquisadora.
 
 ### 11. Protocolo A/B/C da validação amostral semântica (Etapa 2.6)
 
@@ -420,13 +420,13 @@ Campos validados: `textil`, `topologia`, `network`, `actor_network`. São os qua
 
 Implementação em `scripts/18_etapa2_validacao_amostral.py`. Outputs:
 
-- `outputs/<artigo>/csv/validacao_amostral_semantica.csv` (60 linhas em *Clarifications*, 22 em *Recalling*).
-- `outputs/etapa2_artigos/validacao_amostral_semantica.csv` (consolidado, 82 linhas).
-- `outputs/etapa2_artigos/validacao_amostral_instrucoes.md` (instruções de preenchimento para a pesquisadora).
+- `outputs/etapa<N>/<artigo>/csv/validacao_amostral_semantica.csv` (60 linhas em *Clarifications*, 22 em *Recalling*).
+- `outputs/etapa2/consolidado/validacao_amostral_semantica.csv` (consolidado, 82 linhas).
+- `outputs/etapa2/consolidado/validacao_amostral_instrucoes.md` (instruções de preenchimento para a pesquisadora).
 
 A planilha tem colunas pré-preenchidas (`obra`, `campo`, `camada`, `id_kwic`, `pagina`, `termo_encontrado`, `contexto_antes`, `trecho_central`, `contexto_depois`) e colunas em branco para preenchimento manual: `uso_figural` (`sim`/`parcial`/`nao`), `subcategoria` (texto livre, sugestões: `tecnico`, `polissemia`, `descritivo`, `metalinguistico`), `comentario` (texto livre, registro etnográfico).
 
-Após o preenchimento, gero `outputs/etapa2_artigos/validacao_amostral_resultados.md` com taxa de uso figural por campo e por camada, mapa de polissemia, e densidade refinada figural para `textil` e `topologia` (bruta × taxa de figuralidade aferida).
+Após o preenchimento, gero `outputs/etapa2/consolidado/validacao_amostral_resultados.md` com taxa de uso figural por campo e por camada, mapa de polissemia, e densidade refinada figural para `textil` e `topologia` (bruta × taxa de figuralidade aferida).
 
 Pendência: a Etapa 1 prevê a mesma validação A/B/C para os livros (passo 2 do refinamento mencionado no `CLAUDE.md`). Quando essa validação for executada, a Etapa 2 pode rodar comparação cruzada de figuralidade entre livros e artigos no mesmo protocolo. Esta etapa fica fora do escopo da 2.6.
 
@@ -470,19 +470,19 @@ A planilha original `validacao_amostral_semantica_PREENCHIDA.csv` fica intocada 
 
 **Subcategoria nova cunhada pela pesquisadora durante o preenchimento**: `definicao_operacional`, atribuída à passagem `AT makes use of some of the simplest properties of nets` (linha 9 da planilha), em que `nets` opera em registro transitório entre figural e técnico-matemático. Mantenho o rótulo como subcategoria sexta válida, em coerência com o princípio etnográfico do método.
 
-**Aplicação retroativa aos livros**: gerei `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv` com seis candidatos a uso `metalinguistico` nos campos `network` e `actor_network` dos três livros monográficos, identificados por gatilho automático (`the word`, `the notion`, `the term`, `the expression of`, `let us abandon`, `coffin`, `so-called`, `misunderstanding`). Distribuição: 4 candidatos `network` e 1 `actor_network` em *Science in Action*, 1 `actor_network` em *Pandora's Hope*, zero em *Laboratory Life*. A leitura manual dessas seis ocorrências fica como pendência para a Etapa 2-bis. Enquanto não houver classificação manual, a taxa de figuralidade para *Science in Action* na tabela `tab:textil-topologico-refinado` fica marcada como `pendente`.
+**Aplicação retroativa aos livros**: gerei `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv` com seis candidatos a uso `metalinguistico` nos campos `network` e `actor_network` dos três livros monográficos, identificados por gatilho automático (`the word`, `the notion`, `the term`, `the expression of`, `let us abandon`, `coffin`, `so-called`, `misunderstanding`). Distribuição: 4 candidatos `network` e 1 `actor_network` em *Science in Action*, 1 `actor_network` em *Pandora's Hope*, zero em *Laboratory Life*. A leitura manual dessas seis ocorrências fica como pendência para a Etapa 2-bis. Enquanto não houver classificação manual, a taxa de figuralidade para *Science in Action* na tabela `tab:textil-topologico-refinado` fica marcada como `pendente`.
 
 ### 13. Estado da Etapa 2 ao final da Etapa 2.6
 
 Seis subetapas concluídas em sequência, com gates de revisão confirmados pela pesquisadora entre cada uma:
 
 - **2.0** integração dos `.txt` normalizados ao corpus, escopo_etapa2 no `metadata.csv`, infraestrutura de scripts.
-- **2.1** contagem bruta nas 5 obras com `02_kwic.py` e `03_frequencies.py`, tabela comparativa em `outputs/etapa2_artigos/tabela_comparativa_5_obras.{csv,tex}`.
+- **2.1** contagem bruta nas 5 obras com `02_kwic.py` e `03_frequencies.py`, tabela comparativa em `outputs/etapa2/consolidado/tabela_comparativa_5_obras.{csv,tex}`.
 - **2.2** desambiguação automática do campo militar nos artigos (cobertura 4/4), com cinco categorias e gatilhos em `scripts/15_etapa2_desambiguar_militar.py`. Tabela militar refinada em `tabela_militar_refinada_5_obras.tex`.
 - **2.3** não executada por desnecessidade: a cobertura automática 4/4 dispensou desambiguação manual de adição (a pesquisadora pode ainda ajustar `categoria_final` na planilha se discordar).
 - **2.4** cocorrência com duas janelas (200 controle + proporcional 2%) para os artigos, com `--sufixo` em `05_cooccurrence.py`. Consolidado em `cocorrencia_comparacao.md`.
 - **2.5** três tabelas finais consolidadas (comparativa geral, militar refinado, têxtil-topológico) e relatório `relatorio_etapa2.md` com leitura sintética dos contrastes.
-- **2.6** planilhas A/B/C geradas, preenchidas pela pesquisadora e processadas. Outputs analíticos finais em `outputs/etapa2_artigos/validacao_amostral_resultados.md`, `tabela_textil_topologico_refinada.tex`, `validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv` (bugs do pipeline corrigidos: `id_kwic` único por offset, `pagina` recalculada por mapeamento de parágrafo), `metalinguistico_retroativo_livros.csv` (candidatos para Etapa 2-bis) e `log_execucao.md`.
+- **2.6** planilhas A/B/C geradas, preenchidas pela pesquisadora e processadas. Outputs analíticos finais em `outputs/etapa2/consolidado/validacao_amostral_resultados.md`, `tabela_textil_topologico_refinada.tex`, `validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv` (bugs do pipeline corrigidos: `id_kwic` único por offset, `pagina` recalculada por mapeamento de parágrafo), `metalinguistico_retroativo_livros.csv` (candidatos para Etapa 2-bis) e `log_execucao.md`.
 
 **Pendências abertas** (Etapa 2-bis):
 
@@ -506,15 +506,15 @@ A pesquisadora forneceu nesta sessão um `.txt` nativo integral do artigo, com 4
 
 **Origem do arquivo**: a pesquisadora obteve o `.txt` integral por canais de acesso institucional e revisou-o manualmente antes do depósito em `corpus/txt_fornecido/latour_1999_recalling_nativo.txt`. A cadeia é registrada como dado etnográfico análogo ao tratamento dado aos demais `.txt` normalizados externamente na Etapa 2.
 
-**Bypass dos pipelines de extração e normalização**: como o `.txt` chega já em formato comparável ao output dos pipelines `01_extract_text.py` + `01b_normalize_text.py`, esses scripts não são executados sobre o material novo. Aplico apenas as operações de saneamento simétricas às registradas no Adendo 1 da Etapa 1 e na seção 4 da Etapa 2 (CRLF, soft hyphens, caracteres de controle, hifenização EOL). Detalhamento em `outputs/etapa2bis_recalling/normalizacao_aplicada.md`.
+**Bypass dos pipelines de extração e normalização**: como o `.txt` chega já em formato comparável ao output dos pipelines `01_extract_text.py` + `01b_normalize_text.py`, esses scripts não são executados sobre o material novo. Aplico apenas as operações de saneamento simétricas às registradas no Adendo 1 da Etapa 1 e na seção 4 da Etapa 2 (CRLF, soft hyphens, caracteres de controle, hifenização EOL). Detalhamento em `outputs/etapa2bis/recalling_extras/normalizacao_aplicada.md`.
 
 **Paginação**: o `.txt` fornecido tem números de página espalhados no texto (artefato do scan original) correspondentes às pp. 16-25 do volume *Law & Hassard 1999*. Uso essa paginação editorial publicada para todas as citações na Etapa 2-bis, conforme o briefing § "O que não fazer". A página de cada ocorrência é registrada no campo `pagina` do `kwic.csv` da obra `latour_1999_recalling_bis` via heurística de proporção (`scripts/02_kwic.py` herda do Etapa 1).
 
 **Novo slug e coluna `escopo_etapa2bis`**: para preservar os outputs da Etapa 2 original intocados, criei o slug `latour_1999_recalling_bis` no `metadata.csv` (com `escopo_etapa2bis=sim`) e adicionei a coluna `escopo_etapa2bis` ao schema. Os scripts `02_kwic.py`, `03_frequencies.py`, `04_visualizations.py` e `05_cooccurrence.py` aceitam `--escopo etapa2bis`.
 
-**Janela de cocorrência proporcional**: 2% de 4.825 = 96,5 → 97 palavras. O briefing 2-bis antecipava ~30, baseado na premissa errada de 1.500 palavras totais. A janela 200 (controle) e a janela 97 (proporcional) coexistem em `outputs/latour_1999_recalling_bis/csv/cocorrencia_j{200,prop}.csv`.
+**Janela de cocorrência proporcional**: 2% de 4.825 = 96,5 → 97 palavras. O briefing 2-bis antecipava ~30, baseado na premissa errada de 1.500 palavras totais. A janela 200 (controle) e a janela 97 (proporcional) coexistem em `outputs/etapa2bis/latour_1999_recalling_bis/csv/cocorrencia_j{200,prop}.csv`.
 
-**Migração da validação amostral A/B/C**: 31 das 40 ocorrências do bis casam com ocorrências da planilha preenchida da Etapa 2.6 (por chave composta `campo + termo + trecho central`); essas classificações migram automaticamente. 9 ocorrências novas (oriundas das páginas antes excluídas) ficam em branco para preenchimento manual em sessão futura. Detalhamento em `outputs/etapa2bis_artigos/validacao_amostral_migracao.md`.
+**Migração da validação amostral A/B/C**: 31 das 40 ocorrências do bis casam com ocorrências da planilha preenchida da Etapa 2.6 (por chave composta `campo + termo + trecho central`); essas classificações migram automaticamente. 9 ocorrências novas (oriundas das páginas antes excluídas) ficam em branco para preenchimento manual em sessão futura. Detalhamento em `outputs/etapa2bis/consolidado/validacao_amostral_migracao.md`.
 
 ### 3. Achados principais
 
@@ -524,7 +524,7 @@ A contagem refinada figural do `militar` no *Recalling* **permanece zero**, agor
 
 A 2-bis revela um terceiro nível na divisão de trabalho metafórico: dentro do *Recalling*, há um regime fluido-circulatório (par `circulating_reference`–`topologia` com 9 cocorrências na j=97, ausente do corpus antigo) que se distingue do regime expositivo-figural do *Clarifications* e do regime descritivo-militar dos livros monográficos.
 
-Detalhamento completo no `outputs/etapa2bis_artigos/relatorio_etapa2bis.md`.
+Detalhamento completo no `outputs/etapa2bis/consolidado/relatorio_etapa2bis.md`.
 
 ### 4. Pendências
 
@@ -542,11 +542,11 @@ Data da execução: 15 de maio de 2026, posterior ao push da Etapa 2-bis.
 
 Estendo a análise para AIME (Latour 2013, Harvard University Press, tradução de Catherine Porter), o livro em que Latour declara estar completando a TAR. A motivação é etnográfica: a Etapa 2-bis documentou no *Recalling ANT* o gesto autocrítico que reduziu a refinada figural militar a zero; AIME é o livro que sai do "caixão" do *Recalling* e mobiliza um vocabulário figural novo. Estender até 2013 é gesto de justiça intelectual com Latour e gesto de integridade reflexiva da tese.
 
-O escopo da Etapa 3 é parcial em relação à Etapa 2: aplico contagem bruta (análoga à 2.1), desambiguação automática do campo militar (análoga à 2.2) e cocorrência (análoga à 2.4). A validação amostral semântica A/B/C (análoga à 2.6) fica como pendência declarada. Detalhamento no `outputs/etapa3_aime/relatorio_etapa3.md`.
+O escopo da Etapa 3 é parcial em relação à Etapa 2: aplico contagem bruta (análoga à 2.1), desambiguação automática do campo militar (análoga à 2.2) e cocorrência (análoga à 2.4). A validação amostral semântica A/B/C (análoga à 2.6) fica como pendência declarada. Detalhamento no `outputs/etapa3/consolidado/relatorio_etapa3.md`.
 
 ### 2. Decisões metodológicas
 
-**Origem do arquivo**: a pesquisadora forneceu `.txt` extraído de PDF nativo via canais institucionais. Depositado em `corpus/txt_fornecido/latour_2013_aime_en.txt`. Normalizado em simetria com a Etapa 2-bis: 21.104 CRLF → LF, 0 soft hyphens, 519 caracteres de controle ASCII substituídos por espaço, 852 EOL hyphens reconstituídos, 402 replacement chars U+FFFD substituídos por espaço. Resultado final em `corpus/txt_norm/latour_2013_aime_en.txt`, com 194.454 palavras de corpo (`split`). Hashes em `outputs/etapa3_aime/txt_hashes.txt`.
+**Origem do arquivo**: a pesquisadora forneceu `.txt` extraído de PDF nativo via canais institucionais. Depositado em `corpus/txt_fornecido/latour_2013_aime_en.txt`. Normalizado em simetria com a Etapa 2-bis: 21.104 CRLF → LF, 0 soft hyphens, 519 caracteres de controle ASCII substituídos por espaço, 852 EOL hyphens reconstituídos, 402 replacement chars U+FFFD substituídos por espaço. Resultado final em `corpus/txt_norm/latour_2013_aime_en.txt`, com 194.454 palavras de corpo (`split`). Hashes em `outputs/etapa3/consolidado/txt_hashes.txt`.
 
 **Dois catálogos em paralelo**:
 
@@ -572,4 +572,4 @@ AIME redistribui o trabalho figurativo em três camadas (vocabulário antigo per
 ### 4. Pendências
 
 - Validação amostral semântica A/B/C dos 31 campos em AIME (Etapa 3.6 hipotética). Sem ela, as densidades brutas dos campos polissêmicos (`experiencia`, `categorias_dominio`, `crossing`, `domain`) carregam ruído não estimado.
-- Validação retroativa das categorias `metalinguistico`, `descritivo_bibliografico` e `conceitual_debate` para os livros (pendência aberta desde a Etapa 2.6, inclui os seis candidatos retroativos de `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv`).
+- Validação retroativa das categorias `metalinguistico`, `descritivo_bibliografico` e `conceitual_debate` para os livros (pendência aberta desde a Etapa 2.6, inclui os seis candidatos retroativos de `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv`).

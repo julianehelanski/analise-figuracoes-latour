@@ -3,7 +3,7 @@
 Lê o catálogo YAML `campos_lexicais/catalogo_termos.yaml` e o catálogo
 bibliográfico `corpus/metadata.csv` filtrando por `escopo_etapa1 == 'sim'`.
 Para cada obra, percorre o texto extraído em `corpus/txt/<id>.txt` e grava
-um CSV em `outputs/<id>/csv/kwic.csv`.
+um CSV em `outputs/etapa<N>/<id>/csv/kwic.csv`.
 
 Janela padrão: ±10 palavras (decisão da Etapa 1, seção 3 das decisões).
 
@@ -28,12 +28,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 CATALOGO_YAML = REPO_ROOT / "campos_lexicais" / "catalogo_termos.yaml"
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 JANELA_EXCLUSAO_PALAVRAS = 5  # janela de checagem de exclusões adjacentes
 
@@ -266,7 +266,7 @@ def kwic_obra(
     palavras = localizar_palavras(texto)
     separadores = [m.start() for m in re.finditer(r"\f", texto)]
 
-    saida_dir = OUTPUTS_DIR / obra_id / "csv"
+    saida_dir = obra_dir(obra_id) / "csv"
     saida_dir.mkdir(parents=True, exist_ok=True)
     saida_csv = saida_dir / "kwic.csv"
 

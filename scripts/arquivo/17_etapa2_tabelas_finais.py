@@ -22,9 +22,12 @@ from __future__ import annotations
 import csv
 from collections import Counter
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 CLASSIFICACAO_CSV = ETAPA2_DIR / "militar_classificacao_automatica.csv"
 
@@ -181,7 +184,7 @@ def gerar_tabela_militar() -> None:
 
 
 def variantes_top(obra_id: str, grupo: str, n: int = 5) -> list[tuple[str, int]]:
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     cont: Counter[str] = Counter()
@@ -283,7 +286,7 @@ def coletar_kwic_militar_artigos() -> list[dict[str, str]]:
 
 def coletar_kwic_textil_topologico(obra_id: str, grupos: list[str], n: int) -> list[dict[str, str]]:
     """Devolve os top n exemplos KWIC para uma obra e lista de grupos."""
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not p.exists():
         return []
     saida: list[dict[str, str]] = []
@@ -327,7 +330,7 @@ def gerar_relatorio_2_5() -> None:
     )
     novas.append("\n### Os três cortes tabulares\n")
     novas.append(
-        "1. **Comparativa geral (19 campos × 5 obras)**: `outputs/etapa2_artigos/tabela_comparativa_5_obras.{csv,tex}`. Gerada na Etapa 2.1 e mantida sem alteração. Versão LaTeX em formato `booktabs`, com densidade por 10.000 palavras e contagem absoluta entre parênteses.\n"
+        "1. **Comparativa geral (19 campos × 5 obras)**: `outputs/etapa2/consolidado/tabela_comparativa_5_obras.{csv,tex}`. Gerada na Etapa 2.1 e mantida sem alteração. Versão LaTeX em formato `booktabs`, com densidade por 10.000 palavras e contagem absoluta entre parênteses.\n"
         "2. **Campo militar refinado (5 obras)**: duas versões. A enxuta `tabela_militar_refinada_5_obras.tex` apresenta bruta e refinada figural, adequada à seção do capítulo 2. A detalhada `tabela_militar_refinado_5_obras_detalhada.tex` decompõe a subtração por categoria (descritivo-histórica, descritivo-bibliográfica, metalinguística, polêmica conceitual), apropriada ao apêndice metodológico. CSV equivalente em `tabela_militar_refinado_5_obras.csv`.\n"
         "3. **Têxtil e topologia (5 obras)**: `tabela_textil_topologico_5_obras.{csv,tex}`. Mostra a inversão de densidade entre livros monográficos e artigos metateóricos no vocabulário têxtil-topológico."
     )
@@ -384,16 +387,16 @@ def gerar_relatorio_2_5() -> None:
 
     novas.append("\n### Outputs finais da Etapa 2 (resumo)\n")
     novas.append(
-        "- `outputs/etapa2_artigos/tabela_comparativa_5_obras.{csv,tex}` (Etapa 2.1).\n"
-        "- `outputs/etapa2_artigos/tabela_comparativa_5_obras_n.csv` e `_freq.csv` (Etapa 2.1, granular).\n"
-        "- `outputs/etapa2_artigos/militar_classificacao_automatica.csv` (Etapa 2.2).\n"
-        "- `outputs/etapa2_artigos/tabela_militar_refinada_5_obras.tex` (Etapa 2.2, enxuta).\n"
-        "- `outputs/etapa2_artigos/tabela_militar_refinado_5_obras.csv` (Etapa 2.5, CSV detalhado).\n"
-        "- `outputs/etapa2_artigos/tabela_militar_refinado_5_obras_detalhada.tex` (Etapa 2.5, detalhada).\n"
-        "- `outputs/etapa2_artigos/tabela_textil_topologico_5_obras.{csv,tex}` (Etapa 2.5).\n"
-        "- `outputs/etapa2_artigos/cocorrencia_comparacao.md` (Etapa 2.4).\n"
-        "- `outputs/<artigo>/{csv,figuras,relatorios}/` (rotina por obra).\n"
-        "- `outputs/etapa2_artigos/relatorio_etapa2.md` (este arquivo, consolidado das cinco subetapas)."
+        "- `outputs/etapa2/consolidado/tabela_comparativa_5_obras.{csv,tex}` (Etapa 2.1).\n"
+        "- `outputs/etapa2/consolidado/tabela_comparativa_5_obras_n.csv` e `_freq.csv` (Etapa 2.1, granular).\n"
+        "- `outputs/etapa2/consolidado/militar_classificacao_automatica.csv` (Etapa 2.2).\n"
+        "- `outputs/etapa2/consolidado/tabela_militar_refinada_5_obras.tex` (Etapa 2.2, enxuta).\n"
+        "- `outputs/etapa2/consolidado/tabela_militar_refinado_5_obras.csv` (Etapa 2.5, CSV detalhado).\n"
+        "- `outputs/etapa2/consolidado/tabela_militar_refinado_5_obras_detalhada.tex` (Etapa 2.5, detalhada).\n"
+        "- `outputs/etapa2/consolidado/tabela_textil_topologico_5_obras.{csv,tex}` (Etapa 2.5).\n"
+        "- `outputs/etapa2/consolidado/cocorrencia_comparacao.md` (Etapa 2.4).\n"
+        "- `outputs/etapa<N>/<artigo>/{csv,figuras,relatorios}/` (rotina por obra).\n"
+        "- `outputs/etapa2/consolidado/relatorio_etapa2.md` (este arquivo, consolidado das cinco subetapas)."
     )
 
     novas.append("\n## Próximos passos (Gate 2.5 pendente)\n")

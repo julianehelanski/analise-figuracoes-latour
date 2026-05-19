@@ -22,7 +22,7 @@ militar nas três obras de Latour:
    janela menor é exigida pelo briefing). Limiar mínimo de 5
    cocorrências por aresta. Campo militar como nó em destaque.
 
-Saídas em outputs/passo4/figuras/, em PNG (300 dpi) e SVG.
+Saídas em outputs/etapa1/passo4/figuras/, em PNG (300 dpi) e SVG.
 """
 
 from __future__ import annotations
@@ -37,9 +37,13 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 import yaml
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import obra_dir
 
 REPO = Path(__file__).resolve().parents[1]
-OUT_DIR = REPO / "outputs" / "passo4" / "figuras"
+OUT_DIR = REPO / "outputs" / "etapa1" / "passo4" / "figuras"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OBRAS_ANO = [
@@ -96,7 +100,7 @@ def carregar_campos_catalogo() -> list[str]:
 def carregar_frequencias(obra_id: str) -> dict[str, float]:
     """Retorna mapa campo -> frequência por 10k palavras."""
     freq: dict[str, float] = {}
-    with open(REPO / "outputs" / obra_id / "csv" / "frequencias.csv") as f:
+    with open(obra_dir(obra_id) /  "csv" / "frequencias.csv") as f:
         for row in csv.DictReader(f):
             freq[row["grupo"]] = float(row["frequencia_por_10k_palavras"])
     return freq
@@ -105,7 +109,7 @@ def carregar_frequencias(obra_id: str) -> dict[str, float]:
 def carregar_n_absoluto(obra_id: str) -> dict[str, int]:
     """Retorna mapa campo -> ocorrências absolutas."""
     n: dict[str, int] = {}
-    with open(REPO / "outputs" / obra_id / "csv" / "frequencias.csv") as f:
+    with open(obra_dir(obra_id) /  "csv" / "frequencias.csv") as f:
         for row in csv.DictReader(f):
             n[row["grupo"]] = int(row["n_ocorrencias"])
     return n
@@ -195,7 +199,7 @@ def figura_1_comparacao_frequencias() -> None:
 def carregar_militar_hits(obra_id: str) -> list[dict]:
     """Lê do kwic.csv as ocorrências válidas do campo militar."""
     hits: list[dict] = []
-    with open(REPO / "outputs" / obra_id / "csv" / "kwic.csv") as f:
+    with open(obra_dir(obra_id) /  "csv" / "kwic.csv") as f:
         for row in csv.DictReader(f):
             if row["grupo"] != "militar":
                 continue
@@ -219,7 +223,7 @@ def filtrar_war_descritivos_pandora(hits: list[dict]) -> list[dict]:
     refinamento/war_pandora_classificacao.csv.
     """
     descritivos: set[tuple] = set()
-    caminho = REPO / "refinamento" / "war_pandora_classificacao.csv"
+    caminho = REPO / "outputs" / "etapa1" / "refinamento" / "war_pandora_classificacao.csv"
     with open(caminho) as f:
         for row in csv.DictReader(f):
             if row["categoria_final"] != "descritivo":
@@ -334,7 +338,7 @@ def recomputar_cocorrencia_sia(janela_palavras: int = 100) -> dict[tuple[str, st
     janela_chars = int(janela_palavras * media_chars)
 
     ocs: list[tuple[str, int]] = []
-    caminho = REPO / "outputs" / "latour_1987_science_action_en" / "csv" / "kwic.csv"
+    caminho = obra_dir("latour_1987_science_action_en") / "csv" / "kwic.csv"
     with open(caminho) as f:
         for row in csv.DictReader(f):
             if row.get("descartado_por_exclusao", "0") != "0":

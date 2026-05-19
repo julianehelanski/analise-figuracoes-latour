@@ -18,47 +18,51 @@ A análise é, ela mesma, parte do argumento da tese. Que ela seja possível hoj
 
 ```
 analise_figuracoes/
-├── README.md                          # este arquivo
-├── CLAUDE.md                          # memória do projeto para Claude Code
-├── plano_de_trabalho.md               # plano detalhado das oito etapas
-├── briefing.md                        # sumário executivo (2 páginas)
-├── pyproject.toml                     # dependências Python
-├── requirements.txt                   # dependências fixadas (backup)
-├── .env.example                       # template do caminho dos PDFs
-├── .gitignore                         # exclui .env, PDFs, ambientes
+├── README.md                       este arquivo
+├── CLAUDE.md                       memória do projeto para Claude Code
+├── metadata.csv                    catálogo bibliográfico (espelho de corpus/metadata.csv)
+├── pyproject.toml                  dependências Python
+├── requirements.txt                dependências fixadas
+├── .env                            (local) caminho da pasta Drive com os PDFs
+├── .gitignore
 │
 ├── corpus/
-│   ├── README.md                      # documenta as obras esperadas
-│   ├── txt/                           # texto extraído dos PDFs (commitado)
-│   └── metadata.csv                   # autor, obra, ano, idioma, edição
+│   ├── README.md                   documenta as obras esperadas
+│   ├── metadata.csv                fonte de verdade do catálogo
+│   ├── txt/                        texto cru extraído dos PDFs
+│   ├── txt_norm/                   texto normalizado (lido pelo pipeline)
+│   └── paginas/                    classificação por página (front/back matter, corpo, ...)
 │
 ├── campos_lexicais/
-│   ├── latour_militar_en.txt
-│   ├── latour_militar_fr.txt
-│   ├── latour_militar_pt.txt
-│   ├── haraway_textil_en.txt
-│   └── ...
+│   ├── catalogo_termos.yaml        17 campos de Latour (Etapas 1 e 2)
+│   ├── catalogo_termos_aime.yaml   12 campos novos de AIME (Etapa 3)
+│   └── latour_*_etapa2_adicoes.txt suplementos auditáveis da Etapa 2
 │
 ├── scripts/
-│   ├── 01_extract_text.py
-│   ├── 02_kwic.py
-│   ├── 03_frequencies.py
-│   ├── 04_visualizations.py
-│   ├── 05_cooccurrence.py
-│   └── 06_sampling.py
+│   ├── 01_extract_text.py … 08_validate_sample.py   pipeline reutilizável
+│   ├── _paths.py                                    mapeamento obra → etapa
+│   ├── run_etapa1.sh                                orquestrador da Etapa 1
+│   └── arquivo/                                     scripts one-shot já consumidos
 │
 ├── outputs/
-│   ├── csv/
-│   ├── figuras/
-│   ├── relatorios/
-│   └── latex/
+│   ├── etapa1/<obra>/{csv,relatorios,figuras}    por obra
+│   ├── etapa1/{passo4,refinamento}/              consolidados da Etapa 1
+│   ├── etapa1/trajetoria_latour_1986_1999.{md,csv}
+│   ├── etapa2/<obra>/...
+│   ├── etapa2/consolidado/                       tabelas e relatórios da Etapa 2
+│   ├── etapa2bis/<obra>/...
+│   ├── etapa2bis/{consolidado,recalling_extras}/
+│   ├── etapa3/<obra>/...
+│   ├── etapa3/consolidado/
+│   ├── consolidado/                              consolidado final cross-etapas
+│   └── latex/                                    versões LaTeX para a tese
 │
 └── docs/
-    ├── decisoes_metodologicas.md
-    └── apendice_tese.md
+    ├── decisoes_metodologicas.md   decisões vivas, datadas e revisáveis
+    └── historico.md                índice cronológico de briefings consumidos
 ```
 
-**Observação importante**: a pasta `corpus/pdf/` **não existe localmente nem é versionada**. Os PDFs são lidos diretamente da pasta Google Drive sincronizada (ver "Como usar" abaixo).
+**Observação importante**: a pasta dos PDFs **não existe localmente nem é versionada**. Os PDFs são lidos diretamente da pasta Google Drive sincronizada (ver "Como usar" abaixo).
 
 ---
 
@@ -130,7 +134,7 @@ claude
 
 #### 6. Diga ao Claude Code
 
-> "Leia o `README.md`, `CLAUDE.md` e `plano_de_trabalho.md`. Em seguida, execute a Etapa 0 conforme especificado. Aguarde minha confirmação antes de avançar para a Etapa 1."
+> "Leia `CLAUDE.md` e `docs/decisoes_metodologicas.md` para entender o estado atual e as decisões fixadas. Aguarde minha confirmação antes de avançar para qualquer etapa."
 
 ### Sessões subsequentes
 

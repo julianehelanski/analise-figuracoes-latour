@@ -1,10 +1,10 @@
 """Tabelas e relatórios de frequência por obra (Etapa 1).
 
-Lê `outputs/<obra_id>/csv/kwic.csv` e `corpus/qualidade_extracao.csv` e produz:
+Lê `outputs/etapa<N>/<obra_id>/csv/kwic.csv` e `corpus/qualidade_extracao.csv` e produz:
 
-- `outputs/<obra_id>/csv/frequencias.csv`: contagem por grupo, com frequência
+- `outputs/etapa<N>/<obra_id>/csv/frequencias.csv`: contagem por grupo, com frequência
   absoluta e relativa (ocorrências por 10 000 palavras).
-- `outputs/<obra_id>/relatorios/frequencias.md`: relatório descritivo com
+- `outputs/etapa<N>/<obra_id>/relatorios/frequencias.md`: relatório descritivo com
   ranking de grupos, exclusões aplicadas e exemplos da janela KWIC.
 
 Ocorrências marcadas como `descartado_por_exclusao=1` no kwic.csv são
@@ -21,11 +21,11 @@ import argparse
 import csv
 from collections import Counter, defaultdict
 from pathlib import Path
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 QUALIDADE_CSV = REPO_ROOT / "corpus" / "qualidade_extracao.csv"
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 
 def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
@@ -59,7 +59,7 @@ def carregar_palavras_total(obra_id: str) -> int | None:
 
 
 def construir_frequencias(obra_id: str) -> None:
-    kwic_path = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    kwic_path = obra_dir(obra_id) / "csv" / "kwic.csv"
     if not kwic_path.exists():
         print(f"  [pular] {kwic_path} não existe; rode scripts/02_kwic.py.")
         return
@@ -87,7 +87,7 @@ def construir_frequencias(obra_id: str) -> None:
                 })
 
     # CSV de frequências --------------------------------------------------- #
-    csv_saida = OUTPUTS_DIR / obra_id / "csv" / "frequencias.csv"
+    csv_saida = obra_dir(obra_id) / "csv" / "frequencias.csv"
     csv_saida.parent.mkdir(parents=True, exist_ok=True)
     with csv_saida.open("w", encoding="utf-8", newline="") as f:
         cab = [
@@ -120,7 +120,7 @@ def construir_frequencias(obra_id: str) -> None:
                 })
 
     # Markdown ------------------------------------------------------------- #
-    md_saida = OUTPUTS_DIR / obra_id / "relatorios" / "frequencias.md"
+    md_saida = obra_dir(obra_id) / "relatorios" / "frequencias.md"
     md_saida.parent.mkdir(parents=True, exist_ok=True)
     linhas: list[str] = [
         f"# Frequências preliminares: {obra_id}",

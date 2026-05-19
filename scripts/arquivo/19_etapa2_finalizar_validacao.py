@@ -1,7 +1,7 @@
 """Etapa 2.6 final: correcao de bugs e outputs analiticos.
 
 Recebe a planilha preenchida pela pesquisadora em
-`outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA.csv`
+`outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA.csv`
 e produz:
 
 - `validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`: planilha com
@@ -27,9 +27,12 @@ import re
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+from _paths import OUTPUTS_DIR, obra_dir
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "outputs"
 ETAPA2_DIR = OUTPUTS_DIR / "etapa2_artigos"
 TXT_NORM_DIR = REPO_ROOT / "corpus" / "txt_norm"
 
@@ -85,7 +88,7 @@ def carregar_kwic_indice(obra_id: str) -> dict[tuple[str, str, str, str], int]:
     """Indexa o kwic.csv por (grupo, termo, contexto_antes, contexto_depois)
     para casar com as linhas da planilha preenchida e recuperar
     posicao_no_texto."""
-    p = OUTPUTS_DIR / obra_id / "csv" / "kwic.csv"
+    p = obra_dir(obra_id) / "csv" / "kwic.csv"
     indice: dict[tuple[str, str, str, str], int] = {}
     with p.open(encoding="utf-8", newline="") as f:
         for row in csv.DictReader(f):
@@ -219,7 +222,7 @@ def gerar_resultados(linhas: list[dict[str, str]]) -> None:
         f"Data: {date.today().isoformat()}.",
         "",
         "Os números abaixo derivam da planilha "
-        "`outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`, "
+        "`outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`, "
         "produzida a partir da classificação manual feita pela pesquisadora sobre "
         "as 82 ocorrências da amostra A/B/C dos quatro campos centrais "
         "(`textil`, `topologia`, `network`, `actor_network`) nos dois artigos "
@@ -323,12 +326,12 @@ def gerar_resultados(linhas: list[dict[str, str]]) -> None:
         "",
         "## Outputs gerados nesta etapa",
         "",
-        "- `outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA.csv` (intocada, classificações da pesquisadora).",
-        "- `outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv` (`id_kwic` único por offset e `pagina` recalculada).",
-        "- `outputs/etapa2_artigos/validacao_amostral_resultados.md` (este arquivo).",
-        "- `outputs/etapa2_artigos/tabela_textil_topologico_refinada.tex` (LaTeX, pronta para `\\input{}`).",
-        "- `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv` (candidatos da TAREFA 4).",
-        "- `outputs/etapa2_artigos/log_execucao.md` (registro da sessão).",
+        "- `outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA.csv` (intocada, classificações da pesquisadora).",
+        "- `outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv` (`id_kwic` único por offset e `pagina` recalculada).",
+        "- `outputs/etapa2/consolidado/validacao_amostral_resultados.md` (este arquivo).",
+        "- `outputs/etapa2/consolidado/tabela_textil_topologico_refinada.tex` (LaTeX, pronta para `\\input{}`).",
+        "- `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv` (candidatos da TAREFA 4).",
+        "- `outputs/etapa2/consolidado/log_execucao.md` (registro da sessão).",
     ]
     md.write_text("\n".join(out), encoding="utf-8")
     print(f"  gravado: {md.relative_to(REPO_ROOT)}")
@@ -604,13 +607,13 @@ preenchimento manual da planilha pela pesquisadora.
 
 ## Outputs gerados
 
-- `outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA.csv`
+- `outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA.csv`
   (intocada, classificacoes da pesquisadora).
-- `outputs/etapa2_artigos/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`.
-- `outputs/etapa2_artigos/validacao_amostral_resultados.md`.
-- `outputs/etapa2_artigos/tabela_textil_topologico_refinada.tex`.
-- `outputs/etapa2_artigos/metalinguistico_retroativo_livros.csv`.
-- `outputs/etapa2_artigos/log_execucao.md` (este arquivo).
+- `outputs/etapa2/consolidado/validacao_amostral_semantica_PREENCHIDA_CORRIGIDA.csv`.
+- `outputs/etapa2/consolidado/validacao_amostral_resultados.md`.
+- `outputs/etapa2/consolidado/tabela_textil_topologico_refinada.tex`.
+- `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv`.
+- `outputs/etapa2/consolidado/log_execucao.md` (este arquivo).
 - Atualizacao da secao Etapa 2 de `docs/decisoes_metodologicas.md` com a
   subsecao "Rendimento da validacao amostral A/B/C".
 
