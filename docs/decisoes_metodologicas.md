@@ -573,3 +573,31 @@ AIME redistribui o trabalho figurativo em três camadas (vocabulário antigo per
 
 - Validação amostral semântica A/B/C dos 31 campos em AIME (Etapa 3.6 hipotética). Sem ela, as densidades brutas dos campos polissêmicos (`experiencia`, `categorias_dominio`, `crossing`, `domain`) carregam ruído não estimado.
 - Validação retroativa das categorias `metalinguistico`, `descritivo_bibliografico` e `conceitual_debate` para os livros (pendência aberta desde a Etapa 2.6, inclui os seis candidatos retroativos de `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv`).
+
+## Etapa 1 — Camada R: classificação Reinert e AFC sobre as três obras (22/05/2026)
+
+### 1. Motivação
+
+Incorporo ao pipeline uma camada de lexicometria estilo IRaMuTeQ (classificação descendente hierárquica de Reinert e análise fatorial de correspondências) para visualizar a trajetória 1986-1999 no plano fatorial. A interpretação do capítulo 2 sobre o deslocamento do vocabulário entre as três obras ganha um output cartográfico que complementa as densidades por campo já calculadas em Python.
+
+### 2. Decisões metodológicas
+
+**Linguagem e ambiente**: implementação em R, via RStudio sobre o R instalado dentro do Anaconda (env `latour-r`). O IRaMuTeQ é uma GUI Python que chama R por baixo; trabalhar diretamente em R encurta a pilha e mantém o output versionado no repositório. Script em `scripts/R/10_reinert_afc.R`, instruções em `scripts/R/README.md`.
+
+**Pacotes**: `rainette` (implementação moderna do Reinert no R, ativo no CRAN, autoria de Julien Barnier), `quanteda` para tokenização e DFM, `udpipe` para lematização, `FactoMineR` e `factoextra` para a AFC.
+
+**Lematização**: feita em R via `udpipe` com modelo `english-ewt`, sobre os `corpus/txt_norm/*.txt` em escopo da Etapa 1. Os lematizados ficam cacheados em `corpus/txt_lemma_en/` para reaproveitamento. Decisão deliberada: o IRaMuTeQ lematiza por padrão, e trabalhar com lemas (e não formas) produz AFC mais legível, com `cereal` no lugar de `cereal/cereals`.
+
+**Segmentação**: STs de cerca de 40 ocorrências via `rainette::split_segments`, replicando o default IRaMuTeQ para corpora dessa ordem. Estimativa de cerca de 9 mil STs distribuídos entre as três obras.
+
+**Parâmetros Reinert**: k = 6 classes, `min_segment_size = 10`, stopwords inglesas do `quanteda` removidas, lemas com menos de 3 caracteres descartados, termos presentes em menos de 3 STs descartados (`min_docfreq = 3`) para estabilizar a partição.
+
+**AFC**: dupla, uma sobre o cruzamento lema x classe Reinert (equivalente ao plano fatorial padrão do IRaMuTeQ) e outra sobre lema x obra (que conversa diretamente com o argumento da trajetória 1986-1999 no capítulo 2). Limite de 250 lemas mais frequentes para o gráfico legível; coordenadas completas exportadas em CSV.
+
+**Seed**: 42, conforme convenção do projeto.
+
+### 3. Pendências
+
+- Rodar o script na máquina da Juliane e validar amostralmente os perfis de classe Reinert antes de incorporar gráficos à tese.
+- Decidir se as figuras `afc_obras.png` e/ou `afc_classes_reinert.png` entram no capítulo 2 e em qual seção.
+- Replicar a camada R para o corpus Haraway quando a Etapa 5 do refinamento atual avançar.
