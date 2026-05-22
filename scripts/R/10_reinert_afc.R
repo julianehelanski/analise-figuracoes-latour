@@ -142,9 +142,11 @@ res_reinert <- rainette(dtm, k = 6, min_segment_size = 10)
 
 png(file.path(dir_saida, "reinert_dendrograma.png"),
     width = 1600, height = 1100, res = 150)
-rainette_plot(res_reinert, dtm, k = 6, type = "bar",
-              n_terms = 20, free_scales = FALSE,
-              measure = "chi2", text_size = 10)
+print(
+  rainette_plot(res_reinert, dtm, k = 6, type = "bar",
+                n_terms = 20, free_scales = FALSE,
+                measure = "chi2", text_size = 10)
+)
 dev.off()
 
 # Atribui a classe Reinert a cada ST.
