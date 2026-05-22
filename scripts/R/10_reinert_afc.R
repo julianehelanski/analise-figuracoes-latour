@@ -140,13 +140,16 @@ cat("dfm:", ndoc(dtm), "STs x", nfeat(dtm), "lemas\n")
 
 res_reinert <- rainette(dtm, k = 6, min_segment_size = 10)
 
+# Dendrograma simples via plot() do hclust (rainette herda de hclust).
+# rainette_plot() tem rendering frágil em algumas combinações R/pacote;
+# separamos dendrograma e perfis em dois PNGs robustos.
 png(file.path(dir_saida, "reinert_dendrograma.png"),
-    width = 1600, height = 1100, res = 150)
-print(
-  rainette_plot(res_reinert, dtm, k = 6, type = "bar",
-                n_terms = 20, free_scales = FALSE,
-                measure = "chi2", text_size = 10)
-)
+    width = 1600, height = 900, res = 150)
+plot(res_reinert,
+     main = "Dendrograma Reinert (CHD), k = 6",
+     xlab = "STs", ylab = "Distância", sub = "",
+     labels = FALSE, hang = -1)
+rect.hclust(res_reinert, k = 6, border = 2:7)
 dev.off()
 
 # Atribui a classe Reinert a cada ST.
@@ -161,6 +164,28 @@ for (i in seq_along(perfis)) {
                    file.path(dir_saida,
                              sprintf("perfis_classe_%02d.csv", i)))
 }
+
+# Barplot facetado dos lemas mais característicos por classe.
+# Substitui o type = "bar" do rainette_plot, que falha em algumas versões.
+perfis_top <- dplyr::bind_rows(
+  lapply(seq_along(perfis), function(i) {
+    df <- as.data.frame(perfis[[i]])
+    df$classe <- sprintf("Classe %d", i)
+    head(df, 15)
+  })
+)
+
+g_perfis <- ggplot(perfis_top,
+                   aes(x = chi2, y = reorder(feature, chi2))) +
+  geom_col(fill = "steelblue") +
+  facet_wrap(~ classe, scales = "free_y", ncol = 3) +
+  labs(title = "Lemas mais característicos por classe Reinert (chi²)",
+       x = "chi²", y = NULL) +
+  theme_minimal(base_size = 10) +
+  theme(strip.text = element_text(face = "bold"))
+
+ggsave(file.path(dir_saida, "reinert_perfis_classes.png"),
+       g_perfis, width = 14, height = 9, dpi = 150)
 
 # ---- 5. AFC sobre a tabela lema x classe -----------------------------------
 # Agrega o dfm pelas classes Reinert, fica uma tabela de contingência
