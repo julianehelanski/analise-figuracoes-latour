@@ -1,0 +1,251 @@
+Id,Label,Frequency,Obra_dominante,Classe_reinert
+able,able,255,science_1987,outro
+accept,accept,129,science_1987,outro
+account,account,260,lab_life_1986,Classe 4
+acid,acid,139,lab_life_1986,outro
+action,action,232,pandora_1999,Classe 3
+activity,activity,295,lab_life_1986,Classe 4
+add,add,146,science_1987,outro
+allow,allow,161,pandora_1999,outro
+already,already,134,lab_life_1986,outro
+although,although,168,lab_life_1986,outro
+always,always,187,pandora_1999,outro
+another,another,416,science_1987,outro
+answer,answer,140,science_1987,outro
+appear,appear,175,lab_life_1986,outro
+argument,argument,225,lab_life_1986,Classe 4
+article,article,236,science_1987,Classe 4
+ask,ask,150,science_1987,outro
+assay,assay,141,lab_life_1986,Classe 4
+author,author,192,science_1987,outro
+away,away,148,science_1987,outro
+back,back,227,science_1987,Classe 2
+become,become,520,science_1987,outro
+begin,begin,136,lab_life_1986,outro
+belief,belief,192,pandora_1999,Classe 3
+believe,believe,261,science_1987,outro
+better,better,145,pandora_1999,outro
+black,black,179,science_1987,Classe 2
+body,body,135,pandora_1999,Classe 3
+book,book,186,science_1987,outro
+box,box,146,science_1987,Classe 2
+bring,bring,159,science_1987,Classe 2
+call,call,298,science_1987,outro
+case,case,260,science_1987,outro
+change,change,167,lab_life_1986,outro
+chapter,chapter,458,science_1987,outro
+claim,claim,442,science_1987,outro
+clear,clear,142,lab_life_1986,outro
+colleague,colleague,153,pandora_1999,outro
+collective,collective,131,pandora_1999,Classe 3
+come,come,273,science_1987,outro
+common,common,144,pandora_1999,outro
+consider,consider,154,science_1987,outro
+construction,construction,242,lab_life_1986,Classe 4
+controversy,controversy,222,science_1987,Classe 2
+course,course,191,pandora_1999,outro
+credit,credit,143,lab_life_1986,Classe 4
+culture,culture,150,science_1987,outro
+data,data,149,lab_life_1986,outro
+day,day,128,lab_life_1986,outro
+define,define,178,pandora_1999,outro
+definition,definition,198,pandora_1999,outro
+depend,depend,157,lab_life_1986,outro
+difference,difference,206,lab_life_1986,outro
+different,different,376,pandora_1999,outro
+discussion,discussion,210,lab_life_1986,Classe 4
+dispute,dispute,129,science_1987,outro
+draw,draw,137,science_1987,outro
+effect,effect,140,lab_life_1986,outro
+either,either,175,science_1987,outro
+element,element,204,science_1987,Classe 2
+end,end,293,science_1987,outro
+engine,engine,126,science_1987,Classe 2
+enough,enough,186,science_1987,outro
+entity,entity,136,pandora_1999,Classe 3
+every,every,180,science_1987,outro
+example,example,342,lab_life_1986,Classe 4
+exist,exist,145,pandora_1999,outro
+existence,existence,146,pandora_1999,outro
+explain,explain,172,science_1987,outro
+fact,fact,780,science_1987,outro
+factor,factor,164,lab_life_1986,Classe 4
+far,far,182,science_1987,outro
+field,field,257,lab_life_1986,Classe 4
+figure,figure,370,pandora_1999,Classe 1
+find,find,273,lab_life_1986,outro
+first,first,526,science_1987,Classe 2
+follow,follow,337,science_1987,outro
+force,force,235,pandora_1999,outro
+form,form,313,pandora_1999,outro
+get,get,227,science_1987,Classe 2
+give,give,330,science_1987,outro
+good,good,171,pandora_1999,outro
+group,group,282,lab_life_1986,Classe 4
+guillemin,guillemin,205,lab_life_1986,Classe 4
+hand,hand,269,pandora_1999,outro
+happen,happen,141,science_1987,outro
+history,history,248,pandora_1999,Classe 3
+hold,hold,146,pandora_1999,outro
+human,human,292,pandora_1999,Classe 3
+idea,idea,177,lab_life_1986,outro
+important,important,175,lab_life_1986,outro
+indeed,indeed,134,science_1987,outro
+information,information,140,lab_life_1986,outro
+inscription,inscription,201,lab_life_1986,Classe 4
+inside,inside,175,science_1987,Classe 2
+instance,instance,166,science_1987,outro
+instead,instead,191,pandora_1999,outro
+instrument,instrument,172,science_1987,Classe 2
+interest,interest,260,science_1987,outro
+keep,keep,152,science_1987,Classe 2
+kind,kind,164,lab_life_1986,outro
+know,know,387,science_1987,outro
+knowledge,knowledge,263,pandora_1999,outro
+laboratory,laboratory,983,lab_life_1986,Classe 4
+later,later,156,science_1987,outro
+law,law,125,pandora_1999,outro
+lead,lead,149,science_1987,outro
+least,least,124,pandora_1999,outro
+leave,leave,170,pandora_1999,outro
+less,less,192,science_1987,outro
+life,life,264,lab_life_1986,Classe 4
+like,like,447,science_1987,outro
+line,line,150,science_1987,outro
+link,link,134,science_1987,outro
+literature,literature,126,science_1987,outro
+little,little,185,pandora_1999,outro
+long,long,244,science_1987,outro
+longer,longer,149,pandora_1999,outro
+look,look,218,science_1987,outro
+machine,machine,150,science_1987,Classe 2
+make,make,1223,science_1987,outro
+man,man,166,science_1987,outro
+many,many,610,science_1987,Classe 2
+material,material,176,lab_life_1986,Classe 4
+matter,matter,262,pandora_1999,outro
+mean,mean,291,pandora_1999,outro
+method,method,128,science_1987,outro
+mind,mind,190,pandora_1999,outro
+model,model,195,science_1987,outro
+move,move,198,science_1987,outro
+much,much,449,science_1987,outro
+name,name,138,science_1987,outro
+nature,nature,327,science_1987,outro
+necessary,necessary,180,science_1987,outro
+need,need,254,science_1987,outro
+network,network,199,science_1987,Classe 2
+never,never,218,pandora_1999,outro
+new,new,841,science_1987,Classe 2
+nonhuman,nonhuman,187,pandora_1999,Classe 3
+nothing,nothing,178,pandora_1999,outro
+notion,notion,179,lab_life_1986,outro
+number,number,299,science_1987,outro
+object,object,329,pandora_1999,outro
+observer,observer,214,lab_life_1986,Classe 4
+obtain,obtain,176,lab_life_1986,outro
+one,one,499,science_1987,outro
+order,order,357,lab_life_1986,outro
+outside,outside,203,science_1987,outro
+paper,paper,352,science_1987,outro
+papers,papers,267,lab_life_1986,Classe 4
+part,part,378,science_1987,Classe 2
+participant,participant,149,lab_life_1986,Classe 4
+particular,particular,156,lab_life_1986,Classe 4
+pasteur,pasteur,211,pandora_1999,Classe 3
+people,people,620,science_1987,Classe 2
+place,place,243,science_1987,outro
+point,point,406,science_1987,outro
+politics,politics,175,pandora_1999,Classe 3
+position,position,205,lab_life_1986,outro
+possible,possible,317,science_1987,outro
+power,power,132,pandora_1999,outro
+practice,practice,207,pandora_1999,outro
+present,present,156,lab_life_1986,outro
+press,press,147,lab_life_1986,Classe 5
+problem,problem,220,lab_life_1986,outro
+process,process,221,lab_life_1986,outro
+produce,produce,211,lab_life_1986,outro
+production,production,127,lab_life_1986,Classe 4
+provide,provide,234,lab_life_1986,outro
+put,put,140,science_1987,outro
+question,question,324,pandora_1999,outro
+rather,rather,176,lab_life_1986,outro
+read,read,160,science_1987,outro
+reader,reader,227,science_1987,outro
+real,real,144,pandora_1999,outro
+reality,reality,185,pandora_1999,Classe 3
+reason,reason,205,pandora_1999,Classe 3
+refer,refer,124,lab_life_1986,outro
+reference,reference,253,pandora_1999,outro
+relation,relation,131,pandora_1999,outro
+remain,remain,135,pandora_1999,outro
+research,research,254,lab_life_1986,outro
+resource,resource,169,science_1987,Classe 2
+result,result,244,lab_life_1986,Classe 4
+right,right,194,science_1987,outro
+rule,rule,141,science_1987,outro
+say,say,551,pandora_1999,outro
+schally,schally,212,science_1987,Classe 4
+science,science,1308,pandora_1999,Classe 5
+scientific,scientific,571,lab_life_1986,outro
+scientist,scientist,797,lab_life_1986,Classe 4
+second,second,215,science_1987,outro
+see,see,797,science_1987,outro
+seem,seem,190,science_1987,outro
+sense,sense,175,lab_life_1986,outro
+sentence,sentence,150,science_1987,outro
+set,set,230,lab_life_1986,outro
+show,show,254,lab_life_1986,outro
+side,side,155,science_1987,outro
+simply,simply,250,science_1987,outro
+since,since,399,science_1987,outro
+social,social,504,lab_life_1986,Classe 5
+society,society,238,science_1987,outro
+socrates,socrates,213,pandora_1999,Classe 3
+something,something,194,science_1987,outro
+sort,sort,139,pandora_1999,outro
+space,space,145,science_1987,outro
+speak,speak,152,pandora_1999,outro
+stage,stage,127,pandora_1999,outro
+start,start,229,science_1987,outro
+state,state,137,pandora_1999,outro
+statement,statement,460,lab_life_1986,Classe 4
+story,story,140,science_1987,outro
+structure,structure,201,lab_life_1986,Classe 4
+study,study,601,lab_life_1986,outro
+substance,substance,307,lab_life_1986,Classe 4
+system,system,136,science_1987,outro
+take,take,626,science_1987,outro
+talk,talk,144,science_1987,outro
+technical,technical,226,science_1987,outro
+technology,technology,142,science_1987,outro
+tell,tell,123,science_1987,outro
+term,term,311,lab_life_1986,Classe 4
+text,text,228,science_1987,Classe 2
+theory,theory,162,pandora_1999,outro
+thing,thing,382,pandora_1999,Classe 3
+think,think,184,pandora_1999,outro
+time,time,607,science_1987,Classe 2
+tion,tion,133,pandora_1999,Classe 3
+together,together,182,science_1987,Classe 2
+transform,transform,162,science_1987,outro
+translation,translation,132,science_1987,outro
+trf,trf,249,lab_life_1986,Classe 4
+trial,trial,131,science_1987,Classe 2
+try,try,236,science_1987,outro
+turn,turn,237,science_1987,outro
+type,type,143,lab_life_1986,outro
+understand,understand,198,pandora_1999,outro
+university,university,144,science_1987,Classe 5
+use,use,743,lab_life_1986,Classe 4
+want,want,238,pandora_1999,outro
+way,way,588,science_1987,outro
+whole,whole,197,science_1987,outro
+without,without,362,pandora_1999,outro
+word,word,306,pandora_1999,outro
+work,work,688,lab_life_1986,Classe 4
+world,world,452,pandora_1999,Classe 3
+write,write,248,science_1987,outro
+year,year,235,lab_life_1986,outro
+yet,yet,162,pandora_1999,outro

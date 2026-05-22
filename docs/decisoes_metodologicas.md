@@ -601,3 +601,31 @@ Incorporo ao pipeline uma camada de lexicometria estilo IRaMuTeQ (classificaçã
 - Rodar o script na máquina da Juliane e validar amostralmente os perfis de classe Reinert antes de incorporar gráficos à tese.
 - Decidir se as figuras `afc_obras.png` e/ou `afc_classes_reinert.png` entram no capítulo 2 e em qual seção.
 - Replicar a camada R para o corpus Haraway quando a Etapa 5 do refinamento atual avançar.
+
+## Ramo paralelo experimental — Rede de coocorrência para Gephi (22/05/2026)
+
+### 1. Status
+
+Ramo paralelo, **experimental**, mantido fora do pipeline principal. Não alimenta diretamente o capítulo 2 nesta versão. Decisão tomada após a primeira execução bem sucedida da camada R: Juliane pediu material pronto para importar no Gephi caso queira explorar a visualização em rede mais à frente.
+
+### 2. Decisões metodológicas
+
+**Granularidade dos nós**: lema, não termo do catálogo figurativo. A escolha mantém o mesmo nível de análise da camada R (Reinert + AFC operam sobre lemas) e permite comparar diretamente a partição modular detectada pelo Gephi com a partição Reinert.
+
+**Tipo de aresta**: coocorrência não dirigida dentro do mesmo ST de 40 lemas, com peso igual ao número de STs em que o par coocorre. STs são gerados pela mesma lógica do `scripts/R/10_reinert_afc.R`, então os dois métodos partem da mesma segmentação.
+
+**Filtros padrão**: top 250 lemas por frequência total (igual ao limite usado nas AFCs do R) e peso mínimo de 3 coocorrências por aresta. Stopwords inglesas removidas, lemas com menos de 3 caracteres descartados. A rede resultante tem 250 nós e cerca de 27 mil arestas, manejável no Gephi sem prejuízo de leitura.
+
+**Atributos dos nós**: além de `Frequency`, cada nó carrega `Obra_dominante` (obra em que o lema tem maior frequência absoluta) e `Classe_reinert` (classe à qual o lema mais se associa por chi², lida dos `perfis_classe_XX.csv`). Isso permite, no Gephi, colorir por obra ou por classe Reinert e comparar com a modularidade detectada in situ.
+
+**Script e saídas**: `scripts/11_export_gephi.py`, saídas em `outputs/etapa1/gephi/{nodes.csv, edges.csv, README.md}`. README inclui instruções de importação e sugestões de layout/análise para Gephi 0.10+.
+
+### 3. Justificativa de manter como ramo paralelo
+
+A análise principal da Etapa 1 segue a tradição IRaMuTeQ (Reinert + AFC), que produz partição estatística com base estatística do chi². A análise em rede via Gephi opera sobre lógica diferente (modularidade, layouts força-dirigidos) e não é diretamente comparável. Trato a saída Gephi como complemento exploratório, não como evidência alternativa. Se for incorporada à tese, entra como ilustração visual da topologia do corpus, com a partição Reinert seguindo como base estatística da interpretação.
+
+### 4. Pendências
+
+- Rodar a importação no Gephi e produzir um PNG/SVG do layout. Decidir se entra no capítulo 2.
+- Eventual comparação quantitativa entre comunidades de modularidade (Gephi) e classes Reinert (R), via tabela de contingência.
+- Replicar para o corpus Haraway na Etapa 5 do refinamento atual, caso a rede seja incorporada à tese.
