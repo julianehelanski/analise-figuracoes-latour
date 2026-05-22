@@ -74,13 +74,14 @@ print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 
 ## Estado atual do projeto
 
-**Etapa em andamento:** Refinamento sobre as Etapas 1 e 3, em sessão iniciada em 14 de maio de 2026. Cinco passos planejados, executados em sequência:
+**Etapa em andamento:** Refinamento sobre as Etapas 1 e 3, em sessão iniciada em 14 de maio de 2026. Seis passos planejados, executados em sequência:
 
 1. Desambiguação de `war`/`wars` no campo militar das três obras de Latour. **Concluído em 14/05/2026**. Resultado documentado em `docs/decisoes_metodologicas.md` (adendo ao final). Artefatos em `outputs/etapa1/refinamento/`.
 2. Validação amostral semântica dos campos figurativos (20 ocorrências por campo por obra, lidas por Juliane). Pendente.
 3. Reformatação dos blocos interpretativos do relatório de trajetória para os critérios de estilo da tese (primeira pessoa, sem travessões, sem fórmulas vedadas, capítulo minúsculo). Pendente.
 4. KWIC ampliado para janela de ±50 palavras sobre o campo militar nas três obras, com curadoria de 10 a 15 passagens citáveis. Pendente.
 5. Início da contrapartida Haraway (corpus, catálogo têxtil-feminista, primeira lexicometria). Pendente.
+6. Camada R de lexicometria estilo IRaMuTeQ (classificação Reinert + AFC) sobre as três obras de Latour. Script `scripts/R/10_reinert_afc.R` pronto em 22/05/2026; execução local pela Juliane em RStudio sobre R do Anaconda. Pendente: rodar e validar amostralmente os perfis de classe.
 
 **Decisões já tomadas e fixadas:**
 
