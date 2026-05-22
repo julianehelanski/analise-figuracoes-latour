@@ -285,14 +285,16 @@ readr::write_csv(tibble::rownames_to_column(as.data.frame(res_ca_obra$col$coord)
                                              "obra"),
                  file.path(dir_saida, "afc_obras_coordenadas_obras.csv"))
 
-readr::write_csv(
-  tibble(obra = docvars(dtm, "obra"),
-         classe_reinert = docvars(dtm, "classe_reinert")) |>
-    count(obra, classe_reinert) |>
-    tidyr::pivot_wider(names_from = classe_reinert,
-                       values_from = n, values_fill = 0,
-                       names_prefix = "classe_"),
-  file.path(dir_saida, "distribuicao_classes_por_obra.csv")
-)
+# Distribuição de classes por obra: tabela de contingência em R base
+# (evita NSE do dplyr e pipe nativo, que falharam nesta combinação de
+# versões instaladas).
+distrib_tab <- table(obra           = docvars(dtm, "obra"),
+                     classe_reinert = docvars(dtm, "classe_reinert"))
+distrib_df  <- as.data.frame.matrix(distrib_tab)
+names(distrib_df) <- paste0("classe_", names(distrib_df))
+distrib_df  <- cbind(obra = rownames(distrib_df), distrib_df)
+rownames(distrib_df) <- NULL
+readr::write_csv(distrib_df,
+                 file.path(dir_saida, "distribuicao_classes_por_obra.csv"))
 
 cat("\nConcluído. Saídas em:", dir_saida, "\n")
