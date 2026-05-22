@@ -149,7 +149,6 @@ plot(res_reinert,
      main = "Dendrograma Reinert (CHD), k = 6",
      xlab = "STs", ylab = "Distância", sub = "",
      labels = FALSE, hang = -1)
-rect.hclust(res_reinert, k = 6, border = 2:7)
 dev.off()
 
 # Atribui a classe Reinert a cada ST.
