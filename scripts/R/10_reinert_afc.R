@@ -147,8 +147,8 @@ png(file.path(dir_saida, "reinert_dendrograma.png"),
     width = 1600, height = 900, res = 150)
 plot(res_reinert,
      main = "Dendrograma Reinert (CHD), k = 6",
-     xlab = "STs", ylab = "Distância", sub = "",
-     labels = FALSE, hang = -1)
+     xlab = "Classe", ylab = "Distância qui²", sub = "",
+     hang = -1)
 dev.off()
 
 # Atribui a classe Reinert a cada ST.
