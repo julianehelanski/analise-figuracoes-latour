@@ -43,3 +43,4 @@ outputs/**/.cache/
 outputs/etapa1/passo4/kwic_ampliado.csv
 outputs/etapa1/passo4/passagens_curadas.md
 outputs/etapa1/passo4/sequencia_exercito_ciencia.md
+.Rproj.user
