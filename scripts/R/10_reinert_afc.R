@@ -270,3 +270,5 @@ readr::write_csv(
 )
 
 cat("\nConcluído. Saídas em:", dir_saida, "\n")
+install.packages("tidyr", repos = "https://cloud.r-project.org")
+
