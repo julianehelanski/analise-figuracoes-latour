@@ -2,7 +2,7 @@
 
 Pasta que reúne todas as figuras da análise em um único local, com nomes desambiguados por etapa e obra. Criada em 2026-05-23. Cada arquivo é uma cópia do PNG (e do SVG, quando existe) do diretório canônico onde a figura foi gerada.
 
-Total: 29 figuras (PNG); 26 com SVG correspondente (as três figuras do Reinert/AFC saem do R via `png()` device, sem SVG).
+Total: 35 figuras (PNG); 32 com SVG correspondente (as três figuras do Reinert/AFC saem do R via `png()` device, sem SVG).
 
 Convenções de nome: `<etapa>_<obra-ou-bloco>_<tipo>.png`. As siglas de obra seguem `lab_life` (1986), `sia` (1987), `pandora` (1999), `clarifications` (1996), `recalling_parcial` (corpus parcial Etapa 2), `recalling_integral` (corpus integral Etapa 2-bis), `aime` (2013).
 
@@ -41,6 +41,12 @@ Inventário descritivo completo das figuras: `outputs/inventario_figuras.md`. Bl
 | `etapa3_aime_densidade_todos.{png,svg}` | `outputs/etapa3/latour_2013_aime_en/figuras/densidade_ao_longo_do_texto_todos.{png,svg}` |
 | `etapa3_aime_rede_cocorrencia_j200.{png,svg}` | `outputs/etapa3/latour_2013_aime_en/figuras/rede_cocorrencia_j200.{png,svg}` |
 | `etapa3_aime_rede_cocorrencia_jprop.{png,svg}` | `outputs/etapa3/latour_2013_aime_en/figuras/rede_cocorrencia_jprop.{png,svg}` |
+| `etapa1_lab_life_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_lab_life.{png,svg}` |
+| `etapa1_sia_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_sia.{png,svg}` |
+| `etapa1_pandora_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_pandora.{png,svg}` |
+| `etapa2_clarifications_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_clarifications.{png,svg}` |
+| `etapa2bis_recalling_integral_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_recalling_integral.{png,svg}` |
+| `etapa3_aime_freq_e_densidade.{png,svg}` | `outputs/consolidado/figuras/freq_densidade_aime.{png,svg}` |
 
 ## Pendência
 

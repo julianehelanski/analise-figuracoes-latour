@@ -4,7 +4,7 @@ Referência aberta para escolha e redação de legendas. Cada entrada lista o no
 
 Versão LaTeX com blocos `\begin{figure}` prontos: `outputs/latex/inventario_figuras.tex`.
 
-Total de figuras únicas inventariadas: **29 existentes no repo + 1 prevista pelo script Reinert/AFC, ainda não gerada** = 30. PNG e SVG no diretório canônico; PNG com nomes desambiguados no espelho `outputs/consolidado/figuras/` quando aplicável.
+Total de figuras únicas inventariadas: **35 existentes no repo + 1 prevista pelo script Reinert/AFC, ainda não gerada** = 36. PNG e SVG no diretório canônico; PNG com nomes desambiguados em `outputs/figuras/` (pasta consolidada principal, criada em 2026-05-23).
 
 Catálogo de campos figurativos: `campos_lexicais/catalogo_termos.yaml`.
 
@@ -177,6 +177,31 @@ Catálogo duplo: catálogo antigo (Etapas 1--2, 19 campos) + catálogo novo da E
 Não há espelho em `outputs/consolidado/figuras/` para os arquivos de AIME (Etapa 3 mais recente; integração consolidada cross-etapas pendente).
 
 Arquivo LaTeX preexistente com três legendas (alternativa, em estilo próprio, com paths apontando para nomes `aime_*.png`): `outputs/etapa3/consolidado/legendas_figuras.tex`.
+
+---
+
+## Frequência + densidade combinadas por obra (6 figuras)
+
+Uma figura por obra do corpus, em layout 1 linha × 2 colunas (freq./10k palavras à esquerda, densidade empilhada ao longo do texto à direita), gerada em 2026-05-23 a partir de pedido para juntar as duas visões básicas em um único objeto por obra.
+
+Pasta canônica: `outputs/consolidado/figuras/` (com prefixo `freq_densidade_`). Gerador: `scripts/arquivo/24_freq_densidade_por_obra.py`. Em `outputs/figuras/`: mesmo conteúdo, renomeado para `<etapa>_<obra>_freq_e_densidade.{png,svg}`.
+
+Padrão visual comum às 6 figuras:
+
+- **Coluna esquerda**: barras horizontais de freq./10k palavras, ordenação ascendente (campo mais frequente no topo), anotação numérica à direita de cada barra. Paleta viridis para obras de catálogo único (5 das 6). Para AIME, cor por proveniência do catálogo (azul `#4c72b0` antigo, laranja `#dd8452` novo).
+- **Coluna direita**: histograma empilhado de 30 bins, eixo X = posição relativa 0--1 (calculada por `posicao_no_texto / n_chars` do `corpus/txt_norm/<obra>.txt`), paleta tab20, legenda no canto superior direito.
+- **Título superior**: rótulo da obra + ano + palavras totais + n de ocorrências catalogadas. Para AIME, indicação \enquote{(catálogos antigo + novo)}.
+
+| Arquivo (pasta consolidada / `outputs/figuras/`) | Obra | Campos | Conteúdo |
+|---|---|---|---|
+| `freq_densidade_lab_life.{png,svg}` / `etapa1_lab_life_freq_e_densidade.{png,svg}` | LL86 | 12 campos | freq dominada por `construction` (19,3/10k), `topologia` (13,8) e `inscription` (11,8); densidade com adensamento de `inscription` nos capítulos centrais. |
+| `freq_densidade_sia.{png,svg}` / `etapa1_sia_freq_e_densidade.{png,svg}` | SIA87 | 16 campos | freq encabeçada por `topologia` (34,7/10k) e `militar` (26,7/10k em contagem bruta no kwic; refinado simétrico em outras figuras). Densidade do `militar` acompanha `topologia`. |
+| `freq_densidade_clarifications.{png,svg}` / `etapa2_clarifications_freq_e_densidade.{png,svg}` | CLA96 | 8 campos | freq dominada por `topologia` (150,4/10k) e `network` (118,5/10k), padrão metateórico têxtil-topológico. `militar` em densidade baixa. Densidade homogênea ao longo do texto curto. |
+| `freq_densidade_pandora.{png,svg}` / `etapa1_pandora_freq_e_densidade.{png,svg}` | PAN99 | 16 campos | freq encabeçada por `topologia` (27,6/10k) e `militar` (16,6/10k bruto); densidade do `militar` com adensamento na faixa final (\emph{Science Wars}). |
+| `freq_densidade_recalling_integral.{png,svg}` / `etapa2bis_recalling_integral_freq_e_densidade.{png,svg}` | REC99 (Etapa 2-bis) | 10 campos | freq dominada por `topologia` (99,5/10k) e `network` (58,0/10k), padrão metateórico equivalente ao de CLA96. Corpus de 4.825 palavras (Etapa 2-bis integral). |
+| `freq_densidade_aime.{png,svg}` / `etapa3_aime_freq_e_densidade.{png,svg}` | AIME13 (catálogo duplo) | 26 campos | freq mostra os 14 campos do catálogo antigo (azul) ao lado dos 12 novos da Etapa 3 (laranja); `topologia` (26,4/10k) lidera o antigo e `trajetoria_passe` (22,3/10k) lidera o novo. Densidade dos 26 campos ao longo do livro. |
+
+**ATENÇÃO**: as escalas X das colunas freq diferem por obra (max próprio por subplot), comparação direta entre figuras exige normalização visual; o eixo X da densidade é uniforme (0--1).
 
 ---
 
