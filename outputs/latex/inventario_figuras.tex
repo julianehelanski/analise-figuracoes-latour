@@ -1,0 +1,409 @@
+% =====================================================================
+% Inventário de figuras da análise de figurações em Latour.
+% Gerado em 2026-05-23 (sessão de refinamento das Etapas 1 e 3).
+% Cobre Etapas 1, 1-passo4, 1-reinert/AFC, 2, 2-bis e 3 da análise.
+% Os PNG canônicos vivem em outputs/<etapa>/<obra>/figuras/ e estão
+% espelhados em outputs/consolidado/figuras/ com nomes desambiguados.
+% Para incorporar à tese, copiar os PNG para o diretório de figuras
+% do capítulo \ref{capitulo2} e ajustar o path em \includegraphics.
+% Catálogo de campos: campos_lexicais/catalogo_termos.yaml.
+% =====================================================================
+
+
+% #####################################################################
+% ETAPA 1: três obras de Latour em inglês original
+% (Laboratory Life 1986, Science in Action 1987, Pandora's Hope 1999)
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 1.1: ranking de frequência em Laboratory Life (1986)
+% Fonte canônica: outputs/etapa1/latour_woolgar_1986_lab_life_en/figuras/frequencia_grupos.png
+% Espelho consolidado: outputs/consolidado/figuras/frequencia_grupos_lab_life.png
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_lab_life.png}
+\caption[Frequência dos campos figurativos em \emph{Laboratory Life} (1986)]{Ranking absoluto dos doze campos figurativos com ocorrência em \emph{Laboratory Life} (Latour e Woolgar, 1986, edição Princeton), sobre 105.749 palavras de corpo. Janela KWIC de $\pm$10 palavras. Lidero o ranking com \texttt{construction} (n=204), \texttt{topologia} (146) e \texttt{inscription} (125), na ordem em que aparecem na composição lexical da obra; o campo \texttt{militar} comparece em densidade baixa (n=39, 3{,}69 por 10.000 palavras), em contraste com o que vejo em \emph{Science in Action} e \emph{Pandora's Hope}. Fonte: \texttt{outputs/etapa1/latour\_woolgar\_1986\_lab\_life\_en/csv/frequencias.csv}. Figura gerada por \texttt{scripts/04\_visualizar.py}.}
+\label{fig:freq-lab-life}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.2: densidade ao longo do texto em Laboratory Life (1986)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/densidade_lab_life.png}
+\caption[Densidade dos campos figurativos ao longo de \emph{Laboratory Life} (1986)]{Distribuição das ocorrências dos campos figurativos ao longo de \emph{Laboratory Life} (Latour e Woolgar, 1986), em histograma empilhado de 30 bins, com o eixo horizontal indicando a posição relativa de cada ocorrência (0 no início do livro, 1 no fim). Vejo o vocabulário de \texttt{inscription} concentrar-se nos capítulos centrais sobre prática laboratorial, enquanto \texttt{construction} se distribui de maneira mais uniforme. Paleta tab20 do matplotlib; semente fixa em 42 para reprodutibilidade. Fonte: \texttt{outputs/etapa1/latour\_woolgar\_1986\_lab\_life\_en/csv/kwic.csv} (campo \texttt{posicao\_no\_texto}). Figura gerada por \texttt{scripts/04\_visualizar.py}.}
+\label{fig:densidade-lab-life}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.3: rede de cocorrência em Laboratory Life (1986)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_lab_life.png}
+\caption[Rede de cocorrência figural em \emph{Laboratory Life} (1986)]{Rede de cocorrência dos campos figurativos em \emph{Laboratory Life} (Latour e Woolgar, 1986), com janela de cooccurrência de 200 palavras. Os nós representam campos figurativos; a espessura das arestas é proporcional à contagem absoluta de pares figurativos coocorrentes na janela. Vejo a tríade \texttt{construction}--\texttt{inscription}--\texttt{network} concentrar a maior densidade de cocorrência (90, 51 e 20 ocorrências respectivamente para os três pares principais), com o campo \texttt{agonistic} aparecendo em conexão lateral com \texttt{construction} (46) e \texttt{militar} (14). Fonte: \texttt{outputs/etapa1/latour\_woolgar\_1986\_lab\_life\_en/csv/cocorrencia.csv}. Figura gerada por \texttt{scripts/05\_cocorrencia.py}.}
+\label{fig:rede-lab-life}
+\end{figure}
+
+
+% ---------------------------------------------------------------------
+% Figura 1.4: ranking de frequência em Science in Action (1987)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_sia.png}
+\caption[Frequência dos campos figurativos em \emph{Science in Action} (1987)]{Ranking absoluto dos dezesseis campos figurativos com ocorrência em \emph{Science in Action} (Latour, 1987), sobre 139.861 palavras de corpo. Janela KWIC de $\pm$10 palavras. O ranking é encabeçado por \texttt{topologia} (n=485) e \texttt{militar} (n=374, 26{,}74 por 10.000 palavras), que aqui assume a posição que em \emph{Laboratory Life} ocupava \texttt{inscription}. Entre as variantes top do campo \texttt{militar}, registro \enquote{allies} (92), \enquote{mobilisation} (28), \enquote{mobilised} (24) e \enquote{alliances} (22), composição que sustento como o núcleo do tropo militar-industrial latouriano nos livros monográficos solo. Fonte: \texttt{outputs/etapa1/latour\_1987\_science\_action\_en/csv/frequencias.csv}.}
+\label{fig:freq-sia}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.5: densidade ao longo do texto em Science in Action (1987)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/densidade_sia.png}
+\caption[Densidade dos campos figurativos ao longo de \emph{Science in Action} (1987)]{Distribuição das ocorrências dos campos figurativos ao longo de \emph{Science in Action} (Latour, 1987), em histograma empilhado de 30 bins. Eixo horizontal: posição relativa no texto (0 no início, 1 no fim). Vejo o campo \texttt{militar} acompanhar de perto \texttt{topologia} em toda a extensão do livro, com adensamento entre a metade e o terço final, faixa que corresponde aos capítulos sobre \enquote{trials of strength} e \enquote{from short to longer networks}. Paleta tab20 do matplotlib; semente 42. Fonte: \texttt{outputs/etapa1/latour\_1987\_science\_action\_en/csv/kwic.csv}.}
+\label{fig:densidade-sia}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.6: rede de cocorrência em Science in Action (1987)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_sia.png}
+\caption[Rede de cocorrência figural em \emph{Science in Action} (1987)]{Rede de cocorrência dos campos figurativos em \emph{Science in Action} (Latour, 1987), com janela de 200 palavras. Por essa figura, sustento o argumento empírico de que o campo \texttt{militar} ocupa em 1987 a posição estrutural de articulador semântico: o vocabulário militar coocorre com \texttt{black\_box} (152), \texttt{network} (98), \texttt{inscription} (72), \texttt{translation} (71), \texttt{construction} (59), \texttt{spokesperson} (55), \texttt{enrollment} (52) e \texttt{trial\_of\_strength} (39), aparecendo em quase todos os pares de maior densidade. Fonte: \texttt{outputs/etapa1/latour\_1987\_science\_action\_en/csv/cocorrencia.csv}.}
+\label{fig:rede-sia}
+\end{figure}
+
+
+% ---------------------------------------------------------------------
+% Figura 1.7: ranking de frequência em Pandora's Hope (1999)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_pandora.png}
+\caption[Frequência dos campos figurativos em \emph{Pandora's Hope} (1999)]{Ranking absoluto dos dezesseis campos figurativos com ocorrência em \emph{Pandora's Hope} (Latour, 1999), sobre 128.001 palavras de corpo. Janela KWIC de $\pm$10 palavras. Vejo \texttt{topologia} (n=353) na ponta, seguido por \texttt{militar} (n=212, 16{,}56 por 10.000 palavras) em contagem bruta. Esta contagem bruta exige o refinamento do passo 1 (desambiguação de \emph{war}/\emph{wars}; vide \autoref{fig:freq-pandora-refinada} e \autoref{tab:militar-refinado}), porque parte das ocorrências do campo militar em 1999 nomeia objeto histórico-editorial (a expressão \emph{Science Wars}, a Segunda Guerra Mundial no capítulo sobre Joliot, instituições nomeadas como \emph{Ministry of War}). Fonte: \texttt{outputs/etapa1/latour\_1999\_pandora\_en/csv/frequencias.csv}.}
+\label{fig:freq-pandora}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.8: densidade ao longo do texto em Pandora's Hope (1999)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/densidade_pandora.png}
+\caption[Densidade dos campos figurativos ao longo de \emph{Pandora's Hope} (1999)]{Distribuição das ocorrências dos campos figurativos ao longo de \emph{Pandora's Hope} (Latour, 1999), em histograma empilhado de 30 bins. Eixo horizontal: posição relativa no texto (0 no início, 1 no fim). Registro dois adensamentos do campo \texttt{militar} em pontos do texto que correspondem ao capítulo sobre Joliot (narrativa da Segunda Guerra Mundial) e ao bloco final sobre as \emph{Science Wars}, observação que motivou a desambiguação refinada do passo 1 da Etapa 3 da análise. Paleta tab20; semente 42. Fonte: \texttt{outputs/etapa1/latour\_1999\_pandora\_en/csv/kwic.csv}.}
+\label{fig:densidade-pandora}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 1.9: rede de cocorrência em Pandora's Hope (1999)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_pandora.png}
+\caption[Rede de cocorrência figural em \emph{Pandora's Hope} (1999)]{Rede de cocorrência dos campos figurativos em \emph{Pandora's Hope} (Latour, 1999), com janela de 200 palavras. O par \texttt{articulation}--\texttt{proposition} (64) lidera a rede, em coerência com a guinada conceitual de 1999 para o léxico de \emph{articulating propositions}. O campo \texttt{militar} segue presente em pares de força intermediária (\texttt{construction}--\texttt{militar} 47, \texttt{militar}--\texttt{translation} 32, \texttt{factish}--\texttt{militar} 30), em contagem bruta. A versão refinada após desambiguação de \emph{war}/\emph{wars} reduz as conexões militares em 26{,}4\% (vide \autoref{tab:militar-refinado}). Fonte: \texttt{outputs/etapa1/latour\_1999\_pandora\_en/csv/cocorrencia.csv}.}
+\label{fig:rede-pandora}
+\end{figure}
+
+
+% #####################################################################
+% ETAPA 1, PASSO 4: consolidação das três obras de Latour (1986--1999)
+% e refinamento por desambiguação de war/wars no campo militar.
+% Fonte canônica: outputs/etapa1/passo4/figuras/
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 2.1: comparação de frequências entre as três obras
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/comparacao_frequencias_tres_obras.png}
+\caption[Comparação de frequências figurativas entre as três obras de Latour (1986--1999)]{Comparação das frequências por 10.000 palavras dos campos figurativos do catálogo nas três obras de Latour analisadas na Etapa 1 (\emph{Laboratory Life} 1986, \emph{Science in Action} 1987, \emph{Pandora's Hope} 1999), com barras agrupadas por campo. A visualização sustenta empiricamente a tese de inflexão militar-industrial entre 1986 e 1987: a densidade do campo \texttt{militar} salta de 3{,}69 em \emph{Laboratory Life} para 26{,}74 em \emph{Science in Action}, com 16{,}56 em \emph{Pandora's Hope} (contagem bruta). Fonte: \texttt{outputs/etapa1/trajetoria\_latour\_1986\_1999.csv}. Figura gerada por \texttt{scripts/10\_passo4\_visualizacoes.py}.}
+\label{fig:comparacao-tres-obras}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 2.2: painel triplo das três obras (frequência por grupo)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_tres_obras_painel.png}
+\caption[Painel triplo: frequência dos campos figurativos nas três obras de Latour (1986--1999)]{Painel com três sub-figuras lado a lado, uma por obra de Latour analisada na Etapa 1, mostrando o ranking dos campos figurativos por contagem absoluta com a mesma escala vertical. Apresento o painel como dispositivo de leitura sinóptica da trajetória conceitual: vejo \texttt{construction} e \texttt{inscription} encabeçarem o ranking em 1986; \texttt{topologia} e \texttt{militar} ocuparem as duas primeiras posições em 1987; e \texttt{topologia} manter a ponta em 1999 com \texttt{militar} em segundo (contagem bruta), seguido de \texttt{textil} (105), \texttt{translation} (70), \texttt{construction} (62) e \texttt{factish} (53). Fonte: \texttt{outputs/etapa1/passo4/dados\_painel.csv}.}
+\label{fig:painel-tres-obras}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 2.3: densidade do campo militar em SIA e Pandora
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/densidade_militar_sia_pandora.png}
+\caption[Densidade do campo militar em \emph{Science in Action} (1987) e \emph{Pandora's Hope} (1999)]{Distribuição das ocorrências do campo figurativo \texttt{militar} ao longo das duas obras monográficas solo de Latour em que esse campo é numericamente dominante, com sub-figuras lado a lado. Em \emph{Science in Action} vejo o campo distribuído de modo aproximadamente uniforme, com pico no terço central; em \emph{Pandora's Hope} identifico dois adensamentos correspondendo ao capítulo sobre Joliot (narrativa da Segunda Guerra Mundial) e ao bloco final sobre as \emph{Science Wars}. Comparo essa distribuição com a versão refinada após desambiguação de \emph{war}/\emph{wars} (\autoref{tab:militar-refinado}). Fonte: \texttt{outputs/etapa1/latour\_1987\_science\_action\_en/csv/kwic.csv} e \texttt{outputs/etapa1/latour\_1999\_pandora\_en/csv/kwic.csv}.}
+\label{fig:densidade-militar-sia-pandora}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 2.4: frequência refinada de SIA (war/wars desambiguados)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_sia_refinada.png}
+\caption[Frequência refinada dos campos figurativos em \emph{Science in Action} (1987)]{Versão refinada da \autoref{fig:freq-sia} após desambiguação automática de \emph{war}/\emph{wars} entre uso descritivo-histórico e uso figurativo-latouriano. A contagem do campo \texttt{militar} passa de n=374 (26{,}74 por 10.000 palavras) para n=364 (26{,}03 por 10.000 palavras), com redução de 2{,}7\%. A trajetória conceitual de \emph{Science in Action} se mantém preservada: o campo militar continua em segunda posição no ranking, ancorado nas variantes \enquote{allies}, \enquote{mobilisation}, \enquote{enrolment}. Fonte: \texttt{outputs/etapa1/refinamento/militar\_refinado\_tres\_obras.csv}.}
+\label{fig:freq-sia-refinada}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 2.5: frequência refinada de Pandora (war/wars desambiguados)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/frequencia_grupos_pandora_refinada.png}
+\caption[Frequência refinada dos campos figurativos em \emph{Pandora's Hope} (1999)]{Versão refinada da \autoref{fig:freq-pandora} após desambiguação manual e automática de \emph{war}/\emph{wars}. A contagem do campo \texttt{militar} cai de n=212 (16{,}56 por 10.000 palavras) para n=156 (12{,}19 por 10.000 palavras), redução de 26{,}4\% por subtração das ocorrências descritivo-históricas: a expressão \emph{Science Wars} usada como categoria do debate público, a Segunda Guerra Mundial no capítulo sobre Joliot, instituições nomeadas (\emph{Ministry of War}), referências bibliográficas (Tolstoi, \emph{War and Peace}) e expressões fixas (\emph{World War}, \emph{Cold War}, \emph{phony war}, \emph{Franco-Prussian war}). O uso figural-latouriano sobrevivente concentra-se nos tropos sobre \emph{war between subjects and objects}, \emph{tug of war} e \emph{war of all against all}. Fonte: \texttt{outputs/etapa1/refinamento/war\_pandora\_classificacao.csv}.}
+\label{fig:freq-pandora-refinada}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 2.6: rede de cocorrência em SIA, vista do passo 4
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_sia_passo4.png}
+\caption[Rede de cocorrência figural em \emph{Science in Action} (1987), recorte passo 4]{Reapresentação da rede de cocorrência de \emph{Science in Action} (Latour, 1987), com layout uniformizado ao das outras figuras-rede do passo 4 da Etapa 1 e janela de 200 palavras. Mantenho aqui a mesma leitura registrada na \autoref{fig:rede-sia}: o campo \texttt{militar} ocupa a posição estrutural de articulador semântico no livro de 1987, atravessando todos os pares figurativos de maior densidade. Fonte: \texttt{outputs/etapa1/latour\_1987\_science\_action\_en/csv/cocorrencia.csv}.}
+\label{fig:rede-sia-passo4}
+\end{figure}
+
+
+% #####################################################################
+% ETAPA 1, REINERT/AFC: lexicometria estilo IRaMuTeQ sobre as três obras
+% Fonte: outputs/etapa1/reinert_afc/
+% Status em 2026-05-23: script pronto, execução local pela pesquisadora
+% em RStudio sobre R do Anaconda. Pendente: rodar e validar perfis.
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 3.1: dendrograma da classificação Reinert
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/reinert_dendrograma.png}
+\caption[Dendrograma da classificação Reinert sobre as três obras de Latour]{Dendrograma da classificação hierárquica descendente (CHD) estilo Reinert sobre o corpus consolidado das três obras de Latour analisadas na Etapa 1 (\emph{Laboratory Life} 1986, \emph{Science in Action} 1987, \emph{Pandora's Hope} 1999), conforme implementação em R via \texttt{rainette} sobre lemas normalizados. Cada folha do dendrograma corresponde a uma das seis classes lexicais identificadas pelo algoritmo, com perfis registrados em \texttt{outputs/etapa1/reinert\_afc/perfis\_classe\_0\{1..6\}.csv}. Figura gerada por \texttt{scripts/R/10\_reinert\_afc.R}.}
+\label{fig:reinert-dendrograma}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 3.2: AFC das classes Reinert
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/afc_classes_reinert.png}
+\caption[Análise Fatorial de Correspondências das classes Reinert]{Análise Fatorial de Correspondências (AFC) sobre a matriz lemas $\times$ classes da CHD Reinert (\autoref{fig:reinert-dendrograma}). O biplot exibe a projeção das seis classes lexicais e dos lemas característicos nos dois primeiros eixos fatoriais, com a inércia explicada anotada nos eixos. Uso a posição relativa das classes no plano fatorial como leitura sinóptica da estrutura semântica latente nas três obras de Latour. Coordenadas em \texttt{outputs/etapa1/reinert\_afc/afc\_classes\_coordenadas\_classes.csv} e \texttt{afc\_classes\_coordenadas\_lemas.csv}.}
+\label{fig:afc-classes}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 3.3: AFC das obras
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/afc_obras.png}
+\caption[Análise Fatorial de Correspondências das três obras de Latour]{Análise Fatorial de Correspondências (AFC) sobre a matriz lemas $\times$ obras, com as três obras de Latour projetadas como pontos suplementares e os lemas mais característicos rotulados. A figura permite ler a distância semântica entre \emph{Laboratory Life}, \emph{Science in Action} e \emph{Pandora's Hope} no espaço lexical conjunto, complementando a leitura por campos figurativos catalogados. Coordenadas em \texttt{outputs/etapa1/reinert\_afc/afc\_obras\_coordenadas\_obras.csv} e \texttt{afc\_obras\_coordenadas\_lemas.csv}.}
+\label{fig:afc-obras}
+\end{figure}
+
+
+% #####################################################################
+% ETAPA 2: artigos metateóricos
+% (Clarifications 1996, Recalling ANT 1999 com corpus parcial)
+% Fonte: outputs/etapa2/<obra>/figuras/
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 4.1: rede de cocorrência em Clarifications (j200)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_clarifications_j200.png}
+\caption[Rede de cocorrência figural em \emph{Clarifications} (1996), janela 200]{Rede de cocorrência dos campos figurativos em \emph{On Actor-Network Theory: A Few Clarifications} (Latour, 1996, \emph{Soziale Welt}), sobre 7.848 palavras de corpo, com janela de 200 palavras. Sustento por essa figura o argumento de divisão de trabalho metafórico por gênero textual: o par \texttt{network}--\texttt{topologia} concentra 783 cocorrências, seguido por \texttt{textil}--\texttt{topologia} (222) e \texttt{actor\_network}--\texttt{network} (162). O campo \texttt{militar} comparece em conexões marginais (\texttt{militar}--\texttt{network}: 10; \texttt{militar}--\texttt{topologia}: 3) e nenhuma das três ocorrências militares no artigo é uso figural do vocabulário militar-industrial como tropo para a prática científica. Fonte: \texttt{outputs/etapa2/latour\_1996\_clarifications\_en/csv/cocorrencia\_j200.csv}.}
+\label{fig:rede-clarifications-j200}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 4.2: rede de cocorrência em Clarifications (j157, sanity check)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_clarifications_j157.png}
+\caption[Rede de cocorrência figural em \emph{Clarifications} (1996), janela 157]{Rede de cocorrência dos campos figurativos em \emph{On Actor-Network Theory: A Few Clarifications} (Latour, 1996), com janela alternativa de 157 palavras (calibrada para comparabilidade proporcional com janelas dos livros monográficos, dado o tamanho do artigo). Apresento a figura como controle de sensibilidade: a topologia da rede permanece estável em relação à \autoref{fig:rede-clarifications-j200}, com o par \texttt{network}--\texttt{topologia} liderando (616), seguido por \texttt{textil}--\texttt{topologia} (171). Fonte: \texttt{outputs/etapa2/latour\_1996\_clarifications\_en/csv/cocorrencia\_j157.csv}.}
+\label{fig:rede-clarifications-j157}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 4.3: rede de cocorrência em Recalling (1999, corpus parcial)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_recalling_etapa2_j200.png}
+\caption[Rede de cocorrência figural em \emph{On Recalling ANT} (1999), corpus parcial Etapa 2]{Rede de cocorrência dos campos figurativos em \emph{On Recalling ANT} (Latour, 1999), sobre 1.241 palavras de corpo do extrato OCR parcial da Etapa 2 original (5 de 11 páginas do volume), com janela de 200 palavras. A rede registra apenas seis pares válidos, com \texttt{network}--\texttt{topologia} (20), \texttt{actor\_network}--\texttt{network} (6), \texttt{militar}--\texttt{topologia} (5) e \texttt{construction}--\texttt{topologia} (5). Conservo a figura como registro do estado intermediário da análise; a leitura definitiva está na \autoref{fig:rede-recalling-bis-j200}, sobre o corpus integral reprocessado na Etapa 2-bis. Fonte: \texttt{outputs/etapa2/latour\_1999\_recalling\_en/csv/cocorrencia\_j200.csv}.}
+\label{fig:rede-recalling-etapa2-j200}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 4.4: rede de cocorrência em Recalling (1999, j025)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_recalling_etapa2_j025.png}
+\caption[Rede de cocorrência figural em \emph{On Recalling ANT} (1999), janela 25, corpus parcial Etapa 2]{Versão da rede de cocorrência de \emph{On Recalling ANT} (1999) sobre o corpus parcial da Etapa 2 (1.241 palavras), com janela reduzida de 25 palavras para isolar adjacência semântica próxima. Apenas três pares sobrevivem ao filtro: \texttt{actor\_network}--\texttt{network} (2), \texttt{network}--\texttt{topologia} (2) e \texttt{militar}--\texttt{topologia} (1). Apresento a figura como controle de sensibilidade da janela. Fonte: \texttt{outputs/etapa2/latour\_1999\_recalling\_en/csv/cocorrencia\_j025.csv}.}
+\label{fig:rede-recalling-etapa2-j025}
+\end{figure}
+
+
+% #####################################################################
+% ETAPA 2-bis: reanálise do Recalling ANT sobre TXT integral
+% (4.825 palavras, 100% de cobertura) fornecido pela pesquisadora
+% Fonte: outputs/etapa2bis/latour_1999_recalling_bis/figuras/
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 5.1: rede de cocorrência em Recalling (1999, integral, j200)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_recalling_etapa2bis_j200.png}
+\caption[Rede de cocorrência figural em \emph{On Recalling ANT} (1999), corpus integral]{Rede de cocorrência dos campos figurativos em \emph{On Recalling ANT} (Latour, 1999, em \emph{Actor Network Theory and After}, eds. Law e Hassard), sobre o corpus integral de 4.825 palavras reprocessado na Etapa 2-bis (cobertura de 100\% das páginas 15--25 do volume), com janela de 200 palavras. Vinte e quatro pares válidos, encabeçados por \texttt{network}--\texttt{topologia} (79), \texttt{actor\_network}--\texttt{network} (28), \texttt{actor\_network}--\texttt{topologia} (23) e \texttt{circulating\_reference}--\texttt{topologia} (17). Tomo essa figura como a leitura definitiva da rede figural do artigo, em substituição à \autoref{fig:rede-recalling-etapa2-j200}. Os campos antes ausentes do corpus parcial (\texttt{translation}, \texttt{circulating\_reference}, \texttt{inscription}, \texttt{articulation}, \texttt{textil}) reaparecem aqui em densidade baixa, recompondo o perfil figurativo do artigo. Fonte: \texttt{outputs/etapa2bis/latour\_1999\_recalling\_bis/csv/cocorrencia\_j200.csv}.}
+\label{fig:rede-recalling-bis-j200}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 5.2: rede de cocorrência em Recalling (1999, integral, jprop)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_recalling_etapa2bis_jprop.png}
+\caption[Rede de cocorrência figural em \emph{On Recalling ANT} (1999), corpus integral, janela proporcional]{Versão da rede de cocorrência de \emph{On Recalling ANT} (1999) sobre o corpus integral da Etapa 2-bis (4.825 palavras), com janela proporcional de 97 palavras (correspondente à fração de 200 palavras em escala equivalente à das obras monográficas). Mantenho o ranking \texttt{network}--\texttt{topologia} (38), \texttt{actor\_network}--\texttt{network} (23), \texttt{actor\_network}--\texttt{topologia} (10), \texttt{circulating\_reference}--\texttt{topologia} (9), com dezenove pares válidos. Apresento a figura como controle de sensibilidade da janela em escala proporcional. Fonte: \texttt{outputs/etapa2bis/latour\_1999\_recalling\_bis/csv/cocorrencia\_jprop.csv}.}
+\label{fig:rede-recalling-bis-jprop}
+\end{figure}
+
+
+% #####################################################################
+% ETAPA 3: An Inquiry into Modes of Existence (Latour, 2013)
+% Catálogo duplo: catálogo antigo das Etapas 1--2 (19 campos)
+% + catálogo novo da Etapa 3 (12 campos próprios de AIME).
+% Fonte: outputs/etapa3/latour_2013_aime_en/figuras/
+% (legendas equivalentes já existem em outputs/etapa3/consolidado/
+%  legendas_figuras.tex; reproduzo aqui em estilo unificado da tese.)
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 6.1: frequência dos campos figurativos em AIME (2013)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_frequencia_grupos.png}
+\caption[Frequência dos campos figurativos em \emph{AIME} (2013)]{Frequência absoluta dos 26 campos figurativos com ocorrências em \emph{An Inquiry into Modes of Existence} (Latour, 2013), sobre 194.454 palavras de corpo. As barras estão coloridas por proveniência do catálogo: em azul, os 14 campos do catálogo antigo (Etapas 1 e 2) com ocorrências em \emph{AIME}, totalizando 1.343 ocorrências; em laranja, os 12 campos novos do catálogo específico da Etapa 3 que identifiquei a partir da leitura qualitativa do livro, totalizando 2.214 ocorrências. Total: 3.557 ocorrências catalogadas. Fonte: \texttt{outputs/etapa3/latour\_2013\_aime\_en/csv/kwic\_catalogo\_antigo.csv} e \texttt{kwic\_catalogo\_aime.csv}. Figura gerada por \texttt{scripts/23\_etapa3\_aime\_visualizacoes.py}.}
+\label{fig:aime-frequencia-grupos}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 6.2: densidade dos 12 campos mais frequentes em AIME
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_densidade_top12.png}
+\caption[Densidade dos 12 campos mais frequentes ao longo de \emph{AIME} (2013)]{Distribuição das ocorrências dos 12 campos figurativos mais frequentes ao longo de \emph{An Inquiry into Modes of Existence} (Latour, 2013), em histograma empilhado de 30 bins. Eixo horizontal: posição relativa no texto (0 no início, 1 no fim). Os campos, em ordem decrescente de densidade absoluta: \texttt{topologia} (514), \texttt{trajetoria\_passe} (433), \texttt{modernos} (397), \texttt{categorias\_dominio} (281), \texttt{experiencia} (276), \texttt{network} (255), \texttt{instituicao} (227), \texttt{textil} (201), \texttt{modos\_existencia} (167), \texttt{militar} (129), \texttt{alteracao} (112) e \texttt{felicidade} (92). A alternância entre campos do catálogo antigo (\texttt{topologia}, \texttt{network}, \texttt{textil}, \texttt{militar}) e campos novos da Etapa 3 sustenta a leitura de \emph{AIME} como livro de três camadas figurativas (\autoref{sec:aime-tres-camadas}). Paleta tab20 do matplotlib; semente 42. Fonte: \texttt{kwic\_catalogo\_antigo.csv} e \texttt{kwic\_catalogo\_aime.csv}.}
+\label{fig:aime-densidade-top12}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 6.3: densidade de todos os 26 campos em AIME
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/aime_densidade_todos.png}
+\caption[Densidade de todos os campos figurativos ao longo de \emph{AIME} (2013)]{Distribuição das ocorrências dos 26 campos figurativos com presença em \emph{An Inquiry into Modes of Existence} (Latour, 2013), em histograma empilhado de 30 bins, eixo horizontal indicando posição relativa no texto (0 no início, 1 no fim). Versão completa da \autoref{fig:aime-densidade-top12}, mantida para auditoria. Os cinco campos do catálogo antigo sem ocorrências em \emph{AIME} (\texttt{centre\_of\_calculation}, \texttt{trial\_of\_strength}, \texttt{factish}, \texttt{circulating\_reference}, \texttt{spokesperson}) não aparecem aqui. Fonte: \texttt{kwic\_catalogo\_antigo.csv} e \texttt{kwic\_catalogo\_aime.csv}.}
+\label{fig:aime-densidade-todos}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 6.4: rede de cocorrência em AIME (j200)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_aime_j200.png}
+\caption[Rede de cocorrência figural em \emph{AIME} (2013), janela 200]{Rede de cocorrência dos campos figurativos em \emph{An Inquiry into Modes of Existence} (Latour, 2013), com janela de 200 palavras e 242 pares válidos. Lidero o ranking com os pares \texttt{topologia}--\texttt{trajetoria\_passe} (584), \texttt{network}--\texttt{topologia} (379), \texttt{network}--\texttt{trajetoria\_passe} (301), \texttt{categorias\_dominio}--\texttt{topologia} (285) e \texttt{categorias\_dominio}--\texttt{trajetoria\_passe} (276). O par \texttt{network}--\texttt{textil} (236) registra a continuidade do vocabulário têxtil-topológico que rastreio desde a Etapa 2. O par \texttt{militar}--\texttt{modernos} (144) sinaliza o registro residual do tropo militar em \emph{AIME}, agora articulado à problemática dos \emph{moderns}. Fonte: \texttt{outputs/etapa3/latour\_2013\_aime\_en/csv/cocorrencia\_j200.csv}.}
+\label{fig:rede-aime-j200}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 6.5: rede de cocorrência em AIME (jprop)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/rede_cocorrencia_aime_jprop.png}
+\caption[Rede de cocorrência figural em \emph{AIME} (2013), janela proporcional]{Versão da rede de cocorrência de \emph{An Inquiry into Modes of Existence} (Latour, 2013) com janela proporcional de 39 palavras (calibrada para comparabilidade com janelas das obras anteriores em escala equivalente) e 180 pares válidos. O ranking se reorganiza levemente sob a janela mais curta: \texttt{topologia}--\texttt{trajetoria\_passe} (205) mantém a ponta, \texttt{network}--\texttt{textil} (93) passa à frente de \texttt{network}--\texttt{topologia} (91), e os pares envolvendo \texttt{categorias\_dominio} se concentram em conexões mais densas. Tomo a figura como controle de sensibilidade da janela em escala proporcional. Fonte: \texttt{outputs/etapa3/latour\_2013\_aime\_en/csv/cocorrencia\_jprop.csv}.}
+\label{fig:rede-aime-jprop}
+\end{figure}
+
+
+% #####################################################################
+% Notas finais
+% #####################################################################
+%
+% 1. Para incorporar à tese, copie os PNG para o diretório de figuras
+%    do capítulo \ref{capitulo2} e ajuste o path em \includegraphics.
+%    Os PNG canônicos estão em outputs/<etapa>/<obra>/figuras/;
+%    versões espelhadas (com nome desambiguado por obra) estão em
+%    outputs/consolidado/figuras/.
+%
+% 2. Os nomes de arquivo usados nesta seção da Etapa 3
+%    (aime_frequencia_grupos.png, aime_densidade_top12.png,
+%    aime_densidade_todos.png) seguem a convenção do arquivo
+%    outputs/etapa3/consolidado/legendas_figuras.tex; correspondem aos
+%    arquivos frequencia_grupos.png, densidade_ao_longo_do_texto.png e
+%    densidade_ao_longo_do_texto_todos.png em
+%    outputs/etapa3/latour_2013_aime_en/figuras/. Os arquivos das duas
+%    redes de cocorrência (rede_cocorrencia_aime_j200.png,
+%    rede_cocorrencia_aime_jprop.png) correspondem a
+%    rede_cocorrencia_j200.png e rede_cocorrencia_jprop.png no mesmo
+%    diretório.
+%
+% 3. Todas as figuras existem também em formato SVG no mesmo diretório
+%    PNG, para edição vetorial posterior.
+%
+% 4. Pendência: rodar localmente o script scripts/R/10_reinert_afc.R em
+%    RStudio sobre R do Anaconda para gerar/atualizar as figuras 3.1,
+%    3.2 e 3.3, e validar amostralmente os perfis de classe (passo 6
+%    do refinamento atual).
