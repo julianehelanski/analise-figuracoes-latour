@@ -773,3 +773,58 @@ permanece, justificada pela magnitude do efeito (ver entrada própria).
 
 **Inscrição no texto:** nota de rodapé na seção das figurações do
 capítulo 2, junto à primeira tabela de densidades.
+
+## Títulos das figuras: só o nome da obra, sem ano (23/05/2026)
+
+A pedido da Juliane, revisei os títulos embutidos nos arquivos PNG e SVG
+das figuras para que o título de cada figura traga apenas o nome da obra,
+sem ano. As demais informações que antes apareciam no título (ano,
+contagem de palavras, número de ocorrências catalogadas, marca de corpus
+integral, indicação de catálogo duplo de AIME, n refinado do campo
+militar) passam para o caption da figura, fora da imagem.
+
+**Mapeamento de título por obra** (forma adotada na imagem):
+
+- \emph{Laboratory Life}
+- \emph{Science in Action}
+- \emph{On Actor-Network Theory} (artigo \enquote{A Few Clarifications}, 1996)
+- \emph{Pandora's Hope}
+- \emph{On Recalling ANT}
+- \emph{An Inquiry into Modes of Existence} (AIME)
+
+Para os dois artigos usei o título principal antes do subtítulo
+(\emph{On Actor-Network Theory} no lugar de \enquote{Clarifications},
+\emph{An Inquiry into Modes of Existence} no lugar da sigla AIME). Se a
+Juliane preferir as formas curtas que vinha usando, basta trocar o campo
+`titulo_obra` no script gerador.
+
+**Onde a mudança foi aplicada:**
+
+1. `scripts/arquivo/24_freq_densidade_por_obra.py`: adicionei o campo
+   `titulo_obra` à config das seis obras e troquei o `suptitle`, que antes
+   concatenava rótulo, ano, palavras e ocorrências, pelo título da obra
+   apenas. As seis figuras combinadas frequência+densidade foram regeradas.
+2. `scripts/arquivo/11_passo4_graficos.py`: tirei o ano dos rótulos de
+   obra (`OBRAS_ROTULO` e os painéis da densidade militar), removi o
+   \enquote{(n refinado = N)} do rótulo de painel da figura de densidade
+   militar, e troquei a legenda da figura de comparação das três obras,
+   que distinguia as obras por ano (1986/1987/1999), por uma legenda que
+   as distingue pelo título. As seis figuras do passo 4 foram regeradas.
+
+As figuras das Etapas 1 base, 2, 2-bis e 3 geradas por
+`scripts/04_visualizations.py`, `scripts/05_cooccurrence.py` e
+`scripts/arquivo/23_etapa3_aime_visualizacoes.py` não têm título embutido,
+então não foram afetadas.
+
+**Espelhos:** as figuras do script 24 são espelhadas pelo próprio script
+em `outputs/consolidado/figuras/` e `outputs/figuras/`. As do script 11
+escrevem só em `outputs/etapa1/passo4/figuras/`, então recopiei à mão para
+`outputs/consolidado/figuras/` (a rede vira `rede_cocorrencia_sia_passo4.png`)
+e para `outputs/figuras/` (prefixo `etapa1_passo4_`).
+
+**Captions atualizados:** ajustei `outputs/latex/inventario_figuras.tex` e
+`outputs/inventario_figuras.md` onde o texto descrevia o título da imagem
+(as frases \enquote{Título superior com o n de palavras...} das figuras
+combinadas e o \enquote{rótulo de painel exibindo o n refinado} da figura
+de densidade militar), de modo que o ano, as palavras e as ocorrências
+fiquem agora declarados no corpo do caption.

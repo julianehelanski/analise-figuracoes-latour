@@ -194,9 +194,9 @@ def figura_1_comparacao_frequencias() -> None:
     # registro visual mais carregado da figura.
     from matplotlib.patches import Patch
     legenda = [
-        Patch(facecolor=COR_MILITAR["1986"], edgecolor="white", label="1986"),
-        Patch(facecolor=COR_MILITAR["1987"], edgecolor="white", label="1987"),
-        Patch(facecolor=COR_MILITAR["1999"], edgecolor="white", label="1999"),
+        Patch(facecolor=COR_MILITAR["1986"], edgecolor="white", label="Laboratory Life"),
+        Patch(facecolor=COR_MILITAR["1987"], edgecolor="white", label="Science in Action"),
+        Patch(facecolor=COR_MILITAR["1999"], edgecolor="white", label="Pandora's Hope"),
     ]
     ax.legend(handles=legenda, loc="lower right", frameon=False, fontsize=10)
 
@@ -292,8 +292,8 @@ def figura_2_densidade_militar() -> None:
     passo = 200
 
     paineis = [
-        ("latour_1987_science_action_en", "Science in Action, 1987"),
-        ("latour_1999_pandora_en", "Pandora's Hope, 1999"),
+        ("latour_1987_science_action_en", "Science in Action"),
+        ("latour_1999_pandora_en", "Pandora's Hope"),
     ]
 
     fig, axes = plt.subplots(2, 1, figsize=(12, 8))
@@ -328,7 +328,7 @@ def figura_2_densidade_militar() -> None:
         ax.text(
             0.01,
             0.95,
-            f"{rotulo}  (n refinado = {len(hits)})",
+            rotulo,
             transform=ax.transAxes,
             fontsize=10,
             va="top",
@@ -482,9 +482,9 @@ def figura_3_rede_cocorrencia() -> None:
 # -------------------------------------------------------------------
 
 OBRAS_ROTULO = {
-    "latour_woolgar_1986_lab_life_en": "Laboratory Life, 1986",
-    "latour_1987_science_action_en": "Science in Action, 1987",
-    "latour_1999_pandora_en": "Pandora's Hope, 1999",
+    "latour_woolgar_1986_lab_life_en": "Laboratory Life",
+    "latour_1987_science_action_en": "Science in Action",
+    "latour_1999_pandora_en": "Pandora's Hope",
 }
 
 
