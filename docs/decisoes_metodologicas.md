@@ -727,3 +727,49 @@ A justificativa fica no comentário inline do dict de cada obra, com remissão a
 - As 4 outras figuras combinadas (LL86, SIA87, PAN99, AIME13) seguem com militar na contagem do `kwic.csv`. Para SIA87 e PAN99, isso significa que a freq./10k mostrada na figura combinada é levemente maior que a refinada simétrica usada nas figuras do passo 4 da Etapa 1 (\autoref{fig:freq-sia-refinada} e \autoref{fig:freq-pandora-refinada}). A divergência é pequena (SIA: 26,7 bruto vs 25,95 refinado; PAN: 16,6 bruto vs 12,19 refinado) e está mencionada nas próprias legendas das figuras 7.2 e 7.4 com remissão à versão refinada.
 
 - Não criei CSVs de classificação por ocorrência para CLA96 e REC99. A decisão é pragmática: a leitura figural das 5 ocorrências é convergente entre todos os relatórios e a flag hardcoded é suficiente. Se for necessário escalar o argumento ou se alguma classificação for disputada, criar os CSVs com schema `pagina, termo, categoria_auto, gatilho_detectado, contexto_antes, trecho_central, contexto_depois, categoria_final, justificativa` (idêntico ao de PAN e SIA) em `outputs/etapa2/refinamento/`.
+
+## Contagem bruta: decisão de não filtrar índice, sumário, bibliografia e cabeçalho (23/05/2026)
+
+Uma varredura dos CSVs de KWIC das seis obras identificou ocorrências
+dos termos do catálogo que comparecem em seções não-corpo do texto:
+índice remissivo (ex.: a entrada \enquote{Agonistic 237} no índice de
+\emph{Laboratory Life}), sumário e lista de capítulos, referências
+bibliográficas (ex.: títulos como \enquote{Regions, Networks, and Fluids} na
+bibliografia de \emph{On Recalling ANT}) e cabeçalho de página corrente
+(ex.: \enquote{The Construction of a Fact} repetido no topo das páginas,
+intrometido no contexto KWIC).
+
+**Decisão:** não filtrar essas ocorrências. A contagem apresentada no
+capítulo 2 é bruta.
+
+**Justificativa:**
+
+1. Reprodutibilidade. Filtrar índice/sumário/bibliografia/cabeçalho
+   exigiria uma camada de decisões (delimitação de cada seção, critério
+   de disparo) que tornaria a contagem dependente dessas decisões. A
+   contagem bruta é reexecutável de forma direta a partir do texto-fonte.
+2. Magnitude. As ocorrências espúrias são quantitativamente pequenas e
+   distribuídas entre os campos. O argumento do capítulo se apoia em
+   ordens de grandeza e padrões de distribuição, não afetados pelo ruído.
+3. Coerência. O capítulo já trata imperfeições do processo (cobertura
+   parcial do \emph{Recalling}, Etapa 2 preservada como artefato) como dado
+   metodológico declarado. A contagem bruta segue o mesmo princípio.
+
+**Exceções já existentes no pipeline (não confundir com o acima):** o
+catálogo aplica exclusões de polissemia em três campos, translation,
+network e militar (chaves `exclusoes` em
+`campos_lexicais/catalogo_termos.yaml`). No conjunto das seis obras
+canônicas (\emph{Laboratory Life}, \emph{Science in Action},
+\emph{Pandora's Hope}, \emph{Clarifications}, \emph{On Recalling ANT} em
+corpus integral da Etapa 2-bis e \emph{An Inquiry into Modes of Existence}),
+essas exclusões descartam 11 ocorrências, 7 no campo translation e 4 no
+campo network. As exclusões definidas para o campo militar (usos médicos e
+metafóricos triviais como \enquote{heart attack} ou \enquote{battle of
+ideas}) não casaram com nenhuma ocorrência nessas obras. Os descartes ficam
+registrados na coluna `descartado_por_exclusao` dos `kwic.csv`.
+
+**Refinamento mantido:** a desambiguação war/wars no campo militar
+permanece, justificada pela magnitude do efeito (ver entrada própria).
+
+**Inscrição no texto:** nota de rodapé na seção das figurações do
+capítulo 2, junto à primeira tabela de densidades.
