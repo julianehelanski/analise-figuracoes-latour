@@ -79,6 +79,14 @@ OBRAS = [
         "etapa_dir": "etapa2",
         "kwic_filenames": ["kwic.csv"],
         "catalogo_duplo": False,
+        # As 3 ocorrências brutas do campo militar (allies, enemies,
+        # alliance) são todas metalinguísticas ou bibliográficas
+        # (Latour citando para criticar; título de Prigogine+Stengers).
+        # Nenhuma é uso figural latouriano do vocabulário militar para
+        # a prática científica, conforme relatório consolidado da
+        # Etapa 2 (outputs/etapa2/consolidado/relatorio_etapa2.md, § 1).
+        # Refinado figural = 0.
+        "militar_zero": True,
     },
     {
         "id": "latour_1999_pandora_en",
@@ -101,6 +109,14 @@ OBRAS = [
         "etapa_dir": "etapa2bis",
         "kwic_filenames": ["kwic.csv"],
         "catalogo_duplo": False,
+        # As 2 ocorrências brutas do campo militar (alliance, wars) são
+        # respectivamente metalinguística (Latour listando vocabulário
+        # ANT que ele mesmo critica) e descritivo-histórica (Science
+        # Wars como objeto público). Nenhuma é uso figural latouriano,
+        # conforme relatório da Etapa 2-bis
+        # (outputs/etapa2bis/consolidado/relatorio_etapa2bis.md, § 3).
+        # Refinado figural = 0.
+        "militar_zero": True,
     },
     {
         "id": "latour_2013_aime_en",
@@ -117,7 +133,14 @@ OBRAS = [
 
 
 def carregar_kwic_valido(obra: dict) -> list[dict[str, str]]:
-    """Carrega kwic.csv(s) da obra, mantendo só ocorrências válidas."""
+    """Carrega kwic.csv(s) da obra, mantendo só ocorrências válidas.
+
+    Quando `militar_zero` é True na config da obra, remove todas as
+    ocorrências do campo `militar` antes de devolver, refletindo a
+    leitura figural de que o militar nos artigos metateóricos é zero
+    (todas as ocorrências brutas são metalinguísticas, bibliográficas
+    ou descritivo-históricas).
+    """
     base = REPO / "outputs" / obra["etapa_dir"] / obra["id"] / "csv"
     todas: list[dict[str, str]] = []
     for nome in obra["kwic_filenames"]:
@@ -127,6 +150,8 @@ def carregar_kwic_valido(obra: dict) -> list[dict[str, str]]:
         with caminho.open(encoding="utf-8", newline="") as f:
             todas.extend([row for row in csv.DictReader(f)
                           if row.get("descartado_por_exclusao", "0") == "0"])
+    if obra.get("militar_zero"):
+        todas = [r for r in todas if r["grupo"] != "militar"]
     return todas
 
 
