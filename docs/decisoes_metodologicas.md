@@ -629,3 +629,50 @@ A análise principal da Etapa 1 segue a tradição IRaMuTeQ (Reinert + AFC), que
 - Rodar a importação no Gephi e produzir um PNG/SVG do layout. Decidir se entra no capítulo 2.
 - Eventual comparação quantitativa entre comunidades de modularidade (Gephi) e classes Reinert (R), via tabela de contingência.
 - Replicar para o corpus Haraway na Etapa 5 do refinamento atual, caso a rede seja incorporada à tese.
+
+## Refinamento simétrico de war/wars em SIA (23/05/2026)
+
+### 1. Status
+
+Pendência resolvida. A versão simétrica da figura `densidade_militar_sia_pandora.png` foi gerada e fica em `outputs/etapa1/passo4/figuras/densidade_militar_sia_pandora_simetrica.png` (com espelho no `consolidado/figuras/`). A figura assimétrica original fica preservada para histórico.
+
+### 2. Contexto
+
+A figura `densidade_militar_sia_pandora.png`, gerada por `scripts/arquivo/11_passo4_graficos.py`, traçava a densidade do campo `militar` ao longo de \emph{Science in Action} (1987) e \emph{Pandora's Hope} (1999) por janela deslizante de 1.000 palavras. O tratamento de `war`/`wars` era assimétrico: em SIA usava todos os hits brutos (n=374); em Pandora removia os descritivos pelo cruzamento com `refinamento/war_pandora_classificacao.csv` (n=156 refinado). A assimetria existia porque SIA não tinha CSV equivalente de classificação manual.
+
+A auditoria de figuras de 2026-05-23 (inventariada em `outputs/inventario_figuras.md`) tornou a assimetria explícita; decidi resolver gerando a classificação simétrica.
+
+### 3. Classificação aplicada a SIA
+
+Identifiquei as 18 ocorrências válidas de `war`/`wars` no campo `militar` em `outputs/etapa1/latour_1987_science_action_en/csv/kwic.csv` e classifiquei cada uma por leitura de janela, com a mesma rubrica aplicada em Pandora:
+
+- **Descritivos** (11 ocorrências): a colocação `Second World Wars` (gatilho automático \enquote{World}); oito ocorrências no capítulo sobre Szilard, Pentagon e a bomba atômica (narrativa contínua da Segunda Guerra Mundial); `Franco-Prussian war` (gatilho automático \enquote{Franco-Prussian}); a referência bibliográfica final a Tolstoi, \emph{War and Peace}.
+- **Figurativos** (7 ocorrências): tropos conceituais como `war machine`, `link between war and technoscience`, analogias como `war cries help karate fighters`, e exemplos filosóficos-categoriais sobre a noção de `situation of war` como exceção ao homicídio.
+
+A classificação fica em `outputs/etapa1/refinamento/war_sia_classificacao.csv`, com schema idêntico ao do CSV de Pandora (colunas `pagina, termo, categoria_auto, gatilho_detectado, contexto_antes, trecho_central, contexto_depois, categoria_final, justificativa`). Cada linha carrega a justificativa, permitindo auditoria posterior.
+
+Aplicação ao campo `militar`:
+
+| Obra | Bruto | Descritivos | Refinado | Δ |
+|---|---:|---:|---:|---:|
+| Science in Action 1987 | 374 | 11 | 363 | -2,9\% |
+| Pandora's Hope 1999 | 212 | 56 | 156 | -26,4\% |
+
+O valor refinado de SIA cai 1 unidade em relação ao valor declarado em `MILITAR_REFINADO` no script `11_passo4_graficos.py` (364 vs 363 obtidos agora pela classificação por ocorrência). A diferença está dentro da margem de classificação manual e não impacta os outros gráficos do passo 4, que continuam usando os valores antigos hardcoded. Para evitar drift cross-figura, deixo o `MILITAR_REFINADO` antigo intocado; a nova classificação por ocorrência alimenta apenas a figura simétrica.
+
+### 4. Script gerador
+
+`scripts/arquivo/11b_passo4_densidade_simetrica.py`. O script:
+
+1. Reabre o `kwic.csv` de SIA, filtra hits de `war`/`wars` no campo `militar`, aplica a classificação dicionarizada (`CLASSIFICACAO_SIA`) e escreve `war_sia_classificacao.csv`.
+2. Reabre os hits do campo `militar` em SIA e PAN, filtra os descritivos pelo cruzamento com os dois CSVs de classificação (assinatura por contexto, sem `pagina`, porque o `kwic.csv` atual grava tudo com `pagina=1`).
+3. Traça a figura no mesmo estilo (curva de linha em vermelho ferrugem `#B22222` com área preenchida, janela deslizante de 1.000 palavras, eixo X em milhares de palavras, painel vertical), com rótulo de painel exibindo o n refinado de cada obra e anotação no canto inferior da figura indicando que é a versão simétrica.
+
+### 5. Decisão pendente
+
+Qual versão usar no capítulo 2 da tese: a assimétrica (`densidade_militar_sia_pandora.png`, mantém o tratamento original mas exige nota de rodapé argumentativa explicando a divergência) ou a simétrica (`densidade_militar_sia_pandora_simetrica.png`, refinada em ambos os painéis). Recomendação técnica: simétrica, porque a desambiguação foi feita justamente para isolar o uso figural; manter assimetria reintroduz ruído descritivo-histórico em SIA. A decisão final cabe à Juliane.
+
+### 6. Pendências derivadas
+
+- Se a figura simétrica for adotada, considerar atualizar também `MILITAR_REFINADO` em `11_passo4_graficos.py` para o n=363 obtido aqui (afeta `comparacao_frequencias_tres_obras.png` e `frequencia_grupos_sia_refinada.png`, com mudança visualmente imperceptível).
+- A versão assimétrica passa a estar oficialmente desatualizada; pode ser removida se a simétrica for adotada na tese.

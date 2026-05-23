@@ -1,0 +1,19 @@
+pagina,termo,categoria_auto,gatilho_detectado,contexto_antes,trecho_central,contexto_depois,categoria_final,justificativa
+1,war,ambiguo,,counts are no more sufficient in scientific texts than in,war,Something more is needed: numbers must be arrayed and drilled.,figurativo,'in war' analogia entre texto científico e enumeração bélica
+1,wars,descritivo_historico,World,so were Geiger counters between the First and Second World,wars,These devices provided crucial resources in papers of the time.,descritivo,automatico: gatilho 'World' — 'Second World Wars'
+1,wars,ambiguo,,"the fighting camps. She is, much like God in not-so-ancient",wars,asked to support all the enemies at once. 'Natur mit,figurativo,'God in not-so-ancient wars' analogia conceitual Natureza/divindade
+1,war,ambiguo,,for physicists for doing physics but not soldiers for waging,war,Thus they saw Szilard's proposal as a typical case of,descritivo,capítulo Szilard/Pentagon WWII — 'waging war'
+1,war,ambiguo,,atom bomb first? How will you manage to win the,war,explicit aim with all your older and obsolete weapons?' The,descritivo,capítulo Szilard/Pentagon WWII — 'win the war'
+1,war,ambiguo,,older and obsolete weapons?' The generals had to win a,war,war' in its usual rendering means a classical one: after,descritivo,capítulo Szilard/Pentagon WWII — 'win a war'
+1,war,ambiguo,,and obsolete weapons?' The generals had to win a war-'a,war,in its usual rendering means a classical one: after Szilard's,descritivo,capítulo Szilard/Pentagon WWII — 'a war in its usual rendering'
+1,war,ambiguo,,one: after Szilard's intervention they still had to win the,war,meaning now a new atomic one. The shift in meaning,descritivo,capítulo Szilard/Pentagon WWII — 'win the war meaning now a new atomic'
+1,war,ambiguo,,"the first version, they become necessary in the second. The",war,machine is not being invaded by bootlegging physicists any more.,descritivo,capítulo Szilard/Pentagon WWII — 'war machine' em narrativa histórica
+1,war,ambiguo,,"example, Szilard could convince the Pentagon to wage a nuclear",war,but not to lose it or to support classical dance.,descritivo,capítulo Szilard/Pentagon WWII — 'wage a nuclear war'
+1,war,ambiguo,,persuaded to make yoghurt. The Pentagon wishes to win the,war,"they might be persuaded to win an atomic one, but",descritivo,capítulo Szilard/Pentagon WWII — 'Pentagon wishes to win the war'
+1,war,descritivo_historico,Franco-Prussian,"example, a French columnist argued, in 1871, after the Franco-Prussian",war,"that if the French had been beaten, this was due",descritivo,automatico: gatilho 'Franco-Prussian'
+1,war,ambiguo,,"terms because, by and large, technoscience is part of a",war,machine and should be studied as such. This link between,figurativo,'war machine' tropo conceitual sobre technoscience
+1,war,ambiguo,,machine and should be studied as such. This link between,war,and technoscience should not be limited to the development of,figurativo,'link between war and technoscience' tropo conceitual
+1,war,ambiguo,,"words help workmen to push a heavy load, or as",war,cries help karate fighters intimidate their opponents. This is the,figurativo,'war cries' analogia para fórmulas matemáticas como intimidação
+1,war,ambiguo,,'killing people is murder' we implicitly include the situation of,war,"in the notion of `killing people'. Then, when we refused",figurativo,'situation of war' exemplo filosófico-categorial sobre homicídio
+1,war,ambiguo,,because our notion of murder never implied the situation of,war,except in very rare cases like those of the Nuremberg,figurativo,'situation of war' como categoria abstrata; Nuremberg citado como exceção
+1,war,ambiguo,,"Recollections and Correspondence. Cambridge, Mass., MIT Press Tolstoy, Leo (1869/1983).",war,"and Peace (translated from the Russian by R. Edmunds). Harmondsworth,",descritivo,referência bibliográfica Tolstoi 'War and Peace'

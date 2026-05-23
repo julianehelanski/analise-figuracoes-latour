@@ -159,6 +159,19 @@
 \end{figure}
 
 % ---------------------------------------------------------------------
+% Figura 2.3-bis: versão simétrica da densidade militar SIA+PAN
+% (gerada em 2026-05-23 a partir de war_sia_classificacao.csv novo,
+% para resolver a assimetria deliberada da figura 2.3 original)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/densidade_militar_sia_pandora_simetrica.png}
+\caption[Densidade do campo militar refinado em \emph{Science in Action} (1987) e \emph{Pandora's Hope} (1999), versão simétrica]{Versão \emph{simétrica} da \autoref{fig:densidade-militar-sia-pandora}, com hits refinados nas duas obras. Mantenho a mesma forma (curva de linha com área preenchida em vermelho ferrugem \texttt{\#B22222}, janela deslizante de 1.000 palavras com passo de 200, eixo horizontal em milhares de palavras, painel vertical em duas linhas) e ajusto o tratamento de \emph{war}/\emph{wars} para ser consistente entre os dois painéis: em \emph{Science in Action} removo 11 ocorrências descritivas das 18 totais (a colocação \emph{Second World Wars}, oito ocorrências no capítulo Szilard/Pentagon sobre a Segunda Guerra Mundial, \emph{Franco-Prussian war} e a referência bibliográfica a Tolstoi \emph{War and Peace}), passando de n=374 bruto para n=363 refinado; em \emph{Pandora's Hope} mantenho a classificação registrada em \texttt{refinamento/war\_pandora\_classificacao.csv}, n=156 refinado. Os rótulos de painel indicam o n refinado de cada obra; anotação no canto inferior direito da figura explicita o critério. A classificação de \emph{Science in Action} fica registrada em \texttt{outputs/etapa1/refinamento/war\_sia\_classificacao.csv} com schema idêntico ao de Pandora. Fonte: \texttt{kwic.csv} de cada obra mais os dois CSVs de classificação. Figura gerada por \texttt{scripts/arquivo/11b\_passo4\_densidade\_simetrica.py}.}
+\label{fig:densidade-militar-sia-pandora-simetrica}
+\end{figure}
+
+% ---------------------------------------------------------------------
 % Figura 2.4: frequência refinada de SIA (war/wars desambiguados)
 % ---------------------------------------------------------------------
 
