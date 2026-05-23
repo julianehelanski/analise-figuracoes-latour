@@ -674,3 +674,56 @@ A lógica simétrica foi absorvida em `scripts/arquivo/11_passo4_graficos.py`:
 
 - A versão assimétrica anterior fica disponível apenas no histórico do git (commit anterior à mudança). Se for necessária para comparação, recuperar via `git show <sha>:outputs/etapa1/passo4/figuras/densidade_militar_sia_pandora.png`.
 - A tabela LaTeX `tabela_militar_refinada.tex` e o CSV `militar_refinado_tres_obras.csv` foram reescritos com conteúdo apropriado (desfaz swap preexistente) e com os valores atualizados.
+
+## Campo militar zerado nas figuras combinadas dos artigos (23/05/2026)
+
+### 1. Status
+
+Decisão tomada e aplicada. As duas figuras combinadas de frequência+densidade dos artigos metateóricos (`freq_densidade_clarifications.png` e `freq_densidade_recalling_integral.png`, geradas por `scripts/arquivo/24_freq_densidade_por_obra.py`) plotam o campo `militar` em **zero refinado** por leitura figural, em vez da contagem bruta do `kwic.csv`.
+
+### 2. Contexto
+
+As 5 ocorrências brutas do campo `militar` nos dois artigos (3 em \emph{Clarifications}, 2 em \emph{Recalling}) entravam nas figuras combinadas com freq./10k não nula, ao passo que o relatório consolidado da Etapa 2 (`outputs/etapa2/consolidado/relatorio_etapa2.md`, § 1) e o relatório da Etapa 2-bis (`outputs/etapa2bis/consolidado/relatorio_etapa2bis.md`, § 3) sustentam textualmente que **nenhuma dessas ocorrências é uso figural latouriano do vocabulário militar-industrial para descrever a prática científica**. A tensão visual entre figura e texto enfraquecia o argumento empírico central da seção sobre divisão de trabalho metafórico por gênero textual.
+
+Avaliei duas saídas:
+
+- **B1**: regenerar as figuras com a barra do campo `militar` em zero, com nota argumentativa na legenda explicando o critério.
+- **B2**: manter a contagem bruta e usar nota de rodapé na tese para explicar a leitura figural.
+
+Adotei B1 porque torna a inversão de registro figural visualmente legível (livros monográficos solo: militar como tropo da prática; artigos metateóricos: militar ausente desse registro), evita que o leitor cruze figura e texto e suspeite contradição, e é consistente com a desambiguação simétrica que adotei para SIA e PAN no passo 4 da Etapa 1.
+
+### 3. Classificação das 5 ocorrências
+
+\emph{Clarifications} (1996), 3 ocorrências brutas:
+
+- `allies` (pos 17.234) --- Latour cita para criticar o uso machista do vocabulário militar em redes de poder. Categoria: metalinguístico.
+- `enemies` (pos 37.113) --- \enquote{Reflexivists as well as their pre-relativist enemies}, descritor para opositores conceituais. Categoria: descritivo-debate.
+- `alliance` (pos 47.912) --- referência bibliográfica ao livro de Prigogine e Stengers, \emph{La nouvelle alliance métamorphose de la science}. Categoria: bibliográfico.
+
+\emph{Recalling ANT} (1999, corpus integral Etapa 2-bis), 2 ocorrências brutas:
+
+- `alliance` (pos 14.093) --- Latour lista \enquote{association, translation, alliance, obligatory passage point} como vocabulário ANT que ele mesmo critica. Categoria: metalinguístico.
+- `wars` (pos 21.359) --- \enquote{the recent Science Wars}, referência ao debate público dos anos 1990. Categoria: descritivo-histórico.
+
+Nenhuma das 5 é tropo militar para a prática científica.
+
+### 4. Implementação
+
+Modifiquei `scripts/arquivo/24_freq_densidade_por_obra.py`:
+
+- Adicionei `militar_zero: True` no dict de config das duas obras (CLA96 e REC99 bis). As outras 4 obras seguem com `militar_zero` ausente (= False), preservando a contagem do `kwic.csv` para LL86, SIA87, PAN99 e AIME13.
+- Em `carregar_kwic_valido(obra)`, quando a flag está ativa, descarto todas as linhas com `grupo == "militar"` antes de devolver. Isso afeta tanto o ranking de frequência (campo desaparece da barra) quanto o histograma de densidade (campo desaparece da pilha empilhada).
+- Reuso o script para regerar as 6 figuras; só CLA96 e REC99 mudam de fato.
+
+A justificativa fica no comentário inline do dict de cada obra, com remissão aos relatórios consolidados. Optei pela flag em vez de criar `militar_clarifications_classificacao.csv` e `militar_recalling_classificacao.csv` (auditáveis por ocorrência, schema do PAN/SIA) porque a leitura figural das 5 ocorrências é unânime nos relatórios preexistentes e não há ambiguidade que justifique uma camada auditável adicional. Se em alguma revisão futura uma das ocorrências passar a ser disputada, vale criar os CSVs.
+
+### 5. Atualizações em outros artefatos
+
+- `outputs/latex/inventario_figuras.tex`: legendas das figuras 7.3 e 7.5 reescritas para registrar o zero refinado, com remissão aos relatórios.
+- `outputs/inventario_figuras.md`: linhas das duas figuras na seção \enquote{Frequência + densidade combinadas por obra} atualizadas. Bloco final da seção registra a decisão metodológica.
+
+### 6. Não-mudanças deliberadas
+
+- As 4 outras figuras combinadas (LL86, SIA87, PAN99, AIME13) seguem com militar na contagem do `kwic.csv`. Para SIA87 e PAN99, isso significa que a freq./10k mostrada na figura combinada é levemente maior que a refinada simétrica usada nas figuras do passo 4 da Etapa 1 (\autoref{fig:freq-sia-refinada} e \autoref{fig:freq-pandora-refinada}). A divergência é pequena (SIA: 26,7 bruto vs 25,95 refinado; PAN: 16,6 bruto vs 12,19 refinado) e está mencionada nas próprias legendas das figuras 7.2 e 7.4 com remissão à versão refinada.
+
+- Não criei CSVs de classificação por ocorrência para CLA96 e REC99. A decisão é pragmática: a leitura figural das 5 ocorrências é convergente entre todos os relatórios e a flag hardcoded é suficiente. Se for necessário escalar o argumento ou se alguma classificação for disputada, criar os CSVs com schema `pagina, termo, categoria_auto, gatilho_detectado, contexto_antes, trecho_central, contexto_depois, categoria_final, justificativa` (idêntico ao de PAN e SIA) em `outputs/etapa2/refinamento/`.
