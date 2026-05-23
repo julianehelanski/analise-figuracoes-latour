@@ -52,6 +52,7 @@ OBRAS = [
         "slug_curto": "lab_life",
         "slug_pasta": "etapa1_lab_life",
         "rotulo": "Laboratory Life, 1986",
+        "titulo_obra": "Laboratory Life",
         "palavras": 105_749,
         "txt": "latour_woolgar_1986_lab_life_en.txt",
         "etapa_dir": "etapa1",
@@ -63,6 +64,7 @@ OBRAS = [
         "slug_curto": "sia",
         "slug_pasta": "etapa1_sia",
         "rotulo": "Science in Action, 1987",
+        "titulo_obra": "Science in Action",
         "palavras": 139_861,
         "txt": "latour_1987_science_action_en.txt",
         "etapa_dir": "etapa1",
@@ -74,6 +76,7 @@ OBRAS = [
         "slug_curto": "clarifications",
         "slug_pasta": "etapa2_clarifications",
         "rotulo": "Clarifications, 1996",
+        "titulo_obra": "On Actor-Network Theory",
         "palavras": 7_848,
         "txt": "latour_1996_clarifications_en.txt",
         "etapa_dir": "etapa2",
@@ -93,6 +96,7 @@ OBRAS = [
         "slug_curto": "pandora",
         "slug_pasta": "etapa1_pandora",
         "rotulo": "Pandora's Hope, 1999",
+        "titulo_obra": "Pandora's Hope",
         "palavras": 128_001,
         "txt": "latour_1999_pandora_en.txt",
         "etapa_dir": "etapa1",
@@ -104,6 +108,7 @@ OBRAS = [
         "slug_curto": "recalling_integral",
         "slug_pasta": "etapa2bis_recalling_integral",
         "rotulo": "Recalling ANT, 1999 (integral)",
+        "titulo_obra": "On Recalling ANT",
         "palavras": 4_825,
         "txt": "latour_1999_recalling_bis.txt",
         "etapa_dir": "etapa2bis",
@@ -123,6 +128,7 @@ OBRAS = [
         "slug_curto": "aime",
         "slug_pasta": "etapa3_aime",
         "rotulo": "AIME, 2013",
+        "titulo_obra": "An Inquiry into Modes of Existence",
         "palavras": 194_454,
         "txt": "latour_2013_aime_en.txt",
         "etapa_dir": "etapa3",
@@ -257,11 +263,10 @@ def gerar_uma_figura(obra: dict) -> tuple[Path, Path]:
     plot_freq(ax_freq, ocs, obra["palavras"], obra["catalogo_duplo"])
     plot_densidade(ax_dens, ocs, REPO / "corpus" / "txt_norm" / obra["txt"])
 
-    titulo = (f"{obra['rotulo']}  ·  {obra['palavras']:,} palavras  "
-              f"·  {len(ocs)} ocorrências catalogadas").replace(",", ".")
-    if obra["catalogo_duplo"]:
-        titulo += "  (catálogos antigo + novo)"
-    fig.suptitle(titulo, fontsize=12, fontweight="bold", y=0.995)
+    # Título = só o nome da obra (sem ano). Ano, contagem de palavras,
+    # n de ocorrências e nota de catálogo duplo ficam no caption da
+    # figura (outputs/latex/inventario_figuras.tex).
+    fig.suptitle(obra["titulo_obra"], fontsize=13, fontweight="bold", y=0.995)
 
     fig.tight_layout(rect=(0, 0, 1, 0.96))
 
