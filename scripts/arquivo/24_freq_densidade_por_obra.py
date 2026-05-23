@@ -245,10 +245,11 @@ def plot_densidade(ax, ocs: list[dict], txt_path: Path) -> None:
     ax.set_ylabel("ocorrências", fontsize=9)
     ax.set_xlim(0, 1)
     ax.tick_params(axis="both", labelsize=8)
-    n_col = 2 if len(rotulos) > 8 else 1
-    ax.legend(loc="upper right", fontsize=7, ncol=n_col, frameon=False,
-              handlelength=1.0, handletextpad=0.4, columnspacing=0.6,
-              borderaxespad=0.2)
+    # Legenda fora da área das barras (à direita do painel), para não
+    # sobrescrever o histograma empilhado, que ocupa toda a altura.
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=7,
+              ncol=1, frameon=False, handlelength=1.0, handletextpad=0.4,
+              labelspacing=0.3, borderaxespad=0.0)
 
 
 def gerar_uma_figura(obra: dict) -> tuple[Path, Path]:
