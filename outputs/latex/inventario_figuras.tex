@@ -396,6 +396,79 @@
 
 
 % #####################################################################
+% FIGURAS COMBINADAS: frequência + densidade, uma por obra (6 figuras)
+% Layout 1 linha × 2 colunas. Gerador:
+% scripts/arquivo/24_freq_densidade_por_obra.py
+% #####################################################################
+
+% ---------------------------------------------------------------------
+% Figura 7.1: combinada para Laboratory Life (1986)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa1_lab_life_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{Laboratory Life} (1986)]{Figura combinada para \emph{Laboratory Life} (Latour e Woolgar, 1986), em layout de duas colunas: à esquerda, ranking dos 12 campos figurativos com ocorrência por freq./10.000 palavras (barras horizontais, paleta viridis, ordenação ascendente, anotação numérica); à direita, histograma empilhado de 30 bins com a posição relativa de cada ocorrência no texto (paleta tab20, eixo X de 0 a 1). Título superior com o n de palavras (105.749) e o n de ocorrências catalogadas (645). \texttt{construction} (19,3/10k) lidera o ranking, seguido por \texttt{topologia} (13,8/10k) e \texttt{inscription} (11,8/10k); o histograma destaca o adensamento de \texttt{inscription} nos capítulos centrais sobre prática laboratorial. Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-lab-life}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 7.2: combinada para Science in Action (1987)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa1_sia_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{Science in Action} (1987)]{Figura combinada para \emph{Science in Action} (Latour, 1987). À esquerda, ranking dos 16 campos figurativos por freq./10.000 palavras (paleta viridis); à direita, histograma empilhado de 30 bins da posição relativa das ocorrências (paleta tab20). Título superior com o n de palavras (139.861) e o n de ocorrências catalogadas (1.812). \texttt{topologia} (34,7/10k) e \texttt{militar} (26,7/10k em contagem bruta, sem refinamento) ocupam as duas primeiras posições do ranking; o histograma mostra o vocabulário militar acompanhando \texttt{topologia} ao longo da obra, com adensamento entre a metade e o terço final. A contagem aqui é bruta; para a versão refinada do campo militar (n=363, 25,95/10k), ver \autoref{fig:freq-sia-refinada} e \autoref{tab:militar-refinado}. Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-sia}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 7.3: combinada para Clarifications (1996)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa2_clarifications_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{Clarifications} (1996)]{Figura combinada para \emph{On Actor-Network Theory: A Few Clarifications} (Latour, 1996, \emph{Soziale Welt}). À esquerda, ranking dos 8 campos figurativos com ocorrência por freq./10.000 palavras (paleta viridis); à direita, histograma empilhado de 30 bins da posição relativa. Título superior com o n de palavras (7.848) e o n de ocorrências catalogadas (279). O padrão metateórico fica evidente: \texttt{topologia} (150,4/10k) e \texttt{network} (118,5/10k) dominam em densidade ordens de grandeza acima dos campos militares e construtivos (\texttt{militar} 3,8/10k). O histograma mostra distribuição homogênea ao longo do texto curto, sem adensamento setorial; o vocabulário têxtil-topológico ocupa todo o artigo. Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-clarifications}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 7.4: combinada para Pandora's Hope (1999)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa1_pandora_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{Pandora's Hope} (1999)]{Figura combinada para \emph{Pandora's Hope} (Latour, 1999). À esquerda, ranking dos 16 campos figurativos por freq./10.000 palavras (paleta viridis); à direita, histograma empilhado de 30 bins. Título superior com o n de palavras (128.001) e o n de ocorrências catalogadas (1.083). \texttt{topologia} (27,6/10k) lidera, seguida por \texttt{militar} (16,6/10k em contagem bruta) e \texttt{textil} (8,2/10k). O histograma do \texttt{militar} destaca dois picos: o capítulo sobre Joliot (Segunda Guerra Mundial) e o bloco final sobre as \emph{Science Wars}, observação que motivou a desambiguação refinada do passo 1 da Etapa 3 (contagem refinada n=156, vide \autoref{fig:freq-pandora-refinada}). Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-pandora}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 7.5: combinada para Recalling ANT (1999, corpus integral)
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa2bis_recalling_integral_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{On Recalling ANT} (1999, corpus integral)]{Figura combinada para \emph{On Recalling ANT} (Latour, 1999, em \emph{Actor Network Theory and After}, eds. Law e Hassard), sobre o corpus integral de 4.825 palavras reprocessado na Etapa 2-bis. À esquerda, ranking dos 10 campos figurativos com ocorrência por freq./10.000 palavras (paleta viridis); à direita, histograma empilhado de 30 bins. Título superior com o n de palavras e o n de ocorrências catalogadas. \texttt{topologia} (99,5/10k) e \texttt{network} (58,0/10k) dominam, com \texttt{actor\_network} (18,7/10k) em terceiro, mantendo o padrão metateórico têxtil-topológico de \autoref{fig:freq-dens-clarifications}. Os campos antes ausentes do corpus parcial (\texttt{translation}, \texttt{circulating\_reference}, \texttt{inscription}, \texttt{articulation}, \texttt{textil}) reaparecem aqui em baixa densidade. Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-recalling-integral}
+\end{figure}
+
+% ---------------------------------------------------------------------
+% Figura 7.6: combinada para AIME (2013), catálogo duplo
+% ---------------------------------------------------------------------
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{figuras/etapa3_aime_freq_e_densidade.png}
+\caption[Frequência e densidade dos campos figurativos em \emph{AIME} (2013)]{Figura combinada para \emph{An Inquiry into Modes of Existence} (Latour, 2013), com catálogo duplo: 14 campos do catálogo antigo (Etapas 1 e 2, em azul \texttt{\#4c72b0}) e 12 campos novos da Etapa 3 (em laranja \texttt{\#dd8452}), totalizando 26 campos com ocorrência sobre 194.454 palavras de corpo. À esquerda, ranking por freq./10.000 palavras com cor por proveniência (legenda manual no canto inferior direito); à direita, histograma empilhado de 30 bins dos 26 campos (paleta tab20). No ranking, \texttt{topologia} (26,4/10k) lidera o catálogo antigo e \texttt{trajetoria\_passe} (22,3/10k) lidera o novo; o histograma mostra a alternância das três camadas figurativas que sustento como leitura de \emph{AIME} (\autoref{sec:aime-tres-camadas}). Figura gerada por \texttt{scripts/arquivo/24\_freq\_densidade\_por\_obra.py}.}
+\label{fig:freq-dens-aime}
+\end{figure}
+
+
+% #####################################################################
 % Notas finais
 % #####################################################################
 %
