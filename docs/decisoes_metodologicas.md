@@ -634,7 +634,7 @@ A análise principal da Etapa 1 segue a tradição IRaMuTeQ (Reinert + AFC), que
 
 ### 1. Status
 
-Pendência resolvida. A versão simétrica da figura `densidade_militar_sia_pandora.png` foi gerada e fica em `outputs/etapa1/passo4/figuras/densidade_militar_sia_pandora_simetrica.png` (com espelho no `consolidado/figuras/`). A figura assimétrica original fica preservada para histórico.
+Decisão tomada e aplicada em 23/05/2026: a versão simétrica passou a ser canônica. `scripts/arquivo/11_passo4_graficos.py` foi atualizado para aplicar a filtragem simétrica em SIA e PAN; `MILITAR_REFINADO[SIA]` passou de n=364 (agregado anterior) para n=363 (classificação por ocorrência); as 6 figuras do passo 4 foram regeradas com os novos valores. Os arquivos `*_simetrica.png/svg` paralelos e o script `11b_passo4_densidade_simetrica.py` foram removidos (lógica absorvida em `11_passo4_graficos.py`). A versão assimétrica anterior fica preservada no histórico do git. Aproveitei a operação para desfazer um swap preexistente na pasta `refinamento/`: `tabela_militar_refinada.tex` continha CSV de classificação Pandora e `militar_refinado_tres_obras.csv` continha LaTeX da tabela; reescrevi cada um com o tipo de conteúdo apropriado, atualizando a tabela com SIA n=363.
 
 ### 2. Contexto
 
@@ -658,21 +658,19 @@ Aplicação ao campo `militar`:
 | Science in Action 1987 | 374 | 11 | 363 | -2,9\% |
 | Pandora's Hope 1999 | 212 | 56 | 156 | -26,4\% |
 
-O valor refinado de SIA cai 1 unidade em relação ao valor declarado em `MILITAR_REFINADO` no script `11_passo4_graficos.py` (364 vs 363 obtidos agora pela classificação por ocorrência). A diferença está dentro da margem de classificação manual e não impacta os outros gráficos do passo 4, que continuam usando os valores antigos hardcoded. Para evitar drift cross-figura, deixo o `MILITAR_REFINADO` antigo intocado; a nova classificação por ocorrência alimenta apenas a figura simétrica.
+O valor refinado de SIA cai 1 unidade em relação ao agregado anterior (364 estimado vs 363 obtido pela classificação por ocorrência). A diferença está dentro da margem de classificação manual. `MILITAR_REFINADO` no script foi atualizado para 363; as 6 figuras do passo 4 que dependem desse valor foram regeradas (`comparacao_frequencias_tres_obras`, `frequencia_grupos_sia_refinada`, `frequencia_grupos_tres_obras_painel`, `rede_cocorrencia_sia`, `densidade_militar_sia_pandora`, `frequencia_grupos_pandora_refinada`).
 
-### 4. Script gerador
+### 4. Implementação
 
-`scripts/arquivo/11b_passo4_densidade_simetrica.py`. O script:
+A lógica simétrica foi absorvida em `scripts/arquivo/11_passo4_graficos.py`:
 
-1. Reabre o `kwic.csv` de SIA, filtra hits de `war`/`wars` no campo `militar`, aplica a classificação dicionarizada (`CLASSIFICACAO_SIA`) e escreve `war_sia_classificacao.csv`.
-2. Reabre os hits do campo `militar` em SIA e PAN, filtra os descritivos pelo cruzamento com os dois CSVs de classificação (assinatura por contexto, sem `pagina`, porque o `kwic.csv` atual grava tudo com `pagina=1`).
-3. Traça a figura no mesmo estilo (curva de linha em vermelho ferrugem `#B22222` com área preenchida, janela deslizante de 1.000 palavras, eixo X em milhares de palavras, painel vertical), com rótulo de painel exibindo o n refinado de cada obra e anotação no canto inferior da figura indicando que é a versão simétrica.
+1. `MILITAR_REFINADO[SIA] = {"n": 363, "freq_10k": 25.95}`.
+2. Dicionário `WAR_CLASSIFICACAO` mapeia obra → nome do CSV de classificação.
+3. `filtrar_war_descritivos(hits, obra_id)` substitui o `filtrar_war_descritivos_pandora(hits)` anterior. Carrega o CSV adequado e cruza por assinatura `(termo, contexto_antes[-30:], contexto_depois[:30])`, sem `pagina` (o `kwic.csv` em uso grava tudo com `pagina=1`, enquanto os CSVs de classificação preservam páginas reais).
+4. `figura_2_densidade_militar` aplica o filtro em ambos os painéis, sem flag `filtrar` por obra. Rótulo de cada painel exibe `n refinado` e anotação na base da figura registra o critério.
+5. Bug preexistente de `REPO = Path(__file__).resolve().parents[1]` (apontava para `scripts/` em vez da raiz) corrigido para `parents[2]`, permitindo rodar o script direto do diretório atual `scripts/arquivo/`.
 
-### 5. Decisão pendente
+### 5. Pendências derivadas
 
-Qual versão usar no capítulo 2 da tese: a assimétrica (`densidade_militar_sia_pandora.png`, mantém o tratamento original mas exige nota de rodapé argumentativa explicando a divergência) ou a simétrica (`densidade_militar_sia_pandora_simetrica.png`, refinada em ambos os painéis). Recomendação técnica: simétrica, porque a desambiguação foi feita justamente para isolar o uso figural; manter assimetria reintroduz ruído descritivo-histórico em SIA. A decisão final cabe à Juliane.
-
-### 6. Pendências derivadas
-
-- Se a figura simétrica for adotada, considerar atualizar também `MILITAR_REFINADO` em `11_passo4_graficos.py` para o n=363 obtido aqui (afeta `comparacao_frequencias_tres_obras.png` e `frequencia_grupos_sia_refinada.png`, com mudança visualmente imperceptível).
-- A versão assimétrica passa a estar oficialmente desatualizada; pode ser removida se a simétrica for adotada na tese.
+- A versão assimétrica anterior fica disponível apenas no histórico do git (commit anterior à mudança). Se for necessária para comparação, recuperar via `git show <sha>:outputs/etapa1/passo4/figuras/densidade_militar_sia_pandora.png`.
+- A tabela LaTeX `tabela_militar_refinada.tex` e o CSV `militar_refinado_tres_obras.csv` foram reescritos com conteúdo apropriado (desfaz swap preexistente) e com os valores atualizados.

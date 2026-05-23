@@ -13,8 +13,10 @@ militar nas três obras de Latour:
 2. densidade_militar_sia_pandora.{png,svg}: distribuição da densidade
    do campo militar ao longo dos textos de Science in Action 1987 e
    Pandora's Hope 1999, em janelas deslizantes de 1.000 palavras com
-   passo de 200. Em Pandora, ocorrências de war/wars classificadas como
-   descritivas no passo 1 são excluídas antes da contagem.
+   passo de 200. Versão simétrica de 2026-05-23: nas duas obras as
+   ocorrências de war/wars classificadas como descritivas são excluídas
+   antes da contagem, via cruzamento com refinamento/war_sia_classificacao.csv
+   (SIA) e war_pandora_classificacao.csv (PAN).
 
 3. rede_cocorrencia_sia.{png,svg}: grafo de cocorrências entre campos
    figurativos em Science in Action, recalculado a partir do kwic.csv
@@ -42,7 +44,7 @@ from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
 from _paths import obra_dir
 
-REPO = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[2]
 OUT_DIR = REPO / "outputs" / "etapa1" / "passo4" / "figuras"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -53,11 +55,22 @@ OBRAS_ANO = [
 ]
 
 # Valores refinados do campo militar (passo 1 do refinamento). Tabela
-# refinamento/tabela_militar_refinada.tex.
+# refinamento/tabela_militar_refinada.tex. Atualização simétrica de
+# 2026-05-23: SIA passa de n=364 (agregado anterior) para n=363, pela
+# classificação por ocorrência registrada em
+# refinamento/war_sia_classificacao.csv (11 descritivos sobre 18
+# ocorrências de war/wars no campo militar de SIA).
 MILITAR_REFINADO = {
     "latour_woolgar_1986_lab_life_en": {"n": 37, "freq_10k": 3.50},
-    "latour_1987_science_action_en": {"n": 364, "freq_10k": 26.03},
+    "latour_1987_science_action_en": {"n": 363, "freq_10k": 25.95},
     "latour_1999_pandora_en": {"n": 156, "freq_10k": 12.19},
+}
+
+# CSVs de classificação war/wars por ocorrência para SIA e PAN,
+# carregados em figura_2_densidade_militar (tratamento simétrico).
+WAR_CLASSIFICACAO = {
+    "latour_1987_science_action_en": "war_sia_classificacao.csv",
+    "latour_1999_pandora_en": "war_pandora_classificacao.csv",
 }
 
 # Paleta. O vermelho ferrugem (#B22222) é o destaque do campo militar.
@@ -215,21 +228,32 @@ def carregar_militar_hits(obra_id: str) -> list[dict]:
     return hits
 
 
-def filtrar_war_descritivos_pandora(hits: list[dict]) -> list[dict]:
-    """Remove ocorrências de war/wars classificadas como descritivo no passo 1.
+def filtrar_war_descritivos(hits: list[dict], obra_id: str) -> list[dict]:
+    """Remove ocorrências de war/wars classificadas como descritivo.
 
-    Cruza por assinatura (pagina, termo, sufixo do contexto_antes,
-    prefixo do contexto_depois). A classificação manual está em
-    refinamento/war_pandora_classificacao.csv.
+    Cruza por assinatura (termo, sufixo do contexto_antes, prefixo do
+    contexto_depois). O campo pagina foi removido da assinatura porque
+    o kwic.csv em uso na 2026-05-23 grava todas as ocorrências com
+    pagina=1 (extração em bloco único), enquanto os CSVs de classificação
+    preservam páginas reais. A assinatura por contexto é suficiente para
+    identificar ocorrências univocamente.
+
+    A classificação por obra está em refinamento/war_<obra>_classificacao.csv
+    (SIA e PAN). LL86 não tem CSV de classificação porque a contagem
+    refinada é tratada apenas no agregado (subtração de 2 ocorrências
+    descritivas em MILITAR_REFINADO).
     """
+    nome_csv = WAR_CLASSIFICACAO.get(obra_id)
+    if nome_csv is None:
+        return hits
+
+    caminho = REPO / "outputs" / "etapa1" / "refinamento" / nome_csv
     descritivos: set[tuple] = set()
-    caminho = REPO / "outputs" / "etapa1" / "refinamento" / "war_pandora_classificacao.csv"
     with open(caminho) as f:
         for row in csv.DictReader(f):
             if row["categoria_final"] != "descritivo":
                 continue
             assinatura = (
-                int(row["pagina"]),
                 row["termo"].lower(),
                 row["contexto_antes"][-30:].strip().lower(),
                 row["contexto_depois"][:30].strip().lower(),
@@ -240,7 +264,6 @@ def filtrar_war_descritivos_pandora(hits: list[dict]) -> list[dict]:
         if h["termo"].lower() not in ("war", "wars"):
             return False
         sig = (
-            h["pagina"],
             h["termo"].lower(),
             h["contexto_antes"][-30:].strip().lower(),
             h["contexto_depois"][:30].strip().lower(),
@@ -269,19 +292,18 @@ def figura_2_densidade_militar() -> None:
     passo = 200
 
     paineis = [
-        ("latour_1987_science_action_en", "Science in Action, 1987", False),
-        ("latour_1999_pandora_en", "Pandora's Hope, 1999", True),
+        ("latour_1987_science_action_en", "Science in Action, 1987"),
+        ("latour_1999_pandora_en", "Pandora's Hope, 1999"),
     ]
 
     fig, axes = plt.subplots(2, 1, figsize=(12, 8))
     if not isinstance(axes, np.ndarray):
         axes = np.array([axes])
 
-    for ax, (obra_id, rotulo, filtrar) in zip(axes, paineis):
+    for ax, (obra_id, rotulo) in zip(axes, paineis):
         txt = (REPO / "corpus" / "txt_norm" / f"{obra_id}.txt").read_text(encoding="utf-8")
         hits = carregar_militar_hits(obra_id)
-        if filtrar:
-            hits = filtrar_war_descritivos_pandora(hits)
+        hits = filtrar_war_descritivos(hits, obra_id)
         word_indices, total_palavras = converter_char_para_palavra(txt, hits)
         word_indices.sort()
 
@@ -306,7 +328,7 @@ def figura_2_densidade_militar() -> None:
         ax.text(
             0.01,
             0.95,
-            rotulo,
+            f"{rotulo}  (n refinado = {len(hits)})",
             transform=ax.transAxes,
             fontsize=10,
             va="top",
@@ -321,7 +343,14 @@ def figura_2_densidade_militar() -> None:
 
     axes[-1].set_xlabel("Posição no texto (milhares de palavras)", fontsize=10)
 
-    fig.tight_layout()
+    fig.text(
+        0.99, 0.005,
+        "Versão simétrica: war/wars descritivos removidos em ambas as obras "
+        "(refinamento/war_{sia,pandora}_classificacao.csv).",
+        ha="right", va="bottom", fontsize=8, color="#606060",
+    )
+
+    fig.tight_layout(rect=(0, 0.02, 1, 1))
     salvar(fig, "densidade_militar_sia_pandora")
     print(f"  figura 2 salva: {OUT_DIR / 'densidade_militar_sia_pandora.png'}")
 
