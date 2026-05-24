@@ -1,9 +1,9 @@
-# Cocorrencia figural em AIME (Latour 2013), janela j200
+# Cocorrência figural: latour_2013_aime_en
 
-Janela: 200 palavras.
-Pares validos (>0): 242.
+Janela: 200 palavras (aproximada por caracteres).
+Pares válidos: 242.
 
-## Top 30 pares por forca de cocorrencia
+## Top 20 pares por força de cocorrência
 
 | grupo A | grupo B | n |
 |---|---|---:|
@@ -27,13 +27,11 @@ Pares validos (>0): 242.
 | moderns | textil | 147 |
 | militar | moderns | 144 |
 | modes_of_existence | trajectory_pass | 143 |
-| domain_category | experience | 141 |
-| institution | topologia | 140 |
-| moderns | trajectory_pass | 136 |
-| modes_of_existence | topologia | 133 |
-| domain_category | textil | 133 |
-| domain_category | institution | 130 |
-| diplomacy | moderns | 124 |
-| felicity | trajectory_pass | 113 |
-| experience | network | 108 |
-| institution | network | 107 |
+
+## Sobreposição de termos entre catálogos
+
+Posições contadas por mais de um campo: **95**. Ocorre quando um termo pertence a dois catálogos aplicados em paralelo sobre o mesmo texto; cada par abaixo soma pares de distância zero à cocorrência, embutidos na contagem por decisão de reprodução fiel (sem deduplicação).
+
+| campo A | campo B | posições compartilhadas |
+|---|---|---:|
+| topologia | trajectory_pass | 95 |

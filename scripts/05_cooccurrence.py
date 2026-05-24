@@ -44,24 +44,51 @@ def obras_em_escopo(escopo: str = "etapa1") -> list[dict[str, str]]:
         return [r for r in linhas if _mark(r, "escopo_etapa2")]
     if escopo == "etapa2bis":
         return [r for r in linhas if _mark(r, "escopo_etapa2bis")]
+    if escopo == "etapa3":
+        return [r for r in linhas if _mark(r, "escopo_etapa3")]
     if escopo == "todos":
         return [r for r in linhas if _mark(r, "escopo_etapa1") or _mark(r, "escopo_etapa2")]
     raise SystemExit(f"escopo desconhecido '{escopo}'.")
 
 
-def carregar_ocorrencias(obra_id: str) -> list[tuple[str, int]]:
-    p = obra_dir(obra_id) / "csv" / "kwic.csv"
-    if not p.exists():
-        return []
+# Obras cuja cocorrência cruza mais de um arquivo kwic (catálogos paralelos
+# aplicados sobre o mesmo texto). A AIME (Etapa 3) aplica o catálogo antigo
+# (19 campos) e o catálogo novo (12 campos) em paralelo, com um kwic cada.
+KWIC_FILES_MULTIPLOS: dict[str, list[str]] = {
+    "latour_2013_aime_en": ["kwic_catalogo_antigo.csv", "kwic_catalogo_aime.csv"],
+}
+
+
+def kwic_files_de(obra_id: str) -> list[str]:
+    """Arquivos kwic a ler para uma obra (default: um único kwic.csv)."""
+    return KWIC_FILES_MULTIPLOS.get(obra_id, ["kwic.csv"])
+
+
+def carregar_ocorrencias(
+    obra_id: str, kwic_filenames: list[str] | None = None
+) -> list[tuple[str, int]]:
+    """Lê um ou mais kwic.csv da obra e concatena as ocorrências válidas.
+
+    Para a maioria das obras `kwic_filenames` é `["kwic.csv"]`. A AIME
+    (Etapa 3) tem dois kwic (`kwic_catalogo_antigo.csv` e
+    `kwic_catalogo_aime.csv`), concatenados aqui para que a cocorrência
+    cruze os dois catálogos.
+    """
+    if kwic_filenames is None:
+        kwic_filenames = ["kwic.csv"]
     ocs: list[tuple[str, int]] = []
-    with p.open(encoding="utf-8", newline="") as f:
-        for row in csv.DictReader(f):
-            if row.get("descartado_por_exclusao", "0") != "0":
-                continue
-            try:
-                ocs.append((row["grupo"], int(row["posicao_no_texto"])))
-            except (KeyError, ValueError):
-                continue
+    for nome in kwic_filenames:
+        p = obra_dir(obra_id) / "csv" / nome
+        if not p.exists():
+            continue
+        with p.open(encoding="utf-8", newline="") as f:
+            for row in csv.DictReader(f):
+                if row.get("descartado_por_exclusao", "0") != "0":
+                    continue
+                try:
+                    ocs.append((row["grupo"], int(row["posicao_no_texto"])))
+                except (KeyError, ValueError):
+                    continue
     return ocs
 
 
@@ -92,14 +119,42 @@ def cocorrencia_por_janela(
     return pares
 
 
-def gerar_outputs(obra_id: str, janela: int, sufixo: str = "") -> None:
-    ocs = carregar_ocorrencias(obra_id)
+def gerar_outputs(
+    obra_id: str, janela: int, sufixo: str = "",
+    kwic_filenames: list[str] | None = None,
+) -> None:
+    if kwic_filenames is None:
+        kwic_filenames = ["kwic.csv"]
+    ocs = carregar_ocorrencias(obra_id, kwic_filenames)
     if not ocs:
         print(f"  [pular] sem ocorrências válidas para {obra_id}.")
         return
     grupos = sorted({g for g, _ in ocs})
     pares = cocorrencia_por_janela(ocs, janela)
     sufixo_arquivo = f"_{sufixo}" if sufixo else ""
+
+    # Sobreposição de termos entre catálogos: posições contadas por mais de um
+    # campo. Só ocorre ao concatenar catálogos paralelos (AIME, onde
+    # `trajectory`/`trajectories` contam em `topologia` e em `trajectory_pass`).
+    # Reportado para auditoria; a contagem de cocorrência não é deduplicada.
+    multiplos = len(kwic_filenames) > 1
+    overlap_pares: dict[tuple[str, str], int] = {}
+    overlap_total = 0
+    if multiplos:
+        pos_grupos: dict[int, set[str]] = defaultdict(set)
+        for g, pos in ocs:
+            pos_grupos[pos].add(g)
+        contador: dict[tuple[str, str], int] = defaultdict(int)
+        for gs in pos_grupos.values():
+            if len(gs) > 1:
+                overlap_total += 1
+                for a, b in combinations(sorted(gs), 2):
+                    contador[(a, b)] += 1
+        overlap_pares = dict(contador)
+        print(f"  sobreposição entre catálogos: {overlap_total} posições "
+              f"contadas por mais de um campo")
+        for (a, b), n in sorted(overlap_pares.items(), key=lambda x: -x[1]):
+            print(f"    {a}–{b}: {n} posições")
 
     csv_dir = obra_dir(obra_id) / "csv"
     csv_dir.mkdir(parents=True, exist_ok=True)
@@ -132,6 +187,22 @@ def gerar_outputs(obra_id: str, janela: int, sufixo: str = "") -> None:
     ]
     for (a, b), n in sorted(pares.items(), key=lambda x: -x[1])[:20]:
         linhas.append(f"| {a} | {b} | {n} |")
+    if multiplos:
+        linhas += [
+            "",
+            "## Sobreposição de termos entre catálogos",
+            "",
+            f"Posições contadas por mais de um campo: **{overlap_total}**. "
+            "Ocorre quando um termo pertence a dois catálogos aplicados em "
+            "paralelo sobre o mesmo texto; cada par abaixo soma pares de "
+            "distância zero à cocorrência, embutidos na contagem por decisão "
+            "de reprodução fiel (sem deduplicação).",
+            "",
+            "| campo A | campo B | posições compartilhadas |",
+            "|---|---|---:|",
+        ]
+        for (a, b), n in sorted(overlap_pares.items(), key=lambda x: -x[1]):
+            linhas.append(f"| {a} | {b} | {n} |")
     md.write_text("\n".join(linhas), encoding="utf-8")
 
     # Figura: NetworkX -----------------------------------------------------
@@ -202,8 +273,9 @@ def main() -> None:
     parser.add_argument("--janela", type=int, default=200,
                         help="janela em palavras para cocorrência (default: 200).")
     parser.add_argument("--escopo", default="etapa1",
-                        choices=["etapa1", "etapa2", "etapa2bis", "todos"],
-                        help="filtro de obras: etapa1 (default), etapa2 ou todos.")
+                        choices=["etapa1", "etapa2", "etapa2bis", "etapa3", "todos"],
+                        help="filtro de obras: etapa1 (default), etapa2, "
+                             "etapa2bis, etapa3 (AIME, dois catálogos) ou todos.")
     parser.add_argument("--sufixo", default="",
                         help="sufixo nos nomes de arquivo de saída "
                              "(default: vazio, sobrescreve cocorrencia.csv).")
@@ -214,7 +286,8 @@ def main() -> None:
         obras = [o for o in obras if args.only.lower() in o["id"].lower()]
     for obra in obras:
         print(f"\n[{obra['id']}]")
-        gerar_outputs(obra["id"], args.janela, args.sufixo)
+        gerar_outputs(obra["id"], args.janela, args.sufixo,
+                      kwic_files_de(obra["id"]))
 
 
 if __name__ == "__main__":
