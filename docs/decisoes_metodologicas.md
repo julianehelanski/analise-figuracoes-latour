@@ -574,6 +574,31 @@ AIME redistribui o trabalho figurativo em três camadas (vocabulário antigo per
 - Validação amostral semântica A/B/C dos 31 campos em AIME (Etapa 3.6 hipotética). Sem ela, as densidades brutas dos campos polissêmicos (`experiencia`, `categorias_dominio`, `crossing`, `domain`) carregam ruído não estimado.
 - Validação retroativa das categorias `metalinguistico`, `descritivo_bibliografico` e `conceitual_debate` para os livros (pendência aberta desde a Etapa 2.6, inclui os seis candidatos retroativos de `outputs/etapa2/consolidado/metalinguistico_retroativo_livros.csv`).
 
+### 5. Uniformização das chaves do catálogo AIME para inglês (24/05/2026)
+
+Renomeei as 12 chaves de campo do `campos_lexicais/catalogo_termos_aime.yaml` do português para o inglês, para manter coerência com o corpus (original inglês de AIME) e com os rótulos das figuras e tabelas que entram no capítulo 2. As chaves do catálogo principal já estavam em inglês (reproduzem os conceitos de Latour, como `inscription`, `network`, `translation`); as 12 chaves específicas de AIME tinham ficado em português e destoavam dos rótulos das demais figuras. O mapeamento aplicado:
+
+- `modos_existencia` → `modes_of_existence`
+- `preposicao` → `preposition`
+- `felicidade` → `felicity`
+- `diplomacia` → `diplomacy`
+- `gaia` → `gaia` (sem mudança, já em inglês)
+- `valores` → `values`
+- `trajetoria_passe` → `trajectory_pass`
+- `instituicao` → `institution`
+- `categorias_dominio` → `domain_category`
+- `modernos` → `moderns`
+- `alteracao` → `alteration`
+- `experiencia` → `experience`
+
+A renomeação é nominal: nenhum termo rastreado, contagem, densidade, taxa de figuralidade ou matriz de cocorrência mudou. Verifiquei a invariância reexecutando o pipeline da Etapa 3 (`scripts/arquivo/22_etapa3_aime_pipeline.py`) sobre o YAML renomeado e comparando célula a célula com o estado anterior: os 12 campos de `frequencias_catalogo_aime.csv` mantêm n de ocorrências, n de exclusões, densidade por 10 mil palavras e variantes top idênticos; o `kwic_catalogo_aime.csv` (2.214 linhas) muda somente na coluna `grupo`, com as demais colunas idênticas linha a linha; as matrizes de cocorrência (`cocorrencia_j200.csv`, `cocorrencia_jprop.csv`) preservam a soma dos contadores (21.348 e 4.444 respectivamente). Atualizei a coluna `grupo` dos CSVs, os relatórios em markdown e as tabelas em LaTeX de output, sempre como identificador de campo. Onde palavras como "valores", "diplomacia" ou "felicidade" ocorrem como termo corrente da prosa portuguesa, mantive a grafia original.
+
+As seis figuras da Etapa 3 (`outputs/figuras/etapa3_aime_*`, mais os espelhos em `outputs/etapa3/latour_2013_aime_en/figuras/` e `outputs/consolidado/figuras/`) seguem com os rótulos em português: este ambiente de execução não tem matplotlib nem networkx, então não as regenerei. Ficam pendentes de regeração externa, na máquina onde o pipeline de figuras roda.
+
+### 6. Pendência de reprodutibilidade da cocorrência da Etapa 3 (registrada em 24/05/2026)
+
+Ao mapear os geradores de output durante a renomeação, identifiquei que o `scripts/05_cooccurrence.py` lê um único `kwic.csv` por obra e seleciona obras por `--escopo` (etapa1, etapa2 ou etapa2bis). A Etapa 3 tem dois catálogos (`kwic_catalogo_antigo.csv` e `kwic_catalogo_aime.csv`) e nenhum escopo correspondente no `metadata.csv`, de modo que a matriz de cocorrência da Etapa 3 não é reproduzível pelo pipeline versionado no estado atual: ela foi montada por procedimento ad-hoc. Registro isto como pendência aberta, a tratar fora desta tarefa (por exemplo, adaptar o `05_cooccurrence.py` para aceitar múltiplos kwic e um escopo etapa3, ou versionar o procedimento ad-hoc usado).
+
 ## Etapa 1 — Camada R: classificação Reinert e AFC sobre as três obras (22/05/2026)
 
 ### 1. Motivação
