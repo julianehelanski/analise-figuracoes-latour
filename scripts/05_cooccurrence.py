@@ -122,6 +122,7 @@ def cocorrencia_por_janela(
 def gerar_outputs(
     obra_id: str, janela: int, sufixo: str = "",
     kwic_filenames: list[str] | None = None,
+    reportar_sobreposicao: bool = False,
 ) -> None:
     if kwic_filenames is None:
         kwic_filenames = ["kwic.csv"]
@@ -133,14 +134,17 @@ def gerar_outputs(
     pares = cocorrencia_por_janela(ocs, janela)
     sufixo_arquivo = f"_{sufixo}" if sufixo else ""
 
-    # Sobreposição de termos entre catálogos: posições contadas por mais de um
-    # campo. Só ocorre ao concatenar catálogos paralelos (AIME, onde
-    # `trajectory`/`trajectories` contam em `topologia` e em `trajectory_pass`).
-    # Reportado para auditoria; a contagem de cocorrência não é deduplicada.
+    # Sobreposição de termos: posições contadas por mais de um campo. Ocorre ao
+    # concatenar catálogos paralelos (AIME: `trajectory` conta em `topologia` e
+    # em `trajectory_pass`) ou quando um termo pertence a mais de um campo do
+    # mesmo catálogo (Etapa 1: `circulating` conta em `circulating_reference` e
+    # em `topologia`). Reportado quando há catálogos múltiplos ou quando o flag
+    # `--reportar-sobreposicao` é passado. A contagem não é deduplicada.
     multiplos = len(kwic_filenames) > 1
+    reportar = multiplos or reportar_sobreposicao
     overlap_pares: dict[tuple[str, str], int] = {}
     overlap_total = 0
-    if multiplos:
+    if reportar:
         pos_grupos: dict[int, set[str]] = defaultdict(set)
         for g, pos in ocs:
             pos_grupos[pos].add(g)
@@ -151,8 +155,7 @@ def gerar_outputs(
                 for a, b in combinations(sorted(gs), 2):
                     contador[(a, b)] += 1
         overlap_pares = dict(contador)
-        print(f"  sobreposição entre catálogos: {overlap_total} posições "
-              f"contadas por mais de um campo")
+        print(f"  sobreposição: {overlap_total} posições contadas por mais de um campo")
         for (a, b), n in sorted(overlap_pares.items(), key=lambda x: -x[1]):
             print(f"    {a}–{b}: {n} posições")
 
@@ -187,17 +190,26 @@ def gerar_outputs(
     ]
     for (a, b), n in sorted(pares.items(), key=lambda x: -x[1])[:20]:
         linhas.append(f"| {a} | {b} | {n} |")
-    if multiplos:
+    if reportar and overlap_total > 0:
+        if multiplos:
+            titulo = "## Sobreposição de termos entre catálogos"
+            intro = (
+                f"Posições contadas por mais de um campo: **{overlap_total}**. "
+                "Ocorre quando um termo pertence a dois catálogos aplicados em "
+                "paralelo sobre o mesmo texto; cada par abaixo soma pares de "
+                "distância zero à cocorrência, embutidos na contagem por decisão "
+                "de reprodução fiel (sem deduplicação)."
+            )
+        else:
+            titulo = "## Sobreposição de termos entre campos do catálogo"
+            intro = (
+                f"Posições contadas por mais de um campo: **{overlap_total}**. "
+                "Ocorre quando um termo pertence a mais de um campo do catálogo; "
+                "cada par abaixo soma pares de distância zero à cocorrência, "
+                "mantidos sem deduplicação."
+            )
         linhas += [
-            "",
-            "## Sobreposição de termos entre catálogos",
-            "",
-            f"Posições contadas por mais de um campo: **{overlap_total}**. "
-            "Ocorre quando um termo pertence a dois catálogos aplicados em "
-            "paralelo sobre o mesmo texto; cada par abaixo soma pares de "
-            "distância zero à cocorrência, embutidos na contagem por decisão "
-            "de reprodução fiel (sem deduplicação).",
-            "",
+            "", titulo, "", intro, "",
             "| campo A | campo B | posições compartilhadas |",
             "|---|---|---:|",
         ]
@@ -279,6 +291,10 @@ def main() -> None:
     parser.add_argument("--sufixo", default="",
                         help="sufixo nos nomes de arquivo de saída "
                              "(default: vazio, sobrescreve cocorrencia.csv).")
+    parser.add_argument("--reportar-sobreposicao", action="store_true",
+                        help="reporta posições contadas por mais de um campo "
+                             "(stdout e .md), mesmo com kwic único. Catálogos "
+                             "múltiplos já reportam automaticamente.")
     args = parser.parse_args()
 
     obras = obras_em_escopo(args.escopo)
@@ -287,7 +303,8 @@ def main() -> None:
     for obra in obras:
         print(f"\n[{obra['id']}]")
         gerar_outputs(obra["id"], args.janela, args.sufixo,
-                      kwic_files_de(obra["id"]))
+                      kwic_files_de(obra["id"]),
+                      reportar_sobreposicao=args.reportar_sobreposicao)
 
 
 if __name__ == "__main__":
