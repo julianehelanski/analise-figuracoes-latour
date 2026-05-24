@@ -1,39 +1,37 @@
-# Cocorrencia figural em AIME (Latour 2013), janela j200
+# Cocorrência figural: latour_2013_aime_en
 
-Janela: 200 palavras.
-Pares validos (>0): 242.
+Janela: 200 palavras (aproximada por caracteres).
+Pares válidos: 242.
 
-## Top 30 pares por forca de cocorrencia
+## Top 20 pares por força de cocorrência
 
 | grupo A | grupo B | n |
 |---|---|---:|
-| topologia | trajetoria_passe | 584 |
+| topologia | trajectory_pass | 584 |
 | network | topologia | 379 |
-| network | trajetoria_passe | 301 |
-| categorias_dominio | topologia | 285 |
-| categorias_dominio | trajetoria_passe | 276 |
-| categorias_dominio | network | 264 |
-| experiencia | modernos | 243 |
+| network | trajectory_pass | 301 |
+| domain_category | topologia | 285 |
+| domain_category | trajectory_pass | 276 |
+| domain_category | network | 264 |
+| experience | moderns | 243 |
 | network | textil | 236 |
-| instituicao | modernos | 212 |
-| modernos | topologia | 201 |
+| institution | moderns | 212 |
+| moderns | topologia | 201 |
 | textil | topologia | 197 |
-| categorias_dominio | modernos | 189 |
-| experiencia | topologia | 188 |
-| textil | trajetoria_passe | 183 |
-| experiencia | trajetoria_passe | 168 |
-| alteracao | trajetoria_passe | 160 |
-| modernos | network | 158 |
-| modernos | textil | 147 |
-| militar | modernos | 144 |
-| modos_existencia | trajetoria_passe | 143 |
-| categorias_dominio | experiencia | 141 |
-| instituicao | topologia | 140 |
-| modernos | trajetoria_passe | 136 |
-| modos_existencia | topologia | 133 |
-| categorias_dominio | textil | 133 |
-| categorias_dominio | instituicao | 130 |
-| diplomacia | modernos | 124 |
-| felicidade | trajetoria_passe | 113 |
-| experiencia | network | 108 |
-| instituicao | network | 107 |
+| domain_category | moderns | 189 |
+| experience | topologia | 188 |
+| textil | trajectory_pass | 183 |
+| experience | trajectory_pass | 168 |
+| alteration | trajectory_pass | 160 |
+| moderns | network | 158 |
+| moderns | textil | 147 |
+| militar | moderns | 144 |
+| modes_of_existence | trajectory_pass | 143 |
+
+## Sobreposição de termos entre catálogos
+
+Posições contadas por mais de um campo: **95**. Ocorre quando um termo pertence a dois catálogos aplicados em paralelo sobre o mesmo texto; cada par abaixo soma pares de distância zero à cocorrência, embutidos na contagem por decisão de reprodução fiel (sem deduplicação).
+
+| campo A | campo B | posições compartilhadas |
+|---|---|---:|
+| topologia | trajectory_pass | 95 |

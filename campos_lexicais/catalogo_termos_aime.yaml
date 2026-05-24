@@ -12,42 +12,42 @@
 # documentada em docs/decisoes_metodologicas.md secao Etapa 3.
 
 latour:
-  modos_existencia:
+  modes_of_existence:
     termos: ["mode of existence", "modes of existence"]
     nota: "Vocabulario central de AIME. Substituto/sucessor de [net]. Casamento literal sem polissemia significativa."
-  preposicao:
+  preposition:
     termos: ["preposition", "prepositions", "prepositional"]
     exclusoes: ["preposition phrase", "prepositional phrase"]
     nota: "Categoria tecnica de AIME que designa o que orienta cada modo. Exclusoes minimas para evitar uso gramatical trivial."
-  felicidade:
+  felicity:
     termos: ["felicity", "infelicity", "felicity condition", "infelicity condition", "felicity conditions", "infelicity conditions", "felicitous", "infelicitous"]
     nota: "Vocabulario emprestado da pragmatica (Austin) para designar condicoes de existencia de cada modo."
-  diplomacia:
+  diplomacy:
     termos: ["diplomatic", "diplomat", "diplomats", "diplomacy", "negotiation", "negotiations", "negotiating", "negotiate", "negotiated", "negotiator", "negotiators"]
     nota: "Vocabulario central da proposta politica-metodologica de AIME. Substituto/sucessor do 'aliado' agonistico."
   gaia:
     termos: ["Gaia", "Anthropocene", "terrestrial", "ecology", "ecological", "ecologies", "climate", "climatologist", "climatologists"]
     exclusoes: ["political ecology"]
     nota: "Vocabulario cosmopolitico-ecologico de AIME. 'Earth' fica fora deste grupo por alta polissemia (terra do solo, planeta, terra fertil); registrar como pendencia."
-  valores:
+  values:
     termos: ["qualify values", "qualifies values", "qualifying values", "qualified values", "value system", "values system", "system of values", "qualify"]
     nota: "Termo que opera no Capitulo 1 a limitacao central da TAR ('networks do not qualify values'). 'value'/'values' isolados foram retirados por polissemia (uso economico, axiologico, generico)."
-  trajetoria_passe:
+  trajectory_pass:
     termos: ["trajectory", "trajectories", "course of action", "hiatus", "discontinuity", "discontinuities", "continuity", "continuities", "leap", "leaps"]
     nota: "Vocabulario de movimento de AIME, herdeiro mas distinto da 'network'. 'pass'/'passing'/'passes' retirados por polissemia (passar tempo, passar adiante)."
-  instituicao:
+  institution:
     termos: ["instituting", "institute", "institutes", "instituted", "institution", "institutions"]
     exclusoes: ["institute of", "institutes of"]
     nota: "Vocabulario do 'instituir' que AIME propoe como gesto politico-cosmopolitico. Exclusao minima para nomes proprios de institutos."
-  categorias_dominio:
+  domain_category:
     termos: ["category mistake", "category mistakes", "domain", "domains", "crossing", "crossings"]
     nota: "Vocabulario da critica de AIME a confusao entre modos. 'Crossing' tem polissemia (cruzamento de rua, crossover); registrar como ruido esperado."
-  modernos:
+  moderns:
     termos: ["Moderns", "modernity", "modernizing", "modernism", "modernization"]
     nota: "Designacao central de AIME. 'modern' isolado retirado por polissemia (adjetivo geral em ingles). 'Moderns' (capitalizado) e o substantivo proprio do livro."
-  alteracao:
+  alteration:
     termos: ["alteration", "alterations", "alter", "altered", "alters", "altering", "being-as-other", "being-as-another", "being as other", "being as another"]
     nota: "Categoria ontologica de AIME para o que cada modo opera no ser. Sucessor distante de 'translation' no vocabulario latouriano."
-  experiencia:
+  experience:
     termos: ["experience", "experiences", "experienced", "experiential", "empirical"]
     nota: "Vocabulario pragmatista que AIME mobiliza para ancorar a investigacao. Alta polissemia (uso comum em ingles); a contagem bruta refletira esse ruido."
