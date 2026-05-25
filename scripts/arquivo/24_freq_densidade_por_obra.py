@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import csv
 import shutil
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -31,6 +32,9 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from _desambiguar_war import filtrar_militar_refinado  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_CONSOL = REPO / "outputs" / "consolidado" / "figuras"
@@ -141,6 +145,12 @@ OBRAS = [
 def carregar_kwic_valido(obra: dict) -> list[dict[str, str]]:
     """Carrega kwic.csv(s) da obra, mantendo só ocorrências válidas.
 
+    Aplica a desambiguação war/wars do campo militar (módulo
+    `_desambiguar_war`): para as três obras da Etapa 1 com classificação
+    registrada, remove as ocorrências de `war`/`wars` lidas como
+    descritivo-históricas, deixando o militar na contagem refinada
+    (Laboratory Life 37, Science in Action 363, Pandora's Hope 156).
+
     Quando `militar_zero` é True na config da obra, remove todas as
     ocorrências do campo `militar` antes de devolver, refletindo a
     leitura figural de que o militar nos artigos metateóricos é zero
@@ -156,6 +166,10 @@ def carregar_kwic_valido(obra: dict) -> list[dict[str, str]]:
         with caminho.open(encoding="utf-8", newline="") as f:
             todas.extend([row for row in csv.DictReader(f)
                           if row.get("descartado_por_exclusao", "0") == "0"])
+    # Campo militar refinado: remove as ocorrências war/wars descritivas
+    # conforme a classificação manual da obra (no-op para obras sem CSV,
+    # como os artigos metateóricos e a AIME).
+    todas = filtrar_militar_refinado(todas, obra["id"])
     if obra.get("militar_zero"):
         todas = [r for r in todas if r["grupo"] != "militar"]
     return todas

@@ -91,9 +91,12 @@ print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 - Catálogo de termos: arquivo único em `campos_lexicais/catalogo_termos.yaml`, com 17 campos figurativos para Latour (16 da Etapa 1 mais o campo `militar` adicionado na Etapa 3).
 - Campo `militar`: contagem registrada em duas versões a partir de 14/05/2026, bruta e refinada por desambiguação de `war`/`wars` (descritivo-histórico vs figurativo-latouriano). Aplicação simétrica nas três obras.
 
+**Decisões já tomadas e fixadas (cont.):**
+
+- Desambiguação `war`/`wars` portada para o pipeline versionado em 25/05/2026 (resolve a pendência homônima). Módulo importável `scripts/_desambiguar_war.py` e passo de verificação `scripts/09_desambiguar_war.py`. A camada manual fica em CSV auditável fora do script (`outputs/etapa1/refinamento/war_<obra>_classificacao.csv`, coluna `categoria_final`), lida e aplicada pelo pipeline, nunca recomputada. As figuras de frequência e densidade da Etapa 1 (`scripts/04_visualizations.py` e `scripts/arquivo/24_freq_densidade_por_obra.py`) passaram a usar o militar refinado (37/363/156); as versões brutas anteriores ficaram preservadas em subpastas `variantes_brutas/`. *Laboratory Life* ganhou CSV de classificação próprio (`war_lab_life_classificacao.csv`); a ocorrência manual consequente (`after the war`, descritiva) foi confirmada pela Juliane em 25/05/2026. Detalhes em `docs/decisoes_metodologicas.md` (seção de 25/05/2026).
+
 **Pendências:**
 
-- Portar a lógica de desambiguação automática de `war`/`wars` para um script versionado em `scripts/`, com nome sugerido `09_desambiguar_war.py`. A camada manual fica em CSV auditável fora do script.
 - Atualizar a tabela LaTeX `outputs/latex/trajetoria_latour_1986_1999.tex` ou adicionar a tabela complementar `outputs/etapa1/refinamento/tabela_militar_refinada.tex` ao master da tese.
 - Ajustar a seção 4.3.a do relatório `outputs/etapa1/trajetoria_latour_1986_1999.md`: a frase sobre a manutenção do vocabulário militar em 1999 precisa ser reformulada à luz da queda de 26,4% pela desambiguação.
 - Passos 2 a 5 do refinamento atual.

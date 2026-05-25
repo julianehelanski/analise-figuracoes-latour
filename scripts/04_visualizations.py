@@ -25,6 +25,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 METADATA_CSV = REPO_ROOT / "corpus" / "metadata.csv"
 from _paths import OUTPUTS_DIR, obra_dir
+from _desambiguar_war import filtrar_militar_refinado
 CORPUS_TXT_DIR = REPO_ROOT / "corpus" / "txt_norm"
 
 
@@ -50,8 +51,11 @@ def carregar_kwic(obra_id: str) -> list[dict[str, str]]:
     if not p.exists():
         return []
     with p.open(encoding="utf-8", newline="") as f:
-        return [row for row in csv.DictReader(f)
+        rows = [row for row in csv.DictReader(f)
                 if row.get("descartado_por_exclusao", "0") == "0"]
+    # Campo militar refinado: remove as ocorrências war/wars descritivas
+    # conforme a classificação manual da obra (no-op para obras sem CSV).
+    return filtrar_militar_refinado(rows, obra_id)
 
 
 def gerar_figuras(obra_id: str) -> None:
