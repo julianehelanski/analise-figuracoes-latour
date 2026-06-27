@@ -291,12 +291,10 @@ def gerar_uma_figura(obra: dict) -> tuple[Path, Path]:
     plot_densidade(ax_dens, ocs, REPO / "corpus" / "txt_norm" / obra["txt"],
                    grupos, cores)
 
-    # Título = só o nome da obra (sem ano). Ano, contagem de palavras,
-    # n de ocorrências e nota de catálogo duplo ficam no caption da
-    # figura (outputs/latex/inventario_figuras.tex).
-    fig.suptitle(obra["titulo_obra"], fontsize=13, fontweight="bold", y=0.995)
-
-    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    # Sem título embutido: o nome da obra, ano, contagem de palavras e nota
+    # de catálogo duplo ficam na legenda (caption) do LaTeX
+    # (outputs/latex/inventario_figuras.tex).
+    fig.tight_layout()
 
     OUT_CONSOL.mkdir(parents=True, exist_ok=True)
     OUT_PASTA.mkdir(parents=True, exist_ok=True)

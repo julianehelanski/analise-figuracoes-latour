@@ -32,8 +32,11 @@ COR_CAT_NOVO = "#E69F00"     # laranja: catálogo novo (Etapa 3)
 CMAP_SEQUENCIAL = "viridis"
 
 GUIA_COR = "#e9eef2"
-_TXT = "#1a1a1a"
-_TXT_FRACO = "#6b6b6b"
+# Texto em cinza escuro suave (nada de preto puro), sem negrito; notas e
+# secundário em cinza médio. Sem título embutido (a legenda do LaTeX titula).
+_TXT = "#404040"
+_TXT_FRACO = "#8a8a8a"
+FONTE = "DejaVu Sans"
 PONTO_S = 150
 
 # Ordem perceptual para quando há mais categorias que o Okabe-Ito comporta
