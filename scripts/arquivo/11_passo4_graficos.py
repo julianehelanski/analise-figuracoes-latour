@@ -181,8 +181,7 @@ def figura_1_comparacao_frequencias() -> None:
         val = freq_por_obra[ano]["militar"]
         ax.annotate(pct_ptbr(val, 1), xy=(val, i_mil), xytext=(0, 9),
                     textcoords="offset points", ha="center", fontsize=8,
-                    color="#303030",
-                    fontweight="bold" if ano == "1987" else "normal")
+                    color="#404040")
 
     salvar(fig, "comparacao_frequencias_tres_obras")
     print(f"  figura 1 salva: {OUT_DIR / 'comparacao_frequencias_tres_obras.png'}")
