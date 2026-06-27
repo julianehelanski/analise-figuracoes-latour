@@ -43,6 +43,9 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
 from _paths import obra_dir
+from estilo_tese import (  # noqa: E402
+    OKABE_ITO, aplicar_rcparams, dumbbell, pct_ptbr,
+)
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_DIR = REPO / "outputs" / "etapa1" / "passo4" / "figuras"
@@ -129,7 +132,12 @@ def carregar_n_absoluto(obra_id: str) -> dict[str, int]:
 
 
 def figura_1_comparacao_frequencias() -> None:
-    """Densidade dos 17 campos × 3 obras, barras agrupadas horizontais."""
+    """Dumbbell dos 17 campos × 3 obras: frequência por 10k palavras.
+
+    Cada campo é uma linha; os três pontos (Laboratory Life 1986, Science
+    in Action 1987, Pandora's Hope 1999) ligados pela linha-guia mostram a
+    dispersão da figuração ao longo do tempo. O campo militar aparece com a
+    maior amplitude (3,5 -> 26,0 -> 12,2)."""
     campos = carregar_campos_catalogo()
     freq_por_obra = {
         ano: carregar_frequencias(obra_id) for obra_id, ano in OBRAS_ANO
@@ -143,67 +151,38 @@ def figura_1_comparacao_frequencias() -> None:
     def chave_ord(campo: str) -> tuple[float, int]:
         return (-freq_por_obra["1987"].get(campo, 0.0), campos.index(campo))
 
-    campos_ord = sorted(campos, key=chave_ord)
+    # Dumbbell desenha do menor (base) ao maior (topo): inverte a ordem.
+    campos_ord = sorted(campos, key=chave_ord)[::-1]
+
+    nomes = {
+        "1986": "Laboratory Life (1986)",
+        "1987": "Science in Action (1987)",
+        "1999": "Pandora's Hope (1999)",
+    }
+    cores = {
+        nomes["1986"]: OKABE_ITO["azul_claro"],
+        nomes["1987"]: OKABE_ITO["azul"],
+        nomes["1999"]: OKABE_ITO["vermelho"],
+    }
+    series = {
+        nomes[ano]: [freq_por_obra[ano].get(c, 0.0) for c in campos_ord]
+        for ano in ("1986", "1987", "1999")
+    }
 
     fig, ax = plt.subplots(figsize=(12, 10))
-    n = len(campos_ord)
-    y = np.arange(n)
-    altura = 0.27
-    offsets = {"1986": -altura, "1987": 0.0, "1999": altura}
+    dumbbell(ax, campos_ord, series, cores)
+    ax.set_xlabel("frequência por 10.000 palavras", fontsize=10, color="#6b6b6b")
+    ax.legend(loc="lower right", frameon=False, fontsize=10)
 
-    for ano in ("1986", "1987", "1999"):
-        valores = [freq_por_obra[ano].get(c, 0.0) for c in campos_ord]
-        cores = [
-            COR_MILITAR[ano] if c == "militar" else COR_BASE[ano]
-            for c in campos_ord
-        ]
-        ax.barh(
-            y + offsets[ano],
-            valores,
-            altura,
-            color=cores,
-            edgecolor="white",
-            linewidth=0.3,
-            label=ano,
-        )
-
-    # Anotações inline com a contagem refinada do militar
-    idx_militar = campos_ord.index("militar")
+    # Rótulo do militar (campo em foco) em cada obra, para leitura direta
+    # da amplitude que sustenta o argumento.
+    i_mil = campos_ord.index("militar")
     for ano in ("1986", "1987", "1999"):
         val = freq_por_obra[ano]["militar"]
-        texto = f"{val:.2f}".replace(".", ",")
-        ax.text(
-            val + 0.4,
-            idx_militar + offsets[ano],
-            texto,
-            va="center",
-            ha="left",
-            fontsize=8,
-            color="#303030",
-            fontweight="bold" if ano == "1987" else "normal",
-        )
-
-    ax.set_yticks(y)
-    ax.set_yticklabels(campos_ord, fontsize=10)
-    ax.invert_yaxis()  # militar (maior em SIA) fica no topo
-    ax.set_xlabel("Frequência por 10.000 palavras", fontsize=10)
-    ax.grid(axis="x", alpha=0.3, linewidth=0.5)
-    ax.set_axisbelow(True)
-
-    # Legenda com retângulos da própria paleta do militar, que é o
-    # registro visual mais carregado da figura.
-    from matplotlib.patches import Patch
-    legenda = [
-        Patch(facecolor=COR_MILITAR["1986"], edgecolor="white", label="Laboratory Life"),
-        Patch(facecolor=COR_MILITAR["1987"], edgecolor="white", label="Science in Action"),
-        Patch(facecolor=COR_MILITAR["1999"], edgecolor="white", label="Pandora's Hope"),
-    ]
-    ax.legend(handles=legenda, loc="lower right", frameon=False, fontsize=10)
-
-    # Margem extra à direita para acomodar as anotações do militar
-    xmax = max(freq_por_obra[a].get(c, 0.0)
-               for a in ("1986", "1987", "1999") for c in campos_ord)
-    ax.set_xlim(0, xmax * 1.08)
+        ax.annotate(pct_ptbr(val, 1), xy=(val, i_mil), xytext=(0, 9),
+                    textcoords="offset points", ha="center", fontsize=8,
+                    color="#303030",
+                    fontweight="bold" if ano == "1987" else "normal")
 
     salvar(fig, "comparacao_frequencias_tres_obras")
     print(f"  figura 1 salva: {OUT_DIR / 'comparacao_frequencias_tres_obras.png'}")

@@ -23,6 +23,7 @@ Saídas (PNG 300 dpi + SVG):
 from __future__ import annotations
 
 import csv
+import random
 import shutil
 import sys
 from collections import defaultdict
@@ -35,6 +36,10 @@ from matplotlib.patches import Patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from _desambiguar_war import filtrar_militar_refinado  # noqa: E402
+from estilo_tese import (  # noqa: E402
+    COR_CAMPO, COR_DESTAQUE, COR_TEXTIL, COR_CAT_ANTIGO, COR_CAT_NOVO,
+    aplicar_rcparams, dotplot, eixo_ptbr, pct_ptbr,
+)
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_CONSOL = REPO / "outputs" / "consolidado" / "figuras"
@@ -176,69 +181,71 @@ def carregar_kwic_valido(obra: dict) -> list[dict[str, str]]:
 
 
 def estilo_matplotlib() -> None:
-    plt.rcParams.update({
-        "axes.spines.top": False,
-        "axes.spines.right": False,
-        "axes.grid": False,
-        "figure.dpi": 100,
-        "savefig.dpi": 300,
-        "savefig.bbox": "tight",
-        "font.size": 10,
-        "font.family": "DejaVu Sans",
-    })
+    aplicar_rcparams()
 
 
-def plot_freq(ax, ocs: list[dict], palavras: int, catalogo_duplo: bool) -> None:
-    """Barras horizontais de frequência por 10k palavras na obra."""
+def _cor_campo(grupo: str, catalogo_duplo: bool) -> str:
+    """Cor-assinatura por campo figurativo (identidade visual da tese).
+
+    militar em magenta (foco analítico), têxtil em verde (contraponto
+    haraway), demais campos em azul. No catálogo duplo da AIME, a cor
+    marca a proveniência (antigo vs novo)."""
+    if catalogo_duplo:
+        return COR_CAT_ANTIGO if grupo in GRUPOS_ANTIGOS else COR_CAT_NOVO
+    if grupo == "militar":
+        return COR_DESTAQUE
+    if grupo == "textil":
+        return COR_TEXTIL
+    return COR_CAMPO
+
+
+def ordenar_campos(ocs: list[dict], catalogo_duplo: bool):
+    """Ordena os campos por frequência (ascendente: mais frequente no topo)
+    e devolve (grupos, contagem, cores) para os dois painéis usarem a mesma
+    ordem e as mesmas cores-assinatura."""
     contagem: dict[str, int] = defaultdict(int)
     for row in ocs:
         contagem[row["grupo"]] += 1
-    if not contagem:
+    grupos = sorted(contagem, key=contagem.get)
+    cores = [_cor_campo(g, catalogo_duplo) for g in grupos]
+    return grupos, contagem, cores
+
+
+def plot_freq(ax, grupos, contagem, cores, palavras, catalogo_duplo) -> None:
+    """Dot plot de Cleveland: frequência por 10k palavras por campo."""
+    if not grupos:
         ax.text(0.5, 0.5, "(sem ocorrências)", ha="center", va="center",
                 transform=ax.transAxes, color="#909090", fontsize=10)
         ax.set_axis_off()
         return
-    grupos = sorted(contagem, key=contagem.get)  # ascendente, mais frequente no topo
     freqs = [contagem[g] / palavras * 10_000 for g in grupos]
+    rotulos = [f"{pct_ptbr(f)}" for f in freqs]
 
-    if catalogo_duplo:
-        cores = ["#4c72b0" if g in GRUPOS_ANTIGOS else "#dd8452" for g in grupos]
-    else:
-        cores = plt.cm.viridis(
-            [i / max(1, len(grupos) - 1) for i in range(len(grupos))]
-        )
-
-    ax.barh(grupos, freqs, color=cores, edgecolor="white", linewidth=0.4)
-    for i, (g, f) in enumerate(zip(grupos, freqs)):
-        ax.text(f, i, f" {f:.1f}".replace(".", ","), va="center",
-                fontsize=8, color="#404040")
-    ax.set_xlabel("frequência por 10.000 palavras", fontsize=9)
-    ax.tick_params(axis="y", labelsize=8)
-    ax.tick_params(axis="x", labelsize=8)
-    ax.set_xlim(0, max(freqs) * 1.18)
+    dotplot(ax, grupos, freqs, cores, rotulos=rotulos)
+    ax.set_xlabel("frequência por 10.000 palavras", fontsize=9, color="#6b6b6b")
 
     if catalogo_duplo:
         legenda = [
-            Patch(facecolor="#4c72b0", label="catálogo antigo (Etapas 1--2)"),
-            Patch(facecolor="#dd8452", label="catálogo novo (Etapa 3)"),
+            Patch(facecolor=COR_CAT_ANTIGO, label="catálogo antigo (Etapas 1--2)"),
+            Patch(facecolor=COR_CAT_NOVO, label="catálogo novo (Etapa 3)"),
         ]
         ax.legend(handles=legenda, loc="lower right", fontsize=8, frameon=False)
 
 
-def plot_densidade(ax, ocs: list[dict], txt_path: Path) -> None:
-    """Histograma empilhado da posição relativa das ocorrências."""
-    if not txt_path.exists():
-        ax.text(0.5, 0.5, f"(txt não encontrado:\n{txt_path.name})",
-                ha="center", va="center", transform=ax.transAxes,
-                color="#c04040", fontsize=8)
-        ax.set_axis_off()
-        return
-    n_chars = txt_path.stat().st_size
-    if n_chars == 0 or not ocs:
-        ax.text(0.5, 0.5, "(sem ocorrências)", ha="center", va="center",
+def plot_densidade(ax, ocs, txt_path, grupos, cores) -> None:
+    """Strip plot da posição das ocorrências ao longo do texto.
+
+    Cada campo é uma faixa horizontal (mesma ordem e cor do painel de
+    frequência); cada ocorrência é uma bolinha na sua posição relativa
+    (0 = início, 1 = fim). O eixo Y nomeia os campos, então a figura
+    dispensa legenda. Um leve deslocamento vertical (jitter) revela a
+    concentração quando muitas ocorrências caem perto."""
+    if not txt_path.exists() or not grupos:
+        ax.text(0.5, 0.5, "(sem dados de posição)", ha="center", va="center",
                 transform=ax.transAxes, color="#909090", fontsize=10)
         ax.set_axis_off()
         return
+    n_chars = txt_path.stat().st_size or 1
     posicoes_por_grupo: dict[str, list[float]] = defaultdict(list)
     for row in ocs:
         try:
@@ -247,36 +254,42 @@ def plot_densidade(ax, ocs: list[dict], txt_path: Path) -> None:
             )
         except (ValueError, KeyError):
             continue
-    rotulos = sorted(posicoes_por_grupo, key=lambda g: -len(posicoes_por_grupo[g]))
-    dados = [posicoes_por_grupo[g] for g in rotulos]
-    n_cores = max(1, len(rotulos))
-    cores = plt.cm.tab20([i / max(1, n_cores - 1) for i in range(n_cores)])
 
-    ax.hist(dados, bins=30, stacked=True, color=cores, label=rotulos,
-            edgecolor="white", linewidth=0.2)
+    jit = random.Random(42)
+    for i, g in enumerate(grupos):
+        xs = posicoes_por_grupo.get(g, [])
+        if not xs:
+            continue
+        ys = [i + (jit.random() - 0.5) * 0.55 for _ in xs]
+        ax.scatter(xs, ys, s=12, color=cores[i], alpha=0.45,
+                   edgecolors="none", zorder=3)
     ax.set_xlabel("posição relativa no texto (0 = início, 1 = fim)",
-                  fontsize=9)
-    ax.set_ylabel("ocorrências", fontsize=9)
-    ax.set_xlim(0, 1)
-    ax.tick_params(axis="both", labelsize=8)
-    # Legenda fora da área das barras (à direita do painel), para não
-    # sobrescrever o histograma empilhado, que ocupa toda a altura.
-    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=7,
-              ncol=1, frameon=False, handlelength=1.0, handletextpad=0.4,
-              labelspacing=0.3, borderaxespad=0.0)
+                  fontsize=9, color="#6b6b6b")
+    ax.set_xlim(-0.02, 1.02)
+    ax.set_xticks([0, 0.25, 0.5, 0.75, 1.0])
+    eixo_ptbr(ax, "x")
+    ax.tick_params(axis="x", labelsize=8)
+    for s in ax.spines.values():
+        s.set_visible(False)
+    ax.tick_params(left=False)
+    ax.grid(axis="x", linestyle=":", linewidth=0.6, color="#e3e3e3", zorder=0)
 
 
 def gerar_uma_figura(obra: dict) -> tuple[Path, Path]:
     ocs = carregar_kwic_valido(obra)
 
+    grupos, contagem, cores = ordenar_campos(ocs, obra["catalogo_duplo"])
+
     fig, (ax_freq, ax_dens) = plt.subplots(
-        nrows=1, ncols=2,
-        figsize=(15, max(4.5, 0.30 * len({r['grupo'] for r in ocs}) + 2.5)),
-        gridspec_kw={"width_ratios": [1.0, 1.8], "wspace": 0.20},
+        nrows=1, ncols=2, sharey=True,
+        figsize=(15, max(4.5, 0.34 * max(1, len(grupos)) + 2.5)),
+        gridspec_kw={"width_ratios": [1.0, 1.6], "wspace": 0.06},
     )
 
-    plot_freq(ax_freq, ocs, obra["palavras"], obra["catalogo_duplo"])
-    plot_densidade(ax_dens, ocs, REPO / "corpus" / "txt_norm" / obra["txt"])
+    plot_freq(ax_freq, grupos, contagem, cores, obra["palavras"],
+              obra["catalogo_duplo"])
+    plot_densidade(ax_dens, ocs, REPO / "corpus" / "txt_norm" / obra["txt"],
+                   grupos, cores)
 
     # Título = só o nome da obra (sem ano). Ano, contagem de palavras,
     # n de ocorrências e nota de catálogo duplo ficam no caption da
