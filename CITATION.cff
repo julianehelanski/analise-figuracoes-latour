@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "Análise textual de figurações em Latour e Haraway"
+message: "Se você usar estes scripts ou dados, por favor cite-os."
+type: software
+abstract: "Scripts, catálogos de termos e outputs da análise lexicométrica das figurações em Latour (capítulo 2 da tese)."
+authors:
+  - family-names: Helanski
+    given-names: Juliane
+    affiliation: "Universidade Estadual de Campinas (Unicamp), Programa de Pós-Graduação em Ciências Sociais"
+repository-code: "https://github.com/julianehelanski/analise-figuracoes-latour"
+license: MIT
+references:
+  - type: thesis
+    title: "{tecnografia} de um centro de inteligência artificial: seguindo cientistas e engenheiros, universidade afora"
+    authors:
+      - family-names: Helanski
+        given-names: Juliane
+    year: 2026
+    repository-code: "https://github.com/julianehelanski/tecno-etnografia-centro-ia"

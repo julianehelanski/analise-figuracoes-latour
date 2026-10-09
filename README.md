@@ -1,5 +1,8 @@
 # Análise de Figurações em Latour e Haraway
 
+> **Uso na tese.** Quais figuras e tabelas da tese (capítulo 2) vêm deste repositório, com o script e os dados de origem de cada uma, estão em [`docs/USO_NA_TESE.md`](docs/USO_NA_TESE.md) (versão tabular em [`docs/uso_na_tese.csv`](docs/uso_na_tese.csv)).
+
+
 Análise textual sistemática das figurações e metáforas mobilizadas por Bruno Latour e Donna Haraway, com extensões para Isabelle Stengers e Tim Ingold, conduzida com auxílio de Claude Code como mediador técnico. Esta pesquisa integra a tese de doutorado em Ciências Sociais sobre o C4AI-USP e o sistema Spira, em andamento na Unicamp.
 
 ---
