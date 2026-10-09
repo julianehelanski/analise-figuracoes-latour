@@ -51,3 +51,11 @@ corpus/txt/
 corpus/txt_norm/
 corpus/txt_lemma_en/
 corpus/txt_fornecido/
+
+# KWIC completos (09/10/2026): as janelas de ±10 palavras, somadas, reproduzem de 11% a 45% de cada obra.
+# Ficam só na cópia local (o pipeline lê deles); versiona-se kwic*_publico.csv, sem contexto
+# (scripts/12_kwic_publico.py). outputs/kwic_consolidado/ era cópia idêntica dos kwic por obra.
+outputs/etapa*/*/csv/kwic.csv
+outputs/etapa*/*/csv/kwic_catalogo_*.csv
+!outputs/etapa*/*/csv/kwic*_publico.csv
+outputs/kwic_consolidado/
