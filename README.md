@@ -174,6 +174,16 @@ Se quiser trabalhar em mais de uma máquina:
 
 Ver `CLAUDE.md` para a etapa em andamento, decisões já tomadas e pendências.
 
+## Uso de inteligência artificial generativa
+
+Desenvolvi a análise deste repositório com o Claude Code, a partir das especificações metodológicas que defini e registrei em `docs/decisoes_metodologicas.md` e em `CLAUDE.md` (o arquivo de memória do projeto, lido pela ferramenta a cada sessão). O Claude Code é a interface de linha de comando da Anthropic que dá ao modelo de linguagem acesso aos arquivos do projeto, para ler, escrever e executar *scripts*. Com ele escrevi e executei os *scripts* de extração e normalização dos textos, KWIC, frequências, co-ocorrência, visualização e camada R (Reinert e AFC), e a camada automática da desambiguação de `war`/`wars`. São minhas a definição do corpus e dos catálogos de termos, a classificação manual das ocorrências (coluna `categoria_final` dos CSVs de `outputs/etapa1/refinamento/`), a validação amostral e a interpretação dos resultados no capítulo 2.
+
+**Modelos registrados no histórico de versões:** Claude Opus 4.8, Claude Opus 5.5 e Claude Sonnet 5.5 (maio a outubro de 2026). Os *commits* mais antigos, de maio de 2026, não registram a versão do modelo.
+
+**Sobre o autor `Claude` e a linha `Co-Authored-By: Claude …` nos *commits*.** Os *commits* com autor `Claude`, ou com essa linha no fim da mensagem, foram feitos em sessões do Claude Code. A marcação é gerada pela própria ferramenta e funciona como registro técnico de rastreabilidade: indica em que pontos do histórico o modelo de linguagem participou do trabalho. A autoria e a responsabilidade pelo conteúdo deste repositório são minhas. Conforme a Deliberação CONSU-A-005/2026 da Unicamp, as ferramentas de IA generativa não figuram como coautoras.
+
+A declaração formal de uso de IA generativa da tese, no modelo da Pró-Reitoria de Pós-Graduação da Unicamp, está no [Anexo 1 da tese](https://github.com/julianehelanski/tecno-etnografia-centro-ia/blob/main/ex_ane1.tex). Este texto também serve à descrição do depósito no Repositório de Dados de Pesquisa da Unicamp (REDU).
+
 ## Licença
 
 Código sob licença MIT. Os dados produzidos (CSVs, relatórios, figuras) estão sob CC BY 4.0. Os PDFs do corpus permanecem sob copyright dos respectivos autores e editores; não são distribuídos por este repositório nem por qualquer canal público.
