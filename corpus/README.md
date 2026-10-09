@@ -1,13 +1,40 @@
 # Corpus
 
-Esta pasta versiona o catálogo bibliográfico do corpus e o texto extraído dos PDFs. Os PDFs em si ficam em pasta privada do Google Drive sincronizada localmente; o caminho está em `.env` na variável `CORPUS_PDF_PATH`.
+Esta pasta versiona o catálogo bibliográfico do corpus, a classificação por página e as impressões digitais (SHA-256) dos textos analisados. Os textos integrais das obras e os PDFs ficam fora do repositório público por direitos autorais (ver seção "Textos integrais: fora do repositório público"). Os PDFs ficam em pasta privada do Google Drive sincronizada localmente; o caminho está em `.env` na variável `CORPUS_PDF_PATH`.
 
 ## Arquivos versionados
 
 - `metadata.csv`: catálogo bibliográfico (33 obras, 15 colunas). Fonte de verdade.
-- `txt/<id>.txt`: texto extraído de cada PDF processado, com `\f` entre páginas.
+- `CHECKSUMS.sha256`: SHA-256 dos 15 textos analisados (`txt/`, `txt_norm/`, `txt_lemma_en/`, `txt_fornecido/`), no formato de `sha256sum`.
+- `inventario_textos.csv`: para cada texto, bytes, palavras, SHA-256, origem e se pode ser reconstruído por script.
 - `paginas/<id>.csv`: classificação por página (`pagina`, `classe`, `n_chars`, `n_palavras`, `qualidade_pagina`), gerada por `scripts/01_extract_text.py`.
 - `qualidade_extracao.csv`: tabela-resumo por obra (páginas, palavras, taxas de qualidade), gerada por `scripts/01_extract_text.py`.
+
+## Textos integrais: fora do repositório público
+
+Desde 09/10/2026, os diretórios abaixo deixaram de ser versionados (estão no `.gitignore`) e existem apenas na cópia local de trabalho. O pipeline continua lendo deles.
+
+| Diretório | Conteúdo | Como obter |
+|---|---|---|
+| `txt/` | texto extraído de cada PDF, com `\f` entre páginas | `scripts/01_extract_text.py` sobre os PDFs da pasta `CORPUS_PDF_PATH` |
+| `txt_norm/` | texto normalizado, lido pelo pipeline | `scripts/01b_normalize_text.py` sobre `txt/` (livros da Etapa 1); os artigos da Etapa 2, o *Recalling* da Etapa 2-bis e o *AIME* foram normalizados fora do pipeline (ver `docs/decisoes_metodologicas.md`) |
+| `txt_lemma_en/` | lemas para a camada R (Reinert/AFC) | lematização udpipe sobre `txt_norm/` (ver `scripts/R/README.md`) |
+| `txt_fornecido/` | `.txt` fornecidos pela pesquisadora a partir de PDF nativo (*Recalling* e *AIME*) | sem reconstrução por script |
+
+**Verificação.** Quem tiver adquirido as mesmas edições (listadas em `metadata.csv`) pode reconstruir os textos e conferir se chegou aos mesmos arquivos que eu analisei:
+
+```bash
+sha256sum -c corpus/CHECKSUMS.sha256
+```
+
+A igualdade de hash depende da mesma edição e da mesma versão das dependências de extração (`requirements.txt`). Sete dos 15 arquivos só podem ser verificados pelo hash, porque não saíram do pipeline versionado (coluna `reconstruivel_por_script` de `inventario_textos.csv`). Para a auditoria desses textos, a via prevista é o depósito em acesso restrito na plataforma de dados da universidade.
+
+**Recuperação na cópia de trabalho.** Os textos continuam no histórico do git até o commit `ea6bcc6`. Para restaurá-los localmente, sem voltar a versioná-los:
+
+```bash
+git checkout ea6bcc6 -- corpus/txt corpus/txt_norm corpus/txt_lemma_en corpus/txt_fornecido
+git restore --staged corpus/txt corpus/txt_norm corpus/txt_lemma_en corpus/txt_fornecido
+```
 
 ## Colunas de `metadata.csv`
 

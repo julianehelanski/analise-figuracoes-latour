@@ -70,8 +70,6 @@ pdfs = list(pdf_dir.glob("*.pdf")) + list(pdf_dir.glob("*.PDF"))
 print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 ```
 
-# Substituir as linhas 73-83 do CLAUDE.md por este bloco:
-
 ## Estado atual do projeto
 
 **Etapa em andamento:** Refinamento sobre as Etapas 1 e 3, em sessão iniciada em 14 de maio de 2026. Seis passos planejados, executados em sequência:

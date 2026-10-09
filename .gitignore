@@ -44,3 +44,10 @@ outputs/etapa1/passo4/kwic_ampliado.csv
 outputs/etapa1/passo4/passagens_curadas.md
 outputs/etapa1/passo4/sequencia_exercito_ciencia.md
 .Rproj.user
+
+# Textos integrais das obras (09/10/2026): ficam fora do repositório público por direitos autorais.
+# Reconstrução e verificação: corpus/README.md, corpus/CHECKSUMS.sha256 e corpus/inventario_textos.csv.
+corpus/txt/
+corpus/txt_norm/
+corpus/txt_lemma_en/
+corpus/txt_fornecido/

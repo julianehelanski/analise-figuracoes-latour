@@ -1,0 +1,16 @@
+arquivo,bytes,palavras,sha256,origem,reconstruivel_por_script
+corpus/txt/latour_1987_science_action_en.txt,830828,140192,550c87c1e28feee649d4082366cd96275b3cd0e62969bc645014b227d0bb1a00,scripts/01_extract_text.py a partir do PDF,sim
+corpus/txt/latour_1999_pandora_en.txt,798258,128015,1ec918df1972a22333d07a34106c7b812ed596807fbc4e78fe42e1967db48c06,scripts/01_extract_text.py a partir do PDF,sim
+corpus/txt/latour_woolgar_1986_lab_life_en.txt,679955,106249,da5529142b8bc6c25fd81bea194d5712d353b028b412148400ce27276c665358,scripts/01_extract_text.py a partir do PDF,sim
+corpus/txt_fornecido/latour_1999_recalling_nativo.txt,30773,4857,b1d99454821b4291e6bec31b1b09435e3adaad7573267654c63cc5dabd059c5a,"arquivo .txt fornecido pela pesquisadora (PDF nativo), fora do pipeline",não (só verificável pelo hash)
+corpus/txt_fornecido/latour_2013_aime_en.txt,1345400,195706,2c7ae1e9420580ce3ff992681e24dd2af4a995c1d104ae37acf4776a8ab8e0ce,"arquivo .txt fornecido pela pesquisadora (PDF nativo), fora do pipeline",não (só verificável pelo hash)
+corpus/txt_lemma_en/latour_1987_science_action_en_lemma.txt,742757,134738,797931c2140b0c0e520952bdacdb66a00c199f99a5659900db5e838459359087,"lematização udpipe (english-ewt-ud-2.5) sobre corpus/txt_norm/, ver scripts/R/README.md",sim
+corpus/txt_lemma_en/latour_1999_pandora_en_lemma.txt,671789,122313,41d9e2816692f5e79ffb76b1b890b17ac092763eeca1655b0bf2240170525e99,"lematização udpipe (english-ewt-ud-2.5) sobre corpus/txt_norm/, ver scripts/R/README.md",sim
+corpus/txt_lemma_en/latour_woolgar_1986_lab_life_en_lemma.txt,589464,100298,1f5596477bdfe1d05c4b8913cb483e3b7ddb948808163a75c6885b6a55acc0d2,"lematização udpipe (english-ewt-ud-2.5) sobre corpus/txt_norm/, ver scripts/R/README.md",sim
+corpus/txt_norm/latour_1987_science_action_en.txt,828372,139861,436b309fad0a02829699e2072f900c7200d8454201771bbbf860f2f37b781f4a,scripts/01b_normalize_text.py sobre corpus/txt/,sim
+corpus/txt_norm/latour_1996_clarifications_en.txt,48533,7927,cbea60abba433fc253958c7768f688b83221d2e9dfa64e18b101bff4aee3bfd1,normalizado fora do pipeline a partir de zip de OCR página a página (Etapa 2),não (só verificável pelo hash)
+corpus/txt_norm/latour_1999_pandora_en.txt,792675,128001,5951f89663ec1ea760b4c88615a9021c38f8e1ac10425a09c2f913c89da30ba6,scripts/01b_normalize_text.py sobre corpus/txt/,sim
+corpus/txt_norm/latour_1999_recalling_bis.txt,30206,4825,c090ca0a7508d9913bf1ca2d186a4293cd08c122152669216959580f6ed66912,normalizado a partir de corpus/txt_fornecido/latour_1999_recalling_nativo.txt (Etapa 2-bis),não (só verificável pelo hash)
+corpus/txt_norm/latour_1999_recalling_en.txt,9504,1397,eac86c0fdf52b80d832af843135318acea5a73d4730ed3d2830287fcf23b0367,normalizado fora do pipeline a partir de zip de OCR página a página (Etapa 2),não (só verificável pelo hash)
+corpus/txt_norm/latour_2013_aime_en.txt,1321788,194454,19d9ebdbb0e3080c8e8d4185d64747486406a9f97d9da404828829fcd2ecd524,normalizado a partir de corpus/txt_fornecido/latour_2013_aime_en.txt (Etapa 3),não (só verificável pelo hash)
+corpus/txt_norm/latour_woolgar_1986_lab_life_en.txt,678685,105749,11a01b2fe168d7104903b759f198d7c10be5e7ae0afd38344509fce80b300387,scripts/01b_normalize_text.py sobre corpus/txt/,sim
