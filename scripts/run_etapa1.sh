@@ -17,6 +17,9 @@ python scripts/01_extract_text.py $EXTRA_EXTRACAO
 echo "==> 02_kwic"
 python scripts/02_kwic.py --autor latour --janela 10
 
+echo "==> 12_kwic_publico (versão versionada dos KWIC, sem contexto)"
+python scripts/12_kwic_publico.py
+
 echo "==> 03_frequencies"
 python scripts/03_frequencies.py
 
