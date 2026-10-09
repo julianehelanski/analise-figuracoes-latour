@@ -129,6 +129,8 @@ print(f"Encontrados {len(pdfs)} PDFs em {pdf_dir}")
 - **Caminho com espaços (especialmente macOS)**: o caminho do Drive em macOS contém espaços (`My Drive`, `CloudStorage`). Usar `Path` do `pathlib` e citar caminhos entre aspas em scripts shell.
 - **Extração de PDFs**: notas de rodapé podem se misturar ao corpo. Verificar amostralmente após `pdftotext -layout`.
 - **Lemmatização**: spaCy às vezes erra em formas verbais (especialmente em francês). Validar amostralmente.
+- **Reprodução de texto das obras**: desde 09/10/2026, textos integrais e KWIC completos ficam fora do git.
+  Não versionar arquivos novos com trechos extensos das obras; medir a cobertura antes.
 - **Alucinação em interpretação**: na Etapa 7 (leitura interpretativa), nunca afirmar sem citação direta. Marcar inferências com `[INFERÊNCIA]`.
 
 ## Comandos úteis
@@ -147,13 +149,15 @@ python scripts/02_kwic.py --escopo etapa1
 ## Estrutura do repositório
 
 ```
-corpus/                catálogo (metadata.csv) e textos extraídos (txt/, txt_norm/)
+corpus/                catálogo (metadata.csv), CHECKSUMS.sha256 e inventario_textos.csv;
+                       textos extraídos (txt/, txt_norm/, ...) só na cópia local, fora do git
 campos_lexicais/       catálogo YAML de termos figurativos
 docs/
   decisoes_metodologicas.md      decisões vivas
   historico.md                   índice cronológico de documentos consumidos
 scripts/
   01_extract_text.py ... 08_validate_sample.py   pipeline reutilizável
+  12_kwic_publico.py                              KWIC versionável, sem contexto
   _paths.py                                       mapeamento obra → etapa
   arquivo/                                        scripts one-shot já consumidos
 outputs/
