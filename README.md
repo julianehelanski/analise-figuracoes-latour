@@ -32,8 +32,9 @@ analise_figuracoes/
 ├── corpus/
 │   ├── README.md                   documenta as obras esperadas
 │   ├── metadata.csv                fonte de verdade do catálogo
-│   ├── txt/                        texto cru extraído dos PDFs
-│   ├── txt_norm/                   texto normalizado (lido pelo pipeline)
+│   ├── CHECKSUMS.sha256            SHA-256 dos textos analisados
+│   ├── inventario_textos.csv       origem e reconstrução de cada texto
+│   ├── txt/, txt_norm/, ...        (local, fora do repositório) textos integrais; ver corpus/README.md
 │   └── paginas/                    classificação por página (front/back matter, corpo, ...)
 │
 ├── campos_lexicais/

@@ -901,3 +901,16 @@ Portei a desambiguação war/wars do campo militar para o pipeline versionado, d
 **Consistência com o passo 4.** As figuras `*_refinada` do passo 4 já usavam os valores refinados e permanecem coerentes. Elas continuam úteis, porque são focadas no campo militar, enquanto as combinadas mostram todos os campos. No futuro, o passo 4 pode importar `_desambiguar_war` em lugar da função local `filtrar_war_descritivos`, para uma fonte única, mas isso fica como melhoria opcional.
 
 **Fora do escopo.** As redes de cocorrência (`rede_cocorrencia`, geradas por `scripts/05_cooccurrence.py`) ainda contam o militar na forma bruta. Refiná-las exigiria reprocessar a cocorrência sobre um kwic refinado, mudança maior que esta tarefa não abrange. Fica registrada como consideração aberta.
+
+## Retirada dos textos integrais do repositório público — 09/10/2026
+
+Preparando o depósito dos materiais na plataforma de dados da universidade, retirei do versionamento os textos integrais das obras de Latour: `corpus/txt/`, `corpus/txt_norm/`, `corpus/txt_lemma_en/` e `corpus/txt_fornecido/`, 15 arquivos ao todo. A nota do capítulo 1 da tese sobre os repositórios afirma que os PDFs e os datasets sob restrição de direitos autorais ficam fora dos repositórios, e o repositório versionava, desde maio, o texto integral das seis obras analisadas. A Lei 9.610/98 (art. 46, III) admite a citação de passagens para fins de estudo e crítica na medida justificada pelo fim a atingir, o que não alcança a reprodução integral.
+
+**O que fica versionado.** Tudo o que é derivado e não reproduz a obra: contagens, densidades, matrizes de co-ocorrência, catálogos, classificações de `war`/`wars`, `corpus/paginas/`. Antes da retirada, registrei o SHA-256 de cada texto em `corpus/CHECKSUMS.sha256` e o inventário em `corpus/inventario_textos.csv` (commit `ea6bcc6`). Os hashes do *Recalling* nativo conferem com `outputs/etapa2bis/recalling_extras/txt_hashes.txt`.
+
+**Reconstrução.** Oito arquivos podem ser reconstruídos por script a partir das mesmas edições (`01_extract_text.py`, `01b_normalize_text.py`, lematização udpipe). Sete só podem ser verificados pelo hash, porque foram normalizados ou fornecidos fora do pipeline versionado: *Clarifications* e *Recalling* da Etapa 2 (zip de OCR), *Recalling* da Etapa 2-bis e *AIME* (`.txt` de PDF nativo fornecidos por mim). Para esses, a via de auditoria prevista é o depósito em acesso restrito na plataforma da universidade.
+
+**Histórico.** Os textos permanecem no histórico do git, recuperáveis pelo commit `ea6bcc6`. Não reescrevi o histórico; essa decisão fica em aberto. O arquivo ZIP do repositório contém apenas a versão atual e, portanto, não inclui os textos.
+
+**Pendência: KWIC de ±10 palavras.** Medi a fração de cada texto que as janelas dos arquivos KWIC versionados recobrem, unindo os intervalos: *Laboratory Life* 10,9%, *Science in Action* 19,9%, *Pandora's Hope* 14,3%, *Clarifications* 44,9%, *Recalling* 25,3% (Etapa 2) e 28,7% (Etapa 2-bis), *AIME* 18,5% (catálogo novo) e 11,0% (catálogo antigo). Somados, esses arquivos reproduzem parte extensa de cada obra, sobretudo dos artigos curtos. Ficam versionados até a decisão entre retirar as colunas de contexto, encurtar a janela ou mantê-los. O KWIC ampliado de ±50 palavras já estava fora do repositório desde 15/05/2026.
+
