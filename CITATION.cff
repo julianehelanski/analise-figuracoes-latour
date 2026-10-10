@@ -8,8 +8,10 @@ authors:
     given-names: Juliane Cristina Helanski
     orcid: "https://orcid.org/0000-0001-8649-8986"
     affiliation: "Universidade Estadual de Campinas (Unicamp), Programa de Pós-Graduação em Ciências Sociais"
+license:
+  - MIT
+  - CC-BY-4.0
 repository-code: "https://github.com/julianehelanski/analise-figuracoes-latour"
-license: MIT
 references:
   - type: thesis
     title: "Tecnografias de um centro de inteligência artificial: seguindo cientistas e engenheiros universidade afora"
@@ -23,4 +25,3 @@ references:
       city: Campinas
       country: BR
     year: 2026
-    repository-code: "https://github.com/julianehelanski/tecno-etnografia-centro-ia"

@@ -68,7 +68,7 @@ Fiz a análise deste repositório com o Claude Code, a partir das especificaçõ
 
 **Modelos registrados no histórico de versões:** Claude Opus 4.8, Claude Opus 5.5 e Claude Sonnet 5.5 (maio a outubro de 2026). Os *commits* mais antigos, de maio de 2026, não registram a versão do modelo.
 
-Os *commits* com autor `Claude`, ou com a linha `Co-Authored-By: Claude …`, foram feitos em sessões do Claude Code; a marcação é gerada pela ferramenta e registra em que pontos do histórico o modelo participou do trabalho. A autoria e a responsabilidade pelo conteúdo são minhas e, conforme a Deliberação CONSU-A-005/2026 da Unicamp, as ferramentas de IA generativa não figuram como coautoras. A declaração formal de uso de IA generativa da tese está no [Anexo 1](https://github.com/julianehelanski/tecno-etnografia-centro-ia/blob/main/ex_ane1.tex).
+Os *commits* com autor `Claude`, ou com a linha `Co-Authored-By: Claude …`, foram feitos em sessões do Claude Code; a marcação é gerada pela ferramenta e registra em que pontos do histórico o modelo participou do trabalho. A autoria e a responsabilidade pelo conteúdo são minhas e, conforme a Deliberação CONSU-A-005/2026 da Unicamp, as ferramentas de IA generativa não figuram como coautoras. A declaração formal de uso de IA generativa da tese está no Anexo 1.
 
 ## Citação
 
@@ -82,7 +82,7 @@ Metadados de citação em [`CITATION.cff`](CITATION.cff).
 
 ## Licença
 
-Código sob licença MIT; dados produzidos (CSV, relatórios, figuras) sob CC BY 4.0. As obras de Latour permanecem sob os direitos de seus autores e editores e não são distribuídas aqui.
+Código sob licença [MIT](LICENSE); dados que produzi (catálogos de termos, CSV, relatórios, tabelas e figuras) sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br), conforme [`LICENSE-DADOS.md`](LICENSE-DADOS.md). As obras de Latour permanecem sob os direitos de seus autores e editores e não são distribuídas aqui.
 
 ## Contato
 
