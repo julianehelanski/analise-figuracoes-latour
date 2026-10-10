@@ -1,9 +1,9 @@
 # Relatório consolidado: análise de figurações em Latour, 1986-1999
 
-**Autora:** Juliane Helanski
+**Autora:** Juliane Cristina Helanski Cardoso
 **Data de consolidação:** 15 de maio de 2026
 **Versão:** 1.0 (fonte autoritativa, substitui os relatórios parciais como referência única)
-**Repositório:** `julianehelanski/analise_figuracoes`
+**Repositório:** `julianehelanski/analise-figuracoes-latour`
 
 ---
 

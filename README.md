@@ -1,6 +1,6 @@
 # Análise de figurações em Latour
 
-Este repositório reúne os dados, os *scripts* e os resultados da análise lexicométrica que fiz do vocabulário figurativo de Bruno Latour para o capítulo 2 da minha tese de doutorado, *{tecnografia} de um centro de inteligência artificial: seguindo cientistas e engenheiros, universidade afora* (Programa de Pós-Graduação em Ciências Sociais, IFCH, Unicamp, 2026). O capítulo argumenta a tensão entre o vocabulário militar-industrial latouriano (alistar, aliados, provas de força, máquina de guerra) e a figuração têxtil-feminista de Donna Haraway; esta análise dá a esse argumento uma base empírica contável e citável para o lado de Latour.
+Este repositório reúne os dados, os *scripts* e os resultados da análise lexicométrica que fiz do vocabulário figurativo de Bruno Latour para o capítulo 2 da minha tese de doutorado, *Tecnografias de um centro de inteligência artificial: seguindo cientistas e engenheiros universidade afora* (Programa de Pós-Graduação em Ciências Sociais, IFCH, Unicamp, 2026). O capítulo argumenta a tensão entre o vocabulário militar-industrial latouriano (alistar, aliados, provas de força, máquina de guerra) e a figuração têxtil-feminista de Donna Haraway; esta análise dá a esse argumento uma base empírica contável e citável para o lado de Latour.
 
 ## O que fiz
 
@@ -72,9 +72,11 @@ Os *commits* com autor `Claude`, ou com a linha `Co-Authored-By: Claude …`, fo
 
 ## Citação
 
-> HELANSKI, Juliane. *Análise de figurações em Latour*: dados e *scripts*. Campinas: Unicamp, 2026. Disponível em: https://github.com/julianehelanski/analise-figuracoes-latour.
+> CARDOSO, Juliane Cristina Helanski. *Análise de figurações em Latour*: dados e *scripts*. Campinas: Unicamp, 2026. Disponível em: https://github.com/julianehelanski/analise-figuracoes-latour.
 
-> HELANSKI, Juliane. *{tecnografia} de um centro de inteligência artificial*: seguindo cientistas e engenheiros, universidade afora. 2026. Tese (Doutorado em Ciências Sociais) – Instituto de Filosofia e Ciências Humanas, Universidade Estadual de Campinas, Campinas, 2026.
+> CARDOSO, Juliane Cristina Helanski. *Tecnografias de um centro de inteligência artificial*: seguindo cientistas e engenheiros universidade afora. Orientadora: Maria Suely Kofes. 2026. Tese (Doutorado em Ciências Sociais) – Instituto de Filosofia e Ciências Humanas, Universidade Estadual de Campinas, Campinas, 2026.
+
+ORCID da autora: https://orcid.org/0000-0001-8649-8986.
 
 Metadados de citação em [`CITATION.cff`](CITATION.cff).
 
@@ -84,4 +86,4 @@ Código sob licença MIT; dados produzidos (CSV, relatórios, figuras) sob CC BY
 
 ## Contato
 
-Juliane Helanski, doutoranda no Programa de Pós-Graduação em Ciências Sociais da Unicamp.
+Juliane Cristina Helanski Cardoso, doutora em Ciências Sociais pela Unicamp (2026).
