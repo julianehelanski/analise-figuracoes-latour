@@ -28,8 +28,6 @@ Os textos analisados vêm de PDFs das edições citadas em `corpus/metadata.csv`
 
 Tabelas da tese derivadas deste repositório (compostas no texto do capítulo 2): catálogo lexical das etapas 1 e 2 (`campos_lexicais/catalogo_termos.yaml`, versão LaTeX em `outputs/latex/catalogo_lexical_campos.tex`), catálogo lexical da etapa 3 (`tab:aime_catalogo_novo`, a partir de `campos_lexicais/catalogo_termos_aime.yaml` e dos outputs de `outputs/etapa3/`) e quadros de mapeamento com *AIME* (`tab:aime_quadro1_grupo5`, `tab:mapeamento_quadro1_catalogo_novo`).
 
-Nota de sincronização. Em 09/10/2026, depois da integração da branch `claude/figure-color-standardization-sgpeb8` (padronização visual feita em junho de 2026 e que não tinha sido mergeada), as figuras deste repositório citadas na tese são byte a byte iguais às cópias em `figuras/` do repositório da tese. O script `atualizar_figuras_tese.sh` (repositório da tese) copia a versão deste repositório para a tese pelo nome do arquivo quando uma figura for regenerada.
-
 ## Material do repositório sem uso direto na tese
 
 Das 73 figuras em `outputs/figuras/`, 63 não aparecem em `ex_cap*.tex`. São saídas das etapas (redes de co-ocorrência, frequências por grupo, variantes em SVG, análise Reinert/AFC) que sustentam as medidas reportadas e permanecem como material de auditoria.
