@@ -82,7 +82,7 @@ Metadados de citação em [`CITATION.cff`](CITATION.cff).
 
 ## Licença
 
-Código sob licença MIT; dados produzidos (CSV, relatórios, figuras) sob CC BY 4.0. As obras de Latour permanecem sob os direitos de seus autores e editores e não são distribuídas aqui.
+Código sob licença [MIT](LICENSE); dados que produzi (catálogos de termos, CSV, relatórios, tabelas e figuras) sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br), conforme [`LICENSE-DADOS.md`](LICENSE-DADOS.md). As obras de Latour permanecem sob os direitos de seus autores e editores e não são distribuídas aqui.
 
 ## Contato
 
