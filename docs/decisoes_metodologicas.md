@@ -924,3 +924,7 @@ A medição registrada na entrada anterior mostrou que os arquivos KWIC versiona
 
 **Verificação.** `scripts/09_desambiguar_war.py`, rodado sobre os KWIC locais, reproduz 37, 363 e 156. Medi de novo a reprodução textual, desta vez como fração das palavras de cada obra recobertas por sequências de oito palavras idênticas encontradas em qualquer arquivo versionado: *Laboratory Life* 1,8%, *Science in Action* 2,2%, *Pandora's Hope* 3,3%, *AIME* 1,5%, *Clarifications* 15,3% e *Recalling* (integral) 23,2%. Nos dois artigos curtos, a reprodução residual vem das planilhas de validação amostral semântica e dos relatórios `frequencias.md`, e fica como pendência própria.
 
+## Trechos das obras nas planilhas de validação e nos relatórios — 10/10/2026
+
+Decidi manter versionados os trechos das obras de Latour que as planilhas de validação amostral e os relatórios `frequencias.md` reproduzem, inclusive nos dois artigos curtos (cerca de 15% de *Clarifications* e 23% de *Recalling*). Os trechos estão citados com a fonte e sustentam a validação semântica dos campos figurativos, de modo que retirá-los apagaria parte da análise que fiz. O fundamento é o direito de citação para fins de estudo e crítica (Lei 9.610/98, art. 46, III). `LICENSE-DADOS.md` exclui esses trechos da licença CC BY 4.0 dos dados.
+
