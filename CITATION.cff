@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: "Análise de figurações em Latour"
 message: "Se você usar estes scripts ou dados, por favor cite-os."
 type: software
-abstract: "Scripts, catálogos de termos e outputs da análise lexicométrica das figurações em Latour (capítulo 2 da tese)."
+abstract: "Dados, scripts e resultados da análise lexicométrica que conta as imagens de guerra e de tecelagem (figurações) com que Bruno Latour descreve a ciência (capítulo 2 da tese)."
 authors:
   - family-names: Cardoso
     given-names: Juliane Cristina Helanski
