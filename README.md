@@ -1,6 +1,6 @@
 # Análise de figurações em Latour
 
-Este repositório reúne os dados, os *scripts* e os resultados da análise lexicométrica que fiz do vocabulário figurativo de Bruno Latour para o capítulo 2 da minha tese de doutorado, *Tecnografias de um centro de inteligência artificial: seguindo cientistas e engenheiros universidade afora* (Programa de Pós-Graduação em Ciências Sociais, IFCH, Unicamp, 2026). O capítulo argumenta a tensão entre o vocabulário militar-industrial latouriano (alistar, aliados, provas de força, máquina de guerra) e a figuração têxtil-feminista de Donna Haraway; esta análise dá a esse argumento uma base empírica contável e citável para o lado de Latour.
+Este repositório reúne os dados, os *scripts* e os resultados da análise lexicométrica que fiz para o capítulo 2 da minha tese de doutorado, *Tecnografias de um centro de inteligência artificial: seguindo cientistas e engenheiros universidade afora* (Programa de Pós-Graduação em Ciências Sociais, IFCH, Unicamp, 2026). A análise conta quantas vezes Bruno Latour recorre a imagens de guerra para descrever a ciência (aliados, alistamento, provas de força, máquina de guerra) e onde aparecem, ao lado delas, imagens de tecelagem (tramas, fios, nós), próximas das que Donna Haraway usa. Chamo essas imagens de figurações. No capítulo, argumento que as duas famílias de imagens estão em tensão, e esta análise dá a esse argumento, do lado de Latour, uma base contável e citável.
 
 ## O que fiz
 
@@ -14,7 +14,7 @@ Rastreei, por catálogos de termos, de 17 a 31 campos figurativos (inscrição, 
 
 Para cada texto extraí e normalizei o texto dos PDFs, levantei as ocorrências em KWIC (janela de ±10 palavras), calculei frequência absoluta e densidade (ocorrências por dez mil palavras), redes de co-ocorrência e, sobre as três obras da etapa 1, uma classificação de Reinert com análise fatorial de correspondências em R. Validei por amostragem as heurísticas de extração e a pertinência semântica dos termos de cada campo.
 
-O campo militar recebeu um tratamento à parte: classifiquei manualmente cada ocorrência de `war`/`wars` como descritivo-histórica (a guerra como acontecimento) ou figurativa (a guerra como modelo da prática científica). A classificação manual fica em CSV auditável (`outputs/etapa1/refinamento/war_<obra>_classificacao.csv`, coluna `categoria_final`) e o *pipeline* a aplica sem recomputá-la. As contagens do campo militar são reportadas em duas versões, bruta e refinada; as figuras da tese usam a refinada (37 ocorrências em *Laboratory Life*, 363 em *Science in Action*, 156 em *Pandora's Hope*).
+O campo militar, que reúne o vocabulário de guerra, recebeu um tratamento à parte: classifiquei manualmente cada ocorrência de `war`/`wars` como descritivo-histórica (a guerra como acontecimento) ou figurativa (a guerra como modelo da prática científica). A classificação manual fica em CSV auditável (`outputs/etapa1/refinamento/war_<obra>_classificacao.csv`, coluna `categoria_final`) e o *pipeline* a aplica sem recomputá-la. As contagens do campo militar são reportadas em duas versões, bruta e refinada; as figuras da tese usam a refinada (37 ocorrências em *Laboratory Life*, 363 em *Science in Action*, 156 em *Pandora's Hope*).
 
 Todas as decisões de método estão datadas em [`docs/decisoes_metodologicas.md`](docs/decisoes_metodologicas.md).
 
