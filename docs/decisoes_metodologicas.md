@@ -931,4 +931,4 @@ Decidi manter versionados os trechos das obras de Latour que as planilhas de val
 
 ## Licença dos dados no depósito do REDU (13/10/2026)
 
-O REDU oferece três licenças: CC BY-NC 4.0, CC BY-SA 4.0 e CC BY-NC-ND 4.0. Adotei CC BY-SA 4.0 para os dados, tabelas e figuras de todos os repositórios da tese, no lugar de CC BY 4.0. É a única das três compatível com as figuras derivadas do *dataset* SPIRA, que já estão sob CC BY-SA 4.0, e a que mantém o reuso aberto, inclusive comercial, com atribuição. O código continua sob MIT.
+Adotei CC BY-SA 4.0 para os dados, tabelas e figuras de todos os repositórios da tese, no lugar de CC BY 4.0. É a licença compatível com as figuras derivadas do *dataset* SPIRA, que já estão sob CC BY-SA 4.0, e mantém o reuso aberto, inclusive comercial, com atribuição. O código continua sob MIT.
