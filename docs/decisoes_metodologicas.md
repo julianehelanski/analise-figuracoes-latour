@@ -428,7 +428,7 @@ A planilha tem colunas pré-preenchidas (`obra`, `campo`, `camada`, `id_kwic`, `
 
 Após o preenchimento, gero `outputs/etapa2/consolidado/validacao_amostral_resultados.md` com taxa de uso figural por campo e por camada, mapa de polissemia, e densidade refinada figural para `textil` e `topologia` (bruta × taxa de figuralidade aferida).
 
-Pendência: a Etapa 1 prevê a mesma validação A/B/C para os livros (passo 2 do refinamento mencionado no `CLAUDE.md`). Quando essa validação for executada, a Etapa 2 pode rodar comparação cruzada de figuralidade entre livros e artigos no mesmo protocolo. Esta etapa fica fora do escopo da 2.6.
+Pendência: a Etapa 1 prevê a mesma validação A/B/C para os livros (passo 2 do plano de refinamento de maio de 2026). Quando essa validação for executada, a Etapa 2 pode rodar comparação cruzada de figuralidade entre livros e artigos no mesmo protocolo. Esta etapa fica fora do escopo da 2.6.
 
 ### 12. Rendimento da validação amostral A/B/C
 
