@@ -5,3 +5,5 @@ O código deste repositório está sob a licença MIT (arquivo [`LICENSE`](LICEN
 ## Exceções
 
 - As obras de Bruno Latour pertencem aos seus autores e editores. Os PDFs e os textos integrais não são distribuídos aqui; as planilhas de validação amostral, os relatórios de frequência e os arquivos de ocorrências reproduzem trechos das obras, com indicação da fonte, para fins de estudo e crítica (Lei 9.610/98, art. 46, III), e não estão incluídos na licença acima.
+
+Texto legal da licença CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/legalcode.pt
