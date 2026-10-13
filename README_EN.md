@@ -17,7 +17,7 @@ Not included in the REDU deposit, and where to obtain it:
 
 ## Licenses
 
-Code: MIT (LICENSE). Data, tables and figures I produced: CC BY 4.0 (LICENSE-DADOS.md).
+Code: MIT (LICENSE). Data, tables and figures I produced: CC BY-SA 4.0 (LICENSE-DADOS.md).
 
 ## How to cite
 
