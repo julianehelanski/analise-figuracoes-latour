@@ -37,6 +37,17 @@ Os PDFs e os textos integrais das obras não estão no repositório, por direito
 
 Detalhes de reconstrução e verificação em [`corpus/README.md`](corpus/README.md).
 
+## Obras analisadas
+
+- LATOUR, Bruno; WOOLGAR, Steve. *Laboratory life*: the construction of scientific facts. 2. ed. Princeton: Princeton University Press, 1986.
+- LATOUR, Bruno. *Science in action*: how to follow scientists and engineers through society. Cambridge, MA: Harvard University Press, 1987.
+- LATOUR, Bruno. On actor-network theory: a few clarifications. *Soziale Welt*, v. 47, n. 4, p. 369–381, 1996.
+- LATOUR, Bruno. On recalling ANT. In: LAW, John; HASSARD, John (ed.). *Actor network theory and after*. Oxford: Blackwell, 1999. p. 15–25.
+- LATOUR, Bruno. *Pandora's hope*: essays on the reality of science studies. Cambridge, MA: Harvard University Press, 1999.
+- LATOUR, Bruno. *An inquiry into modes of existence*: an anthropology of the moderns. Tradução de Catherine Porter. Cambridge, MA: Harvard University Press, 2013.
+
+As edições exatas, com ISBN, estão em `corpus/metadata.csv`.
+
 ## Como reproduzir
 
 ```bash
