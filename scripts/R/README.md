@@ -58,7 +58,7 @@ Todas em `outputs/etapa1/reinert_afc/`:
 
 ## Observações metodológicas
 
-- Seed fixa em 42 (CLAUDE.md).
+- Seed fixa em 42.
 - Stopwords inglesas removidas via `quanteda::stopwords("en")`, lemas com menos de 3 caracteres descartados.
 - Termos presentes em menos de 3 STs descartados (`min_docfreq = 3`) para estabilizar a Reinert.
 - STs vazios após filtragem são removidos antes da CHD.
